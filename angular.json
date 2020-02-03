@@ -31,7 +31,12 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/blockly/blockly_compressed.js",
+              "node_modules/blockly/python_compressed.js",
+              "node_modules/blockly/blocks_compressed.js",
+              "node_modules/blockly/msg/js/en.js"
+            ]
           },
           "configurations": {
             "production": {
