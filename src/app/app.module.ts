@@ -8,6 +8,8 @@ import {RouterModule} from '@angular/router';
 import { BlocklyComponent } from './blockly/blockly.component';
 import { PixiJsComponent } from './pixi-js/pixi-js.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+import { PixiJsIntroComponent } from './pixi-js/pixi-js-intro/pixi-js-intro.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     HeaderComponent,
     BlocklyComponent,
     PixiJsComponent,
-    HomePageComponent
+    HomePageComponent,
+    DropdownDirective,
+    PixiJsIntroComponent
   ],
   imports: [
     BrowserModule,

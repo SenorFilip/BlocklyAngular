@@ -12,8 +12,17 @@
         <li routerLinkActive="active">
           <a routerLink="/blockly">Blockly</a>
         </li>
-        <li routerLinkActive="active">
-          <a routerLink="/pixiJs">PixiJS</a>
+        <li appDropdown
+            routerLinkActive="active"
+            class="dropdown">
+          <a style="cursor: pointer"
+             class="dropdown-toggle"
+             role="button">
+            PixiJS <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/pixiJs/intro" style="cursor: pointer">PixiJS Intro</a></li>
+          </ul>
         </li>
       </ul>
     </div>
