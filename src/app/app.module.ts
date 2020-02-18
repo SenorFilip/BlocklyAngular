@@ -10,6 +10,8 @@ import { PixiJsComponent } from './pixi-js/pixi-js.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { PixiJsIntroComponent } from './pixi-js/pixi-js-intro/pixi-js-intro.component';
+import { PixiJsRendererComponent } from './pixi-js/pixi-js-renderer/pixi-js-renderer.component';
+import { PixiJsTextureComponent } from './pixi-js/pixi-js-texture/pixi-js-texture.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { PixiJsIntroComponent } from './pixi-js/pixi-js-intro/pixi-js-intro.comp
     PixiJsComponent,
     HomePageComponent,
     DropdownDirective,
-    PixiJsIntroComponent
+    PixiJsIntroComponent,
+    PixiJsRendererComponent,
+    PixiJsTextureComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import {Application, Texture, Sprite} from 'pixi.js';
 })
 export class PixiJsIntroComponent implements OnInit {
 
+  title = 'Intro';
+
   constructor() { }
 
   ngOnInit() {
@@ -20,7 +22,8 @@ export class PixiJsIntroComponent implements OnInit {
       view: canvas,
       width: screenWidth,
       height: screenHeight,
-      backgroundColor: 0x1099bb
+      backgroundColor: 0x1099bb,
+      resizeTo: window
     });
 
     const texture = Texture.from('assets/carrot.png');
@@ -32,6 +35,8 @@ export class PixiJsIntroComponent implements OnInit {
     pixiApp.stage.addChild(img);
 
     pixiApp.ticker.add(() => {
+      img.x = pixiApp.renderer.width / 2;
+      img.y = pixiApp.renderer.height / 2;
       img.rotation += 0.1;
     });
   }

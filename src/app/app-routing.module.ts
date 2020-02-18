@@ -5,12 +5,16 @@ import {BlocklyComponent} from './blockly/blockly.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {PixiJsComponent} from './pixi-js/pixi-js.component';
 import {PixiJsIntroComponent} from './pixi-js/pixi-js-intro/pixi-js-intro.component';
+import {PixiJsRendererComponent} from './pixi-js/pixi-js-renderer/pixi-js-renderer.component';
+import {PixiJsTextureComponent} from './pixi-js/pixi-js-texture/pixi-js-texture.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'blockly', component: BlocklyComponent},
   {path: 'pixiJs', component: PixiJsComponent, children: [
-      {path: 'intro', component: PixiJsIntroComponent}
+      {path: 'intro', component: PixiJsIntroComponent},
+      {path: 'renderer', component: PixiJsRendererComponent},
+      {path: 'texture', component: PixiJsTextureComponent}
     ]}
 ];
 
