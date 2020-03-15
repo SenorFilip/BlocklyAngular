@@ -12,6 +12,9 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { PixiJsIntroComponent } from './pixi-js/pixi-js-intro/pixi-js-intro.component';
 import { PixiJsRendererComponent } from './pixi-js/pixi-js-renderer/pixi-js-renderer.component';
 import { PixiJsTextureComponent } from './pixi-js/pixi-js-texture/pixi-js-texture.component';
+import { PixiJsSpritesComponent } from './pixi-js/pixi-js-sprites/pixi-js-sprites.component';
+import { PixiJsGraphicsComponent } from './pixi-js/pixi-js-graphics/pixi-js-graphics.component';
+import { PixiJsFiltersComponent } from './pixi-js/pixi-js-filters/pixi-js-filters.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { PixiJsTextureComponent } from './pixi-js/pixi-js-texture/pixi-js-textur
     DropdownDirective,
     PixiJsIntroComponent,
     PixiJsRendererComponent,
-    PixiJsTextureComponent
+    PixiJsTextureComponent,
+    PixiJsSpritesComponent,
+    PixiJsGraphicsComponent,
+    PixiJsFiltersComponent
   ],
   imports: [
     BrowserModule,

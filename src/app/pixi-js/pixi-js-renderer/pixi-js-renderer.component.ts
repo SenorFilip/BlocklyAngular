@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Application, Sprite, Texture, Renderer, Container, Ticker} from 'pixi.js';
+import {Component, OnInit} from '@angular/core';
+import {Container, Renderer, Sprite, Texture, Ticker} from 'pixi.js';
 
 @Component({
   selector: 'app-pixi-js-renderer',

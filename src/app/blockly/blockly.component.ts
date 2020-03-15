@@ -12,17 +12,25 @@ export class BlocklyComponent implements OnInit {
 
   code: string;
   workspace: any;
+
   // blocklyDiv: HTMLElement;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     // this.blocklyDiv = document.getElementById('blocklyDiv');
-      this.workspace = Blockly.inject('blocklyDiv', toolbox);
-      // change listener on workspace update event
-      this.workspace.addChangeListener(() => {
-        this.code = Blockly.Python.workspaceToCode(this.workspace);
-      });
+    this.workspace = Blockly.inject('blocklyDiv', toolbox);
+    // change listener on workspace update event
+    this.workspace.addChangeListener(() => {
+      this.code = Blockly.Python.workspaceToCode(this.workspace);
+    });
+  }
+
+  runCode() {
+    // window.LoopTrap = 1000;
+    // Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+
   }
 
 }

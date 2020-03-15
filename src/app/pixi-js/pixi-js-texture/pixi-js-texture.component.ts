@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Application, Sprite, Loader, utils} from 'pixi.js';
+import {Component, OnInit} from '@angular/core';
+import {Application, Loader, Sprite, utils} from 'pixi.js';
 
 @Component({
   selector: 'app-pixi-js-texture',
