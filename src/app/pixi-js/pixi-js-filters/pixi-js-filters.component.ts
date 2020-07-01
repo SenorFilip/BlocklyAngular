@@ -9,7 +9,7 @@ import { Container, Renderer, Sprite, Texture, Ticker, Application } from 'pixi.
 export class PixiJsFiltersComponent implements OnInit {
 
   title = 'Filters';
-  @ViewChild('pixiContainer', {static: false}) pixiContainer;
+  @ViewChild('pixiContainer') pixiContainer;
 
   constructor() { }
 
