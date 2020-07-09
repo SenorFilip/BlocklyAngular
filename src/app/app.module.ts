@@ -15,6 +15,7 @@ import { PixiJsTextureComponent } from './pixi-js/pixi-js-texture/pixi-js-textur
 import { PixiJsSpritesComponent } from './pixi-js/pixi-js-sprites/pixi-js-sprites.component';
 import { PixiJsGraphicsComponent } from './pixi-js/pixi-js-graphics/pixi-js-graphics.component';
 import { PixiJsFiltersComponent } from './pixi-js/pixi-js-filters/pixi-js-filters.component';
+import {NgxBlocklyModule} from 'ngx-blockly';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PixiJsFiltersComponent } from './pixi-js/pixi-js-filters/pixi-js-filter
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    NgxBlocklyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

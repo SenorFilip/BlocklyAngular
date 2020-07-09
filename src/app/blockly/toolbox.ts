@@ -1,4 +1,6 @@
-export const toolbox = {
+import {NgxBlocklyConfig} from 'ngx-blockly';
+
+export const toolbox: NgxBlocklyConfig = {
     toolbox: `
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
   <category name="Blocks">
@@ -87,10 +89,10 @@ export const toolbox = {
         maxScale: 3,
         minScale: 0.3,
         scaleSpeed: 1.2},
-    move: {
-        scrollbars: true,
-        drag: true,
-        wheel: false},
+    // move: {
+    //     scrollbars: true,
+    //     drag: true,
+    //     wheel: false},
     trashcan: true,
     scrollbars: false
 };

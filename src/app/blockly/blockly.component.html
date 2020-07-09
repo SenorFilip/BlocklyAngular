@@ -2,12 +2,17 @@
   <div class="row">
     <div class="col"
          style="height:50vh">
-      <div id="blocklyDiv"
-           style="width:100%; height: 100%">
-      </div>
+      <ngx-blockly [config]="config"
+                   [generatorConfig]="generatorConfig"
+                   [customBlocks]="customBlocks"
+                   (pythonCode)="onCode($event)">
+      </ngx-blockly>
+<!--      <div id="blocklyDiv"-->
+<!--           style="width:100%; height: 100%">-->
+<!--      </div>-->
     </div>
-    <button (click)="runCode()"></button>
-    <div class="col">
+<!--    <button (click)="runCode()"></button>-->
+    <div class="col" style="margin-top: 50px">
       <div>{{code}}</div>
     </div>
   </div>
