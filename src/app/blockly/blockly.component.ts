@@ -9,7 +9,7 @@ import {
   NgxToolboxBuilderService,
   Separator, TEXT_CATEGORY, VARIABLES_CATEGORY
 } from 'ngx-blockly';
-import {exampleTheme, TestBlock} from './test.block';
+import {exampleTheme, ForLoopBlock, TestBlock} from './test.block';
 
 @Component({
   selector: 'app-blockly',
@@ -50,7 +50,8 @@ export class BlocklyComponent implements OnInit {
   // blocklyDiv: HTMLElement;
 
   public customBlocks: CustomBlock[] = [
-    new TestBlock('test', null, null)
+    new TestBlock('test', null, null),
+    new ForLoopBlock('myCustomLoop', null, null)
     // new DeviceBlock('device', null, null)
   ];
 
