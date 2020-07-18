@@ -2,54 +2,6 @@ import {BlockMutator, BlockStyles, CategoryStyles, ComponentStyle, CustomBlock, 
 
 declare var Blockly: any;
 
-export class TestBlock extends CustomBlock {
-
-  constructor(type: string, block: any, blockMutator: BlockMutator, ...args: any[]) {
-    super(type, block, blockMutator, ...args);
-    this.class = TestBlock;
-  }
-
-  defineBlock() {
-    this.block.appendDummyInput()
-      .appendField(this.type)
-      .appendField(new Blockly.FieldImage('assets/carrot.png', 50, 50, '*'));
-      // .appendField(new Blockly.FieldImage(this.args[0], 50, 50, '*'));
-    this.block.setOutput(true, 'Input');
-    this.block.setColour(30);
-    this.block.setTooltip('');
-    this.block.setHelpUrl('');
-  }
-
-  toXML() {
-    return '<block type="test"></block>';
-  }
-
-  toDartCode(block: CustomBlock): string | any[] {
-    return 'Not implemented';
-  }
-
-  toJavaScriptCode(block: CustomBlock): string | any[] {
-    return 'Not implemented';
-  }
-
-  toLuaCode(block: CustomBlock): string | any[] {
-    return 'Not implemented';
-  }
-
-  toPHPCode(block: CustomBlock): string | any[] {
-    return 'Not implemented';
-  }
-
-  toPythonCode(block: CustomBlock): string | any[] {
-    return 'Mrkva';
-  }
-
-  // onChange(changeEvent: any) {
-  //   console.log(changeEvent);
-  // }
-
-}
-
 export const blockStyles: BlockStyles = {
   logic_blocks: {
     colourPrimary: '310',
@@ -93,8 +45,8 @@ export class ForLoopBlock extends CustomBlock {
       .appendField('time/s')
       .appendField(new Blockly.FieldImage('assets/loop_icon.png', 20, 20, '*'));
     // .appendField(new Blockly.FieldImage(this.args[0], 50, 50, '*'));
-    this.block.appendStatementInput('NAME')
-      .setCheck(['moveLeft', 'moveRight', 'moveUp', 'moveDown']);
+    this.block.appendStatementInput('loopContent')
+      .setCheck(null);
     this.block.setPreviousStatement(true, 'myCustomLoop');
     this.block.setNextStatement(true, 'myCustomLoop');
     this.block.setColour(330);
@@ -104,10 +56,102 @@ export class ForLoopBlock extends CustomBlock {
 
   toPythonCode(block: CustomBlock): string | any[] {
     const numberOfLoops = this.block.getFieldValue('numberOfLoops');
-    let statement = Blockly.Python.statementToCode(block, 'NAME');
+    let statement = Blockly.Python.statementToCode(block, 'loopContent');
     if (statement.length === 0) {
       statement = 'pass';
     }
     return 'for count in range(' + numberOfLoops + '):' + statement;
+  }
+}
+
+export class MoveUpBlock extends CustomBlock {
+
+  constructor(type: string, block: any, blockMutator: BlockMutator, ...args: any[]) {
+    super(type, block, blockMutator, ...args);
+    this.class = MoveUpBlock;
+  }
+
+  defineBlock() {
+    this.block.appendDummyInput()
+      .appendField('Move up')
+      .appendField(new Blockly.FieldImage('assets/arrow_up.png', 20, 20, '*'));
+    this.block.setPreviousStatement(true, null);
+    this.block.setNextStatement(true, null);
+    this.block.setColour(230);
+    this.block.setTooltip('');
+    this.block.setHelpUrl('');
+  }
+
+  toPythonCode(block: MoveUpBlock): string | any[] {
+    return 'moveUp();';
+  }
+}
+
+export class MoveDownBlock extends CustomBlock {
+
+  constructor(type: string, block: any, blockMutator: BlockMutator, ...args: any[]) {
+    super(type, block, blockMutator, ...args);
+    this.class = MoveDownBlock;
+  }
+
+  defineBlock() {
+    this.block.appendDummyInput()
+      .appendField('Move down')
+      .appendField(new Blockly.FieldImage('assets/arrow_down.png', 20, 20, '*'));
+    this.block.setPreviousStatement(true, null);
+    this.block.setNextStatement(true, null);
+    this.block.setColour(230);
+    this.block.setTooltip('');
+    this.block.setHelpUrl('');
+  }
+
+  toPythonCode(block: MoveDownBlock): string | any[] {
+    return 'moveDown();';
+  }
+}
+
+export class MoveLeftBlock extends CustomBlock {
+
+  constructor(type: string, block: any, blockMutator: BlockMutator, ...args: any[]) {
+    super(type, block, blockMutator, ...args);
+    this.class = MoveLeftBlock;
+  }
+
+  defineBlock() {
+    this.block.appendDummyInput()
+      .appendField('Move left')
+      .appendField(new Blockly.FieldImage('assets/arrow_left.png', 20, 20, '*'));
+    this.block.setPreviousStatement(true, null);
+    this.block.setNextStatement(true, null);
+    this.block.setColour(230);
+    this.block.setTooltip('');
+    this.block.setHelpUrl('');
+  }
+
+  toPythonCode(block: MoveLeftBlock): string | any[] {
+    return 'moveLeft();';
+  }
+}
+
+export class MoveRightBlock extends CustomBlock {
+
+  constructor(type: string, block: any, blockMutator: BlockMutator, ...args: any[]) {
+    super(type, block, blockMutator, ...args);
+    this.class = MoveRightBlock;
+  }
+
+  defineBlock() {
+    this.block.appendDummyInput()
+      .appendField('Move right')
+      .appendField(new Blockly.FieldImage('assets/arrow_right.png', 20, 20, '*'));
+    this.block.setPreviousStatement(true, null);
+    this.block.setNextStatement(true, null);
+    this.block.setColour(230);
+    this.block.setTooltip('');
+    this.block.setHelpUrl('');
+  }
+
+  toPythonCode(block: MoveRightBlock): string | any[] {
+    return 'moveRight();';
   }
 }

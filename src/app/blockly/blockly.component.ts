@@ -1,15 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { toolbox } from './toolbox';
-import {
-  Category, COLOUR_CATEGORY,
-  CustomBlock, FUNCTIONS_CATEGORY, LISTS_CATEGORY,
-  LOGIC_CATEGORY, LOOP_CATEGORY, MATH_CATEGORY,
-  NgxBlocklyConfig,
-  NgxBlocklyGeneratorConfig,
-  NgxToolboxBuilderService,
-  Separator, TEXT_CATEGORY, VARIABLES_CATEGORY
-} from 'ngx-blockly';
-import {exampleTheme, ForLoopBlock, TestBlock} from './test.block';
+import {Component, OnInit} from '@angular/core';
+import {CustomBlock, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService} from 'ngx-blockly';
+import {ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock} from './test.block';
 
 @Component({
   selector: 'app-blockly',
@@ -50,23 +41,30 @@ export class BlocklyComponent implements OnInit {
   // blocklyDiv: HTMLElement;
 
   public customBlocks: CustomBlock[] = [
-    new TestBlock('test', null, null),
-    new ForLoopBlock('myCustomLoop', null, null)
-    // new DeviceBlock('device', null, null)
+    new ForLoopBlock('myCustomLoop', null, null),
+    new MoveUpBlock('moveUp', null, null),
+    new MoveDownBlock('moveDown', null, null),
+    new MoveLeftBlock('moveLeft', null, null),
+    new MoveRightBlock('moveRight', null, null)
   ];
 
   constructor(ngxToolboxBuilder: NgxToolboxBuilderService) {
     ngxToolboxBuilder.nodes = [
-      new Category('Test', '#FF00FF', this.customBlocks, null),
-      LOGIC_CATEGORY,
-      LOOP_CATEGORY,
-      MATH_CATEGORY,
-      TEXT_CATEGORY,
-      new Separator(), // Add Separator
-      LISTS_CATEGORY,
-      COLOUR_CATEGORY,
-      VARIABLES_CATEGORY,
-      FUNCTIONS_CATEGORY
+      // new Category('Test', '#FF00FF', this.customBlocks, null),
+      new ForLoopBlock('myCustomLoop', null, null),
+      new MoveUpBlock('moveUp', null, null),
+      new MoveDownBlock('moveDown', null, null),
+      new MoveLeftBlock('moveLeft', null, null),
+      new MoveRightBlock('moveRight', null, null)
+      // LOGIC_CATEGORY,
+      // LOOP_CATEGORY,
+      // MATH_CATEGORY,
+      // TEXT_CATEGORY,
+      // new Separator(), // Add Separator
+      // LISTS_CATEGORY,
+      // COLOUR_CATEGORY,
+      // VARIABLES_CATEGORY,
+      // FUNCTIONS_CATEGORY
     ];
     this.config.toolbox = ngxToolboxBuilder.build();
     // this.config.theme = exampleTheme.createBlocklyTheme();
