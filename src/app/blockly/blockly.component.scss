@@ -1,5 +1,27 @@
-ngx-blockly {
-  position: absolute;
-  width: 100%;
+#sir {
+  background: rgba(226,148,91,0.45);
+  position: relative;
+  width: 50%;
   height: 500px;
+  top: -500px;
+  left: 50%;
+}
+
+.containerBlockly {
+  position: relative;
+  height: 500px;
+  width: 50%;
+}
+
+.container {
+  width: 150% !important;
+  margin-left: -25%;
+}
+
+#runButton {
+  position: relative;
+  top: -500px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 15px;
 }
