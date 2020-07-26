@@ -38,9 +38,9 @@ export class PixiJsTextureComponent implements OnInit {
 
     loader.add('carrot', 'assets/carrot.png')
         .add('bunny', 'assets/bunny.png')
-        .on('progress', handleLoadProgress)
-        .on('load', handleLoadAsset)
-        .on('error', handleLoadError)
+        // .on('progress', handleLoadProgress)
+        // .on('load', handleLoadAsset)
+        // .on('error', handleLoadError)
         .load(handleLoadComplete);
 
     let img;
