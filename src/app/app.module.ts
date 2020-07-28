@@ -8,8 +8,6 @@ import {BlocklyComponent} from './blockly/blockly.component';
 import {PixiJsComponent} from './pixi-js/pixi-js.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {DropdownDirective} from './shared/dropdown.directive';
-import {PixiJsTextureComponent} from './pixi-js/pixi-js-texture/pixi-js-texture.component';
-import {PixiJsSpritesComponent} from './pixi-js/pixi-js-sprites/pixi-js-sprites.component';
 import {PixiJsGraphicsComponent} from './pixi-js/pixi-js-graphics/pixi-js-graphics.component';
 import {PixiJsFiltersComponent} from './pixi-js/pixi-js-filters/pixi-js-filters.component';
 import {NgxBlocklyModule} from 'ngx-blockly';
@@ -22,8 +20,6 @@ import {NgxBlocklyModule} from 'ngx-blockly';
     PixiJsComponent,
     HomePageComponent,
     DropdownDirective,
-    PixiJsTextureComponent,
-    PixiJsSpritesComponent,
     PixiJsGraphicsComponent,
     PixiJsFiltersComponent
   ],

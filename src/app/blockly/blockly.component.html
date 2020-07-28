@@ -7,8 +7,10 @@
                  (pythonCode)="onCode($event)">
     </ngx-blockly>
   </div>
-  <div id="sir">
-    {{code}}
+  <div id="pixiJsBlock">
+    <canvas id="pixiJsCanvas"
+            style="display: block">
+    </canvas>
   </div>
   <div>
     <button class="btn btn-success" id="runButton" (click)="runRabbit()">Run Rabbit, Run!!!</button>

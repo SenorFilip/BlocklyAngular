@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService} from 'ngx-blockly';
 import {ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock} from './custom.blocks';
 import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
+import { Application, Texture, Sprite } from 'pixi.js';
 
 @Component({
   selector: 'app-blockly',
@@ -9,6 +10,13 @@ import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
   styleUrls: ['./blockly.component.scss']
 })
 export class BlocklyComponent implements OnInit {
+
+  canvas;
+  pixiWindow;
+  screenWidth;
+  screenHeight;
+
+  pixiApp: Application;
 
   @ViewChild(NgxBlocklyComponent) workspace;
   code: string;
@@ -45,9 +53,37 @@ export class BlocklyComponent implements OnInit {
       new MoveRightBlock('moveRight', null, null)
     ];
     this.config.toolbox = ngxToolboxBuilder.build();
+
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.pixiWindow = document.getElementById('pixiJsBlock');
+    this.canvas = document.getElementById('pixiJsCanvas');
+    this.screenWidth = this.pixiWindow.width;
+    this.screenHeight = this.pixiWindow.height;
+
+    this.pixiApp = new Application({
+      view: this.canvas,
+      width: this.screenWidth,
+      height: this.screenHeight,
+      backgroundColor: 0xeba42f,
+      resizeTo: window
+    });
+
+    console.log(this.screenHeight);
+    console.log(this.screenWidth);
+    console.log(this.pixiWindow);
+    console.log(this.canvas);
+    const texture = Texture.from('assets/carrot.png');
+    const img = new Sprite(texture);
+
+    img.x = this.pixiApp.renderer.width / 2;
+    img.y = this.pixiApp.renderer.height / 2;
+
+    img.anchor.x = 0.5;
+    img.anchor.y = 0.5;
+    this.pixiApp.stage.addChild(img);
+  }
 
   runRabbit() {
     this.workspaceBlocks = [];
