@@ -1,13 +1,3 @@
-#pixiJsBlock {
-  //background: rgba(226,148,91,0.45);
-  position: relative;
-  width: 50%;
-  height: 500px;
-  top: -500px;
-  left: 50%;;
-  display: block;
-}
-
 .containerBlockly {
   position: relative;
   height: 500px;
@@ -25,4 +15,19 @@
   left: 50%;
   transform: translateX(-50%);
   margin-top: 15px;
+}
+
+#pixiJsBlock {
+  //background: rgba(226,148,91,0.45);
+  position: relative;
+  width: 50%;
+  height: 500px;
+  top: -500px;
+  left: 50%;;
+  display: block;
+}
+
+#pixiJsCanvas {
+  height: 500px;
+  width: 100%;
 }
