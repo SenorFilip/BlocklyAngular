@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService} from 'ngx-blockly';
-import {ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock} from './custom.blocks';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService } from 'ngx-blockly';
+import { ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock } from './custom.blocks';
 import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
 import { Application, Texture, Sprite, Container } from 'pixi.js';
 
@@ -19,6 +19,21 @@ export class BlocklyComponent implements OnInit {
   cellHeight;
   cellWidth;
   imgBunny: Sprite;
+  grid: number[][] = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
+  currentBunnyRow = 1;
+  currentBunnyColumn = 1;
+  carrotRow = 6;
+  carrotColumn = 6;
 
   // Blockly variables
   @ViewChild(NgxBlocklyComponent) workspace;
@@ -56,6 +71,8 @@ export class BlocklyComponent implements OnInit {
       new MoveRightBlock('moveRight', null, null)
     ];
     this.config.toolbox = ngxToolboxBuilder.build();
+
+    this.grid[0].length = 9;
   }
 
   ngOnInit() {
@@ -85,7 +102,7 @@ export class BlocklyComponent implements OnInit {
     const imgCarrot = new Sprite(textureCarrot);
     imgCarrot.height = this.cellHeight;
     imgCarrot.width = this.cellWidth;
-    imgCarrot.position.set(this.cellWidth * 6, this.cellHeight * 6);
+    imgCarrot.position.set(this.cellWidth * this.carrotColumn, this.cellHeight * this.carrotRow);
     this.pixiApp.stage.addChild(imgCarrot);
 
     // Adding bunny image
@@ -93,7 +110,7 @@ export class BlocklyComponent implements OnInit {
     this.imgBunny = new Sprite(textureBunny);
     this.imgBunny.height = this.cellHeight;
     this.imgBunny.width = this.cellWidth;
-    this.imgBunny.position.set(this.cellWidth, this.cellHeight);
+    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
     this.pixiApp.stage.addChild(this.imgBunny);
 
   }
@@ -144,25 +161,41 @@ export class BlocklyComponent implements OnInit {
     }
   }
 
+  /**
+   * Moves Bunny sprite in given direction.
+   * @param direction
+   */
   moveBunny(direction: string) {
+    this.grid[this.currentBunnyRow][this.currentBunnyColumn] = 0;
+
     switch (direction) {
       case 'moveUp': {
-        this.imgBunny.y -= this.cellHeight;
+        this.currentBunnyRow -= 1;
         break;
       }
       case 'moveDown': {
-        this.imgBunny.y += this.cellHeight;
+        this.currentBunnyRow += 1;
         break;
       }
       case 'moveRight': {
-        this.imgBunny.x += this.cellWidth;
+        this.currentBunnyColumn += 1;
         break;
       }
       case 'moveLeft': {
-        this.imgBunny.x -= this.cellWidth;
+        this.currentBunnyColumn -= 1;
         break;
       }
     }
+
+    if (this.currentBunnyRow < 0 || this.currentBunnyRow > 8 || this.currentBunnyColumn < 0 || this.currentBunnyColumn > 8) {
+      alert('Bunny can\'t hop out of bounds!');
+      this.currentBunnyRow = 1;
+      this.currentBunnyColumn = 1;
+      this.grid[1][1] = 1;
+    } else {
+      this.grid[this.currentBunnyRow][this.currentBunnyColumn] = 1;
+    }
+    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
   }
 
 }
