@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService } from 'ngx-blockly';
-import { ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock } from './custom.blocks';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService} from 'ngx-blockly';
+import {ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock} from './custom.blocks';
 import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
-import { Application, Texture, Sprite, Container } from 'pixi.js';
+import {Application, Container, Sprite, Texture} from 'pixi.js';
 
 @Component({
   selector: 'app-blockly',
@@ -71,8 +71,6 @@ export class BlocklyComponent implements OnInit {
       new MoveRightBlock('moveRight', null, null)
     ];
     this.config.toolbox = ngxToolboxBuilder.build();
-
-    this.grid[0].length = 9;
   }
 
   ngOnInit() {
@@ -113,6 +111,13 @@ export class BlocklyComponent implements OnInit {
     this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
     this.pixiApp.stage.addChild(this.imgBunny);
 
+    // this.pixiApp.ticker.add(this.update);
+    this.pixiApp.ticker.add(this.smoothlyMoveRabbit);
+    this.pixiApp.ticker.maxFPS = 40;
+  }
+
+  update() {
+    console.log('It loops!');
   }
 
   runRabbit() {
@@ -130,12 +135,16 @@ export class BlocklyComponent implements OnInit {
       }
     });
 
-    console.log('\n----sadrzaj');
-    this.workspaceBlocks.forEach(b => {
-      console.log(b.type);
-      this.moveBunny(b.type);
-    });
+    this.makeBunnyMove();
+  }
 
+  async makeBunnyMove() {
+    // makeBunnyMove() {
+    console.log('\n----sadrzaj');
+    for (let i = 0; i < this.workspaceBlocks.length; i++) {
+      await this.moveBunny(this.workspaceBlocks[i].type);
+    }
+    console.log('gotovo');
   }
 
   onCode(code: string) {
@@ -163,39 +172,81 @@ export class BlocklyComponent implements OnInit {
 
   /**
    * Moves Bunny sprite in given direction.
-   * @param direction
    */
   moveBunny(direction: string) {
-    this.grid[this.currentBunnyRow][this.currentBunnyColumn] = 0;
+    return new Promise((resolve) => {
+      this.grid[this.currentBunnyRow][this.currentBunnyColumn] = 0;
 
-    switch (direction) {
-      case 'moveUp': {
-        this.currentBunnyRow -= 1;
-        break;
+      switch (direction) {
+        case 'moveUp': {
+          this.currentBunnyRow -= 1;
+          break;
+        }
+        case 'moveDown': {
+          this.currentBunnyRow += 1;
+          break;
+        }
+        case 'moveRight': {
+          this.currentBunnyColumn += 1;
+          break;
+        }
+        case 'moveLeft': {
+          this.currentBunnyColumn -= 1;
+          break;
+        }
       }
-      case 'moveDown': {
-        this.currentBunnyRow += 1;
-        break;
+      // leaving the Bunny some room to finish its movements to the designated cell
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  }
+
+  smoothlyMoveRabbit = () => {
+    const designationWidth = this.cellWidth * this.currentBunnyColumn;
+    const designationHeight = this.cellHeight * this.currentBunnyRow;
+    // check if current X coordinate is approximately the same as designated X coordinate
+    if (Math.abs(this.imgBunny.x - designationWidth) > 0.04 * this.cellWidth) {
+      if (this.imgBunny.x < designationWidth) {
+        this.imgBunny.x += this.cellWidth / 40;
+      } else {
+        this.imgBunny.x -= this.cellWidth / 40;
       }
-      case 'moveRight': {
-        this.currentBunnyColumn += 1;
-        break;
+      // check if current Y coordinate is approximately the same as designated Y coordinate
+    } else if (Math.abs(this.imgBunny.y - designationHeight) > 0.04 * this.cellHeight) {
+      if (this.imgBunny.y < designationHeight) {
+        this.imgBunny.y += this.cellHeight / 40;
+      } else {
+        this.imgBunny.y -= this.cellHeight / 40;
       }
-      case 'moveLeft': {
-        this.currentBunnyColumn -= 1;
-        break;
-      }
+    } else {
+      this.imgBunny.position.set(designationWidth, designationHeight);
+      this.checkIfBunnyMovedOutOfBounds();
+      this.checkIfBunnyFoundTheCarrot();
     }
+  }
 
+  checkIfBunnyMovedOutOfBounds() {
     if (this.currentBunnyRow < 0 || this.currentBunnyRow > 8 || this.currentBunnyColumn < 0 || this.currentBunnyColumn > 8) {
       alert('Bunny can\'t hop out of bounds!');
       this.currentBunnyRow = 1;
       this.currentBunnyColumn = 1;
       this.grid[1][1] = 1;
+      this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
     } else {
       this.grid[this.currentBunnyRow][this.currentBunnyColumn] = 1;
     }
-    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+  }
+
+  checkIfBunnyFoundTheCarrot() {
+    // checks if bunny found the carrot
+      if (this.currentBunnyRow === this.carrotRow && this.currentBunnyColumn === this.carrotColumn) {
+        alert('Mission accomplished!');
+        this.currentBunnyRow = 1;
+        this.currentBunnyColumn = 1;
+        this.grid[1][1] = 1;
+        this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+      }
   }
 
 }
