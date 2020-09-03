@@ -1,19 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {LessonForLoopComponent} from './lesson-foor-loop-component/lesson-for-loop.component';
+import {LessonForLoopComponent} from './lesson-foor-loop/lesson-foor-loop-component/lesson-for-loop.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {PixiJsComponent} from './pixi-js/pixi-js.component';
-import {PixiJsGraphicsComponent} from './pixi-js/pixi-js-graphics/pixi-js-graphics.component';
-import {PixiJsFiltersComponent} from './pixi-js/pixi-js-filters/pixi-js-filters.component';
+import {LessonForLoopCodeComponent} from './lesson-foor-loop/lesson-for-loop-code/lesson-for-loop-code.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'foorLoopLesson', component: LessonForLoopComponent},
-  {path: 'pixiJs', component: PixiJsComponent, children: [
-      {path: 'graphics', component: PixiJsGraphicsComponent},
-      {path: 'filters', component: PixiJsFiltersComponent}
-    ]}
+  {path: 'foorLoopLessonCode', component: LessonForLoopCodeComponent}
 ];
 
 @NgModule({

@@ -4,24 +4,20 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HeaderComponent} from './header/header.component';
 import {RouterModule} from '@angular/router';
-import {LessonForLoopComponent} from './lesson-foor-loop-component/lesson-for-loop.component';
-import {PixiJsComponent} from './pixi-js/pixi-js.component';
+import {LessonForLoopComponent} from './lesson-foor-loop/lesson-foor-loop-component/lesson-for-loop.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {DropdownDirective} from './shared/dropdown.directive';
-import {PixiJsGraphicsComponent} from './pixi-js/pixi-js-graphics/pixi-js-graphics.component';
-import {PixiJsFiltersComponent} from './pixi-js/pixi-js-filters/pixi-js-filters.component';
 import {NgxBlocklyModule} from 'ngx-blockly';
+import { LessonForLoopCodeComponent } from './lesson-foor-loop/lesson-for-loop-code/lesson-for-loop-code.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LessonForLoopComponent,
-    PixiJsComponent,
     HomePageComponent,
     DropdownDirective,
-    PixiJsGraphicsComponent,
-    PixiJsFiltersComponent
+    LessonForLoopCodeComponent
   ],
   imports: [
     BrowserModule,
