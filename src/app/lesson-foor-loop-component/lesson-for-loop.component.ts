@@ -6,10 +6,10 @@ import {Application, Container, Sprite, Texture} from 'pixi.js';
 
 @Component({
   selector: 'app-blockly',
-  templateUrl: './blockly.component.html',
-  styleUrls: ['./blockly.component.scss']
+  templateUrl: './lesson-for-loop.component.html',
+  styleUrls: ['./lesson-for-loop.component.scss']
 })
-export class BlocklyComponent implements OnInit {
+export class LessonForLoopComponent implements OnInit {
 
   // PixiJS variables
   canvas;
