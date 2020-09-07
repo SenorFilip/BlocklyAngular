@@ -9,6 +9,7 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {DropdownDirective} from './shared/dropdown.directive';
 import {NgxBlocklyModule} from 'ngx-blockly';
 import { LessonForLoopCodeComponent } from './lesson-foor-loop/lesson-for-loop-code/lesson-for-loop-code.component';
+import {AlertModule} from './shared/alert';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LessonForLoopCodeComponent } from './lesson-foor-loop/lesson-for-loop-c
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    NgxBlocklyModule
+    NgxBlocklyModule,
+    AlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

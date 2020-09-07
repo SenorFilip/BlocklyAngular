@@ -3,6 +3,8 @@ import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorC
 import {ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock} from './custom.blocks';
 import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
 import {Application, Container, Sprite, Texture} from 'pixi.js';
+import {AlertService} from '../../shared/alert';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-blockly',
@@ -62,7 +64,9 @@ export class LessonForLoopComponent implements OnInit {
     new MoveRightBlock('moveRight', null, null)
   ];
 
-  constructor(ngxToolboxBuilder: NgxToolboxBuilderService) {
+  constructor(ngxToolboxBuilder: NgxToolboxBuilderService,
+              public alertService: AlertService,
+              private router: Router) {
     ngxToolboxBuilder.nodes = [
       new ForLoopBlock('myCustomLoop', null, null),
       new MoveUpBlock('moveUp', null, null),
@@ -228,7 +232,7 @@ export class LessonForLoopComponent implements OnInit {
 
   checkIfBunnyMovedOutOfBounds() {
     if (this.currentBunnyRow < 0 || this.currentBunnyRow > 8 || this.currentBunnyColumn < 0 || this.currentBunnyColumn > 8) {
-      alert('Bunny can\'t hop out of bounds!');
+      this.alertService.info('Bunny can\'t hop out of bounds!', {autoClose: true});
       this.currentBunnyRow = 1;
       this.currentBunnyColumn = 1;
       this.grid[1][1] = 1;
@@ -241,11 +245,12 @@ export class LessonForLoopComponent implements OnInit {
   checkIfBunnyFoundTheCarrot() {
     // checks if bunny found the carrot
       if (this.currentBunnyRow === this.carrotRow && this.currentBunnyColumn === this.carrotColumn) {
-        alert('Mission accomplished!');
         this.currentBunnyRow = 1;
         this.currentBunnyColumn = 1;
         this.grid[1][1] = 1;
         this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+        this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
+        setTimeout(() => this.router.navigate(['foorLoopLessonCode']), 1800);
       }
   }
 
