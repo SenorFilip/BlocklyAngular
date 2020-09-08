@@ -232,7 +232,7 @@ export class LessonForLoopComponent implements OnInit {
 
   checkIfBunnyMovedOutOfBounds() {
     if (this.currentBunnyRow < 0 || this.currentBunnyRow > 8 || this.currentBunnyColumn < 0 || this.currentBunnyColumn > 8) {
-      this.alertService.info('Bunny can\'t hop out of bounds!', {autoClose: true});
+      this.alertService.error('Bunny can\'t hop out of bounds!', {autoClose: true});
       this.currentBunnyRow = 1;
       this.currentBunnyColumn = 1;
       this.grid[1][1] = 1;
@@ -251,6 +251,7 @@ export class LessonForLoopComponent implements OnInit {
         this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
         this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
         setTimeout(() => this.router.navigate(['foorLoopLessonCode']), 1800);
+        this.workspace.workspace.clear();
       }
   }
 

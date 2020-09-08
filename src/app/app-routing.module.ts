@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {LessonForLoopComponent} from './lesson-foor-loop/lesson-foor-loop-component/lesson-for-loop.component';
+import {LessonForLoopComponent} from './lesson-foor-loop/lesson-foor-loop/lesson-for-loop.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {LessonForLoopCodeComponent} from './lesson-foor-loop/lesson-for-loop-code/lesson-for-loop-code.component';
 
