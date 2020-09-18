@@ -10,6 +10,7 @@ import {DropdownDirective} from './shared/dropdown.directive';
 import {NgxBlocklyModule} from 'ngx-blockly';
 import { LessonForLoopCodeComponent } from './lesson-foor-loop/lesson-for-loop-code/lesson-for-loop-code.component';
 import {AlertModule} from './shared/alert';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {AlertModule} from './shared/alert';
     AppRoutingModule,
     RouterModule,
     NgxBlocklyModule,
-    AlertModule
+    AlertModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

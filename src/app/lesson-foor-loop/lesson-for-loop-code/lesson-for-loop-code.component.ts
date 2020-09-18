@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import {PythonShell} from 'python-shell';
-
+import {AlertService} from '../../shared/alert';
+declare let pyodide: any;
 
 @Component({
   selector: 'app-lesson-for-loop-code',
@@ -9,19 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LessonForLoopCodeComponent implements OnInit {
 
-  constructor() { }
+  codeInputField;
+  consoleOutput;
+
+  constructor(public alertService: AlertService) { }
 
   ngOnInit(): void {
-    // PythonShell.runString('x=1+1;print(x)', null, function (err) {
-    //   if (err) throw err;
-    //   console.log('finished');
-    // const {PythonShell} = require('python-shell');
-    // PythonShell.runString('x=1+1;print(x)', null, (err) => {
-    //   if (err) {
-    //     throw err;
-    //   }
-    //   console.log('finished');
-    // });
+    this.codeInputField =
+    'for number in range(1, 6, 1):' + '\n'
+      + ' ' + 'print(number)';
+  }
+
+  runCode() {
+    const pythonCode =
+      'output = ""' + '\n'
+      + this.codeInputField + '\n'
+      + ' ' + "output += str(number) + '\\n'";
+    // runs Python code
+    pyodide.runPython(pythonCode);
+    // retrieves variable value in which we saved the console output result
+    this.consoleOutput = pyodide.globals.output;
+    this.checkResult();
+  }
+
+  checkResult() {
+    if (this.consoleOutput === ('24\n' + '21\n' + '18\n' + '15\n' + '12\n' + '9\n' + '6\n' + '3\n')) {
+      this.alertService.success('Good job!');
+    }
   }
 
 }

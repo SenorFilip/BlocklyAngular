@@ -1,1 +1,48 @@
-<p>lesson-for-loop-code works!</p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group green-border-focus">
+      <label for="codingTextArea">Write your code here:</label>
+      <textarea class="form-control"
+                [(ngModel)]="codeInputField"
+                id="codingTextArea"
+                rows="15"></textarea>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="consoleOutput">Output result:</label>
+    <textarea class="form-control"
+              id="consoleOutput"
+              readonly
+              rows="15">{{consoleOutput}}</textarea>
+  </div>
+</div>
+<div class="row">
+  <div class="row-md-6">
+    <button (click)="runCode()"
+            class="btn btn-success">
+      RUN CODE
+    </button>
+  </div>
+</div>
+<div class="row mt-6">
+  <div class="row-md-6">
+    <div class="panel panel-success" style="margin-top: 10px">
+      <div class="panel-heading">Loops</div>
+      <div class="panel-body text-success">
+        Loops or iterations are used for repeating sequences of code. They're wery usefull for many programming problems.<br>
+        Python has a WHILE and a FOR loop. We're gonna focus on the FOR loop.
+        The loop consist of three pieces:<br>
+        - begin: n = 1<br>
+        - end: n <= 5<br>
+        - change: n += 1<br>
+        <br>
+        Begin is the first value in the range. The default value is 0.<br>
+        End is the last value which the current value can't pass.<br>
+        Change is the amount by which we increment or decrement the current value.<br>
+        <br>
+        The print() method writes it's content to the console.<br>
+        <b>Now, write a loop which writes values from 24 to 0 in decrements of 3. Good luck!</b>
+      </div>
+    </div>
+  </div>
+</div>
