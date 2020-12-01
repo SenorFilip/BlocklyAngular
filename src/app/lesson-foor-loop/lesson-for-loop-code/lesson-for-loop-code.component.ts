@@ -16,19 +16,40 @@ export class LessonForLoopCodeComponent implements OnInit {
 
   ngOnInit(): void {
     this.codeInputField =
-    'for number in range(1, 6, 1):' + '\n'
-      + ' ' + 'print(number)';
+`for number in range(1, 6, 1):
+  print(number)`;
   }
 
   runCode() {
     const pythonCode =
-      'output = ""' + '\n'
-      + this.codeInputField + '\n'
-      + ' ' + "output += str(number) + '\\n'";
-    // runs Python code
-    pyodide.runPython(pythonCode);
+`from io import StringIO
+import sys
+
+# Create the in-memory "file"
+temp_out = StringIO()
+
+# Replace default stdout (terminal) with our stream
+sys.stdout = temp_out
+
+# The original \`sys.stdout\` is kept in a special
+# dunder named \`sys.__stdout__\`. So you can restore
+# the original output stream to the terminal.
+# sys.stdout = sys.__stdout__
+` + this.codeInputField + '\n' +
+`output = temp_out.getvalue()`;
+
+    try {
+      // runs Python code
+      pyodide.runPython(pythonCode);
+    } catch (err) {
+      this.alertService.error(err);
+      console.log(err);
+    }
+
     // retrieves variable value in which we saved the console output result
     this.consoleOutput = pyodide.globals.output;
+    // const stdout = pyodide.runPython('sys.stdout.getvalue()');
+    // console.log(stdout);
     this.checkResult();
   }
 
