@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AlertService} from '../../shared/alert';
 declare let pyodide: any;
 
@@ -8,13 +8,19 @@ declare let pyodide: any;
   styleUrls: ['./lesson-for-loop-code.component.scss']
 })
 export class LessonForLoopCodeComponent implements OnInit {
+  @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
   codeInputField;
   consoleOutput;
+  counter: number;
+  counterArray: Array<number>;
 
   constructor(public alertService: AlertService) { }
 
   ngOnInit(): void {
+    this.counter = this.textarea.nativeElement.rows;
+    this.counterArray = new Array(this.counter);
+
     this.codeInputField =
 `for number in range(1, 6, 1):
   print(number)`;
@@ -40,6 +46,7 @@ sys.stdout = temp_out
 
     try {
       // runs Python code
+      this.alertService.clear();
       pyodide.runPython(pythonCode);
     } catch (err) {
       this.alertService.error(err);
@@ -55,8 +62,17 @@ sys.stdout = temp_out
 
   checkResult() {
     if (this.consoleOutput === ('24\n' + '21\n' + '18\n' + '15\n' + '12\n' + '9\n' + '6\n' + '3\n')) {
-      this.alertService.success('Good job!');
+      this.alertService.success('Good job!', {autoClose: true});
     }
+  }
+
+  onEnter(textAreaElement: HTMLTextAreaElement) {
+    const contentRows = textAreaElement.value.split('\n').length;
+    if (contentRows >= this.counter) {
+      this.counter = ++textAreaElement.rows;
+    }
+    console.log('textarea.rows:', this.counter);
+    this.counterArray = new Array(this.counter);
   }
 
 }

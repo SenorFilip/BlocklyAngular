@@ -1,11 +1,21 @@
 <div class="row">
   <div class="col-md-6">
     <div class="form-group green-border-focus">
-      <label for="codingTextArea">Write your code here:</label>
-      <textarea class="form-control"
-                [(ngModel)]="codeInputField"
-                id="codingTextArea"
-                rows="15"></textarea>
+      <label for="codingTextArea" class="row">Write your code here:</label>
+      <div class="row">
+        <div class="line-numbers">
+          <div *ngFor="let counter of counterArray; let i = index">{{i + 14}}</div>
+        </div>
+        <div class="text-area">
+          <textarea class="form-control"
+                    [(ngModel)]="codeInputField"
+                    id="codingTextArea"
+                    #textarea
+                    (keyup.enter)="onEnter(textarea)"
+                    rows="15"></textarea>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="col-md-6">
