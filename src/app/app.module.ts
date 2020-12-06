@@ -14,6 +14,8 @@ import {FormsModule} from '@angular/forms';
 import { LessonConditionsComponent } from './lesson-conditions/lesson-conditions/lesson-conditions.component';
 import { LessonVariablesComponent } from './lesson-variables/lesson-variables/lesson-variables.component';
 import { LessonDataTypesComponent } from './lesson-variables/lesson-data-types/lesson-data-types.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LessonVariablesAssignmentComponent } from './lesson-variables/lesson-variables-assignment/lesson-variables-assignment.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { LessonDataTypesComponent } from './lesson-variables/lesson-data-types/l
     LessonForLoopCodeComponent,
     LessonConditionsComponent,
     LessonVariablesComponent,
-    LessonDataTypesComponent
+    LessonDataTypesComponent,
+    LessonVariablesAssignmentComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { LessonDataTypesComponent } from './lesson-variables/lesson-data-types/l
     RouterModule,
     NgxBlocklyModule,
     AlertModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
