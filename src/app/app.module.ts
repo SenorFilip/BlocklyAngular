@@ -11,6 +11,9 @@ import {NgxBlocklyModule} from 'ngx-blockly';
 import { LessonForLoopCodeComponent } from './lesson-foor-loop/lesson-for-loop-code/lesson-for-loop-code.component';
 import {AlertModule} from './shared/alert';
 import {FormsModule} from '@angular/forms';
+import { LessonConditionsComponent } from './lesson-conditions/lesson-conditions/lesson-conditions.component';
+import { LessonVariablesComponent } from './lesson-variables/lesson-variables/lesson-variables.component';
+import { LessonDataTypesComponent } from './lesson-variables/lesson-data-types/lesson-data-types.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import {FormsModule} from '@angular/forms';
     LessonForLoopComponent,
     HomePageComponent,
     DropdownDirective,
-    LessonForLoopCodeComponent
+    LessonForLoopCodeComponent,
+    LessonConditionsComponent,
+    LessonVariablesComponent,
+    LessonDataTypesComponent
   ],
   imports: [
     BrowserModule,

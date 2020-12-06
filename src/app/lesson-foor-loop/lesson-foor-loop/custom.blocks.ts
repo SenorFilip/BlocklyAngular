@@ -43,7 +43,7 @@ export class ForLoopBlock extends CustomBlock {
       .appendField('Repeat')
       .appendField(new Blockly.FieldNumber(0, 1), 'numberOfLoops')
       .appendField('time/s')
-      .appendField(new Blockly.FieldImage('assets/loop_icon.png', 20, 20, '*'));
+      .appendField(new Blockly.FieldImage('assets/images/blockly/loop_icon.png', 20, 20, '*'));
     // .appendField(new Blockly.FieldImage(this.args[0], 50, 50, '*'));
     this.block.appendStatementInput('loopContent')
       .setCheck(null);
@@ -74,7 +74,7 @@ export class MoveUpBlock extends CustomBlock {
   defineBlock() {
     this.block.appendDummyInput()
       .appendField('Move up')
-      .appendField(new Blockly.FieldImage('assets/arrow_up.png', 20, 20, '*'));
+      .appendField(new Blockly.FieldImage('assets/images/blockly/arrow_up.png', 20, 20, '*'));
     this.block.setPreviousStatement(true, null);
     this.block.setNextStatement(true, null);
     this.block.setColour(230);
@@ -97,7 +97,7 @@ export class MoveDownBlock extends CustomBlock {
   defineBlock() {
     this.block.appendDummyInput()
       .appendField('Move down')
-      .appendField(new Blockly.FieldImage('assets/arrow_down.png', 20, 20, '*'));
+      .appendField(new Blockly.FieldImage('assets/images/blockly/arrow_down.png', 20, 20, '*'));
     this.block.setPreviousStatement(true, null);
     this.block.setNextStatement(true, null);
     this.block.setColour(230);
@@ -120,7 +120,7 @@ export class MoveLeftBlock extends CustomBlock {
   defineBlock() {
     this.block.appendDummyInput()
       .appendField('Move left')
-      .appendField(new Blockly.FieldImage('assets/arrow_left.png', 20, 20, '*'));
+      .appendField(new Blockly.FieldImage('assets/images/blockly/arrow_left.png', 20, 20, '*'));
     this.block.setPreviousStatement(true, null);
     this.block.setNextStatement(true, null);
     this.block.setColour(230);
@@ -143,7 +143,7 @@ export class MoveRightBlock extends CustomBlock {
   defineBlock() {
     this.block.appendDummyInput()
       .appendField('Move right')
-      .appendField(new Blockly.FieldImage('assets/arrow_right.png', 20, 20, '*'));
+      .appendField(new Blockly.FieldImage('assets/images/blockly/arrow_right.png', 20, 20, '*'));
     this.block.setPreviousStatement(true, null);
     this.block.setNextStatement(true, null);
     this.block.setColour(230);

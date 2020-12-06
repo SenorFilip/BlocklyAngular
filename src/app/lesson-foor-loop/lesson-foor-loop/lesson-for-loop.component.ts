@@ -92,7 +92,7 @@ export class LessonForLoopComponent implements OnInit {
 
     // Adding background grid
     const backgroundContainer = new Container();
-    const textureBackground = Texture.from('assets/background.png');
+    const textureBackground = Texture.from('assets/images/pixiJS/background.png');
     const imgBackground = new Sprite(textureBackground);
     imgBackground.width = this.rendererWidth;
     imgBackground.height = this.rendererHeight;
@@ -100,7 +100,7 @@ export class LessonForLoopComponent implements OnInit {
     this.pixiApp.stage.addChild(backgroundContainer);
 
     // Adding carrot image
-    const textureCarrot = Texture.from('assets/carrot.png');
+    const textureCarrot = Texture.from('assets/images/pixiJS/carrot.png');
     const imgCarrot = new Sprite(textureCarrot);
     imgCarrot.height = this.cellHeight;
     imgCarrot.width = this.cellWidth;
@@ -108,7 +108,7 @@ export class LessonForLoopComponent implements OnInit {
     this.pixiApp.stage.addChild(imgCarrot);
 
     // Adding bunny image
-    const textureBunny = Texture.from('assets/bunny.png');
+    const textureBunny = Texture.from('assets/images/pixiJS/bunny.png');
     this.imgBunny = new Sprite(textureBunny);
     this.imgBunny.height = this.cellHeight;
     this.imgBunny.width = this.cellWidth;
