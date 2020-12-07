@@ -16,6 +16,8 @@ import { LessonVariablesComponent } from './lesson-variables/lesson-variables/le
 import { LessonDataTypesComponent } from './lesson-variables/lesson-data-types/lesson-data-types.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LessonVariablesAssignmentComponent } from './lesson-variables/lesson-variables-assignment/lesson-variables-assignment.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { LessonVariablesCodeComponent } from './lesson-variables/lesson-variables-code/lesson-variables-code.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { LessonVariablesAssignmentComponent } from './lesson-variables/lesson-va
     LessonConditionsComponent,
     LessonVariablesComponent,
     LessonDataTypesComponent,
-    LessonVariablesAssignmentComponent
+    LessonVariablesAssignmentComponent,
+    LessonVariablesCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { LessonVariablesAssignmentComponent } from './lesson-variables/lesson-va
     NgxBlocklyModule,
     AlertModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

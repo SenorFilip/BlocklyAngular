@@ -250,7 +250,7 @@ export class LessonForLoopComponent implements OnInit {
         this.grid[1][1] = 1;
         this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
         this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
-        setTimeout(() => this.router.navigate(['foorLoopLessonCode']), 1800);
+        setTimeout(() => this.router.navigate(['forLoopLessonCode']), 1800);
         this.workspace.workspace.clear();
       }
   }

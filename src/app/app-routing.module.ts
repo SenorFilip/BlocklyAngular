@@ -8,12 +8,14 @@ import {LessonVariablesComponent} from './lesson-variables/lesson-variables/less
 import {LessonConditionsComponent} from './lesson-conditions/lesson-conditions/lesson-conditions.component';
 import {LessonDataTypesComponent} from './lesson-variables/lesson-data-types/lesson-data-types.component';
 import {LessonVariablesAssignmentComponent} from './lesson-variables/lesson-variables-assignment/lesson-variables-assignment.component';
+import {LessonVariablesCodeComponent} from './lesson-variables/lesson-variables-code/lesson-variables-code.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, data: { lessonAnimationState: 0}},
   {path: 'dataTypesLesson', component: LessonDataTypesComponent, data: { animationState: 'one', lessonAnimationState: 1}},
   {path: 'variablesLesson', component: LessonVariablesComponent, data: { animationState: 'two', lessonAnimationState: 1}},
   {path: 'variablesAssignment', component: LessonVariablesAssignmentComponent, data: { animationState: 'three', lessonAnimationState: 1}},
+  {path: 'variablesLessonCode', component: LessonVariablesCodeComponent, data: { animationState: 'four', lessonAnimationState: 1}},
   {path: 'conditionsLesson', component: LessonConditionsComponent, data: { lessonAnimationState: 2}},
   {path: 'forLoopLesson', component: LessonForLoopComponent, data: { animationState: 'one', lessonAnimationState: 3}},
   {path: 'forLoopLessonCode', component: LessonForLoopCodeComponent, data: { animationState: 'two', lessonAnimationState: 3}}

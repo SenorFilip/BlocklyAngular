@@ -1,16 +1,116 @@
-<div class="row mt-6">
-  <div class="row-md-6">
-    <!--    <div class="display 4">-->
-    <!--      <h1>Data Types and Variables</h1>-->
-    <!--    </div>-->
-    <div class="row">
-      <div class="col-md-12 text-left">
-        <button class="btn btn-default" [routerLink]="['/variablesLesson']"><span class="glyphicon glyphicon-chevron-left"></span> Variables</button>
-      </div>
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-12 text-left">
+      <button class="btn btn-default" [routerLink]="['/variablesLesson']"><span class="glyphicon glyphicon-chevron-left"></span> Variables</button>
     </div>
-    <div class="panel panel-success" style="margin-top: 10px">
+  </div>
+  <div class="panel panel-success text-center" style="margin-top: 16px; padding-left: 16px; padding-bottom: 16px;">
+    <div cdkDropListGroup>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="example-container">
+            <h2>Items</h2>
 
+            <div
+              cdkDropList
+              [cdkDropListData]="items"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="row" style="margin-bottom: 32px;">
+            <div class="example-container">
+              <h2>Integer</h2>
+
+              <div
+                cdkDropList
+                [cdkDropListData]="integer"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of integer" cdkDrag>{{item}}</div>
+              </div>
+            </div>
+
+            <div class="example-container">
+              <h2>Float</h2>
+
+              <div
+                cdkDropList
+                [cdkDropListData]="float"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of float" cdkDrag>{{item}}</div>
+              </div>
+            </div>
+
+            <div class="example-container">
+              <h2>String</h2>
+
+              <div
+                cdkDropList
+                [cdkDropListData]="string"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of string" cdkDrag>{{item}}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-bottom: 32px;">
+            <div class="example-container">
+              <h2>Boolean</h2>
+
+              <div
+                cdkDropList
+                [cdkDropListData]="boolean"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of boolean" cdkDrag>{{item}}</div>
+              </div>
+            </div>
+
+            <div class="example-container">
+              <h2>Variable Name</h2>
+
+              <div
+                cdkDropList
+                [cdkDropListData]="variable"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of variable" cdkDrag>{{item}}</div>
+              </div>
+            </div>
+
+            <div class="example-container">
+              <h2>Error</h2>
+
+              <div
+                cdkDropList
+                [cdkDropListData]="error"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of error" cdkDrag>{{item}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="panel panel-info text-box" style="display: inline-block;">
+              <div class="panel-body">
+               Drag the items to their groups.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button (click)="checkResults()"
+                    class="btn btn-success">
+              CHECK IF CORRECT
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
