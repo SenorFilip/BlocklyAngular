@@ -12,13 +12,13 @@ import {LessonVariablesCodeComponent} from './lesson-variables/lesson-variables-
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, data: { lessonAnimationState: 0}},
-  {path: 'dataTypesLesson', component: LessonDataTypesComponent, data: { animationState: 'one', lessonAnimationState: 1}},
-  {path: 'variablesLesson', component: LessonVariablesComponent, data: { animationState: 'two', lessonAnimationState: 1}},
-  {path: 'variablesAssignment', component: LessonVariablesAssignmentComponent, data: { animationState: 'three', lessonAnimationState: 1}},
-  {path: 'variablesLessonCode', component: LessonVariablesCodeComponent, data: { animationState: 'four', lessonAnimationState: 1}},
+  {path: 'dataTypesLesson', component: LessonDataTypesComponent, data: { animationState: '1', lessonAnimationState: 1}},
+  {path: 'variablesLesson', component: LessonVariablesComponent, data: { animationState: '2', lessonAnimationState: 1}},
+  {path: 'variablesAssignment', component: LessonVariablesAssignmentComponent, data: { animationState: '3', lessonAnimationState: 1}},
+  {path: 'variablesLessonCode', component: LessonVariablesCodeComponent, data: { animationState: '4', lessonAnimationState: 1}},
   {path: 'conditionsLesson', component: LessonConditionsComponent, data: { lessonAnimationState: 2}},
-  {path: 'forLoopLesson', component: LessonForLoopComponent, data: { animationState: 'one', lessonAnimationState: 3}},
-  {path: 'forLoopLessonCode', component: LessonForLoopCodeComponent, data: { animationState: 'two', lessonAnimationState: 3}}
+  {path: 'forLoopLesson', component: LessonForLoopComponent, data: { animationState: '31', lessonAnimationState: 3}},
+  {path: 'forLoopLessonCode', component: LessonForLoopCodeComponent, data: { animationState: '32', lessonAnimationState: 3}}
 ];
 
 @NgModule({
