@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {Subscription} from 'rxjs';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-variables-assignment',
@@ -9,6 +12,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./lesson-variables-assignment.component.scss']
 })
 export class LessonVariablesAssignmentComponent implements OnInit {
+
+  lesson: Lesson;
+  private lessonChangedSub: Subscription;
 
   items = [
     '" \' "',
@@ -48,9 +54,15 @@ export class LessonVariablesAssignmentComponent implements OnInit {
   errorSolved = ['0700', '\'Bart\'s Skateboard\'', '"x"y"', '1.class', 'second-class'];
 
   constructor(public alertService: AlertService,
-              private router: Router) { }
+              private router: Router,
+              private lessonSolvedService: LessonSolvedService) { }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('variableDragAndDrop');
+    this.lessonChangedSub = this.lessonSolvedService.lessonsChanged.subscribe(
+      (lessonsSolved: Lesson[]) => {
+        this.lesson = lessonsSolved[this.lesson.id];
+      });
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -110,6 +122,9 @@ export class LessonVariablesAssignmentComponent implements OnInit {
       });
 
       if (isAnswerCorrect) {
+        // sets lesson as solved
+        this.lesson.isSolved = true;
+        this.lessonSolvedService.updateLesson(this.lesson);
         this.alertService.success('Nice job. You\'re being transported to the next assignment');
         setTimeout(() => this.router.navigate(['variablesLessonCode']), 1800);
       }

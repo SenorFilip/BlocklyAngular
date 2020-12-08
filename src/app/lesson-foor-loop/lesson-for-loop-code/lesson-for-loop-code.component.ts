@@ -10,9 +10,6 @@ declare let pyodide: any;
 export class LessonForLoopCodeComponent implements OnInit {
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
-  initialCodeInputField =
-    `for number in range(1, 6, 1):
-  print(number)`;
   codeInputField;
   consoleOutput;
   counter: number;
@@ -54,8 +51,6 @@ for varName in myVariables:
   del globals()[varName]
 `;
 
-    console.log(pythonCode);
-
     try {
       // runs Python code
       this.alertService.clear();
@@ -88,6 +83,8 @@ for varName in myVariables:
   }
 
   resetCode() {
-    this.codeInputField = this.initialCodeInputField;
+    this.codeInputField =
+`for number in range(1, 6, 1):
+  print(number)`;
   }
 }

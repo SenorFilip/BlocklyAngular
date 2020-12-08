@@ -5,6 +5,9 @@ import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
 import {Application, Container, Sprite, Texture} from 'pixi.js';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-blockly',
@@ -15,6 +18,9 @@ export class LessonForLoopComponent implements OnInit {
 
   disabledButtons = false;
   bunnyOutOfBounds = false;
+
+  lesson: Lesson;
+  private lessonChangedSub: Subscription;
 
   // PixiJS variables
   canvas;
@@ -58,7 +64,8 @@ export class LessonForLoopComponent implements OnInit {
 
   constructor(ngxToolboxBuilder: NgxToolboxBuilderService,
               public alertService: AlertService,
-              private router: Router) {
+              private router: Router,
+              private lessonSolvedService: LessonSolvedService) {
     ngxToolboxBuilder.nodes = [
       new ForLoopBlock('myCustomLoop', null, null),
       new MoveUpBlock('moveUp', null, null),
@@ -70,6 +77,12 @@ export class LessonForLoopComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lesson = this.lessonSolvedService.getLesson('loopBunny');
+    this.lessonChangedSub = this.lessonSolvedService.lessonsChanged.subscribe(
+      (lessonsSolved: Lesson[]) => {
+        this.lesson = lessonsSolved[this.lesson.id];
+      });
+
     this.canvas = document.getElementById('pixiJsCanvas');
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
@@ -244,6 +257,9 @@ export class LessonForLoopComponent implements OnInit {
       this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
       setTimeout(() => this.router.navigate(['forLoopLessonCode']), 1800);
       this.workspace.workspace.clear();
+      // sets lesson as solved
+      this.lesson.isSolved = true;
+      this.lessonSolvedService.updateLesson(this.lesson);
     } else {
       this.alertService.warn('You have FAILED! Try again.', {autoClose: true});
     }

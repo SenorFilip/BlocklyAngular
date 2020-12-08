@@ -2,10 +2,10 @@
 .alert-fixed {
   position:fixed;
   top: 50px;
-  left: 0px;
+  left: 0;
   width: 100%;
   z-index: 9999;
-  border-radius: 0px
+  border-radius: 0;
 }
 
 .text-box {
@@ -14,3 +14,28 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.codingTextArea {
+  background-color: black;
+  color: white;
+  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
+
+textarea .codingTextArea {
+  resize: none;
+}
+
+.line-numbers {
+  display: inline-block;
+  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+  padding: 8px 5px 4px;
+  background-color: black;
+  color: white;
+  position: relative;
+  top: -11px;
+}
+
+.text-area {
+  display: inline-block;
+  width: 95%;
+}
