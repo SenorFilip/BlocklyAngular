@@ -4,7 +4,7 @@
       <label for="codingTextArea" class="row">Write your code here:</label>
       <div class="row">
         <div class="line-numbers">
-          <div *ngFor="let counter of counterArray; let i = index">{{i + 14}}</div>
+          <div *ngFor="let counter of counterArray; let i = index">{{i + 12}}</div>
         </div>
         <div class="text-area">
           <textarea class="form-control"
@@ -30,6 +30,11 @@
     <button (click)="runCode()"
             class="btn btn-success">
       RUN CODE
+    </button>
+    <button (click)="resetCode()"
+            class="btn btn-default"
+            style="margin-left: 16px;">
+      RESET CODE
     </button>
   </div>
 </div>

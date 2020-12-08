@@ -10,6 +10,9 @@ declare let pyodide: any;
 export class LessonForLoopCodeComponent implements OnInit {
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
+  initialCodeInputField =
+    `for number in range(1, 6, 1):
+  print(number)`;
   codeInputField;
   consoleOutput;
   counter: number;
@@ -42,7 +45,16 @@ sys.stdout = temp_out
 # the original output stream to the terminal.
 # sys.stdout = sys.__stdout__
 ` + this.codeInputField + '\n' +
-`output = temp_out.getvalue()`;
+`output = temp_out.getvalue()
+
+# Deletes declared variables from memory
+neededVariableSet = set({'output', '__annotations__', 'neededVariableSet', 'temp_out', 'sys', '__builtins__', 'StringIO'})
+myVariables = set(dir()) - set(dir(__builtins__)) - neededVariableSet
+for varName in myVariables:
+  del globals()[varName]
+`;
+
+    console.log(pythonCode);
 
     try {
       // runs Python code
@@ -75,4 +87,7 @@ sys.stdout = temp_out
     this.counterArray = new Array(this.counter);
   }
 
+  resetCode() {
+    this.codeInputField = this.initialCodeInputField;
+  }
 }
