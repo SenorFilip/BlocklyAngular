@@ -13,6 +13,9 @@ import {Router} from '@angular/router';
 })
 export class LessonForLoopComponent implements OnInit {
 
+  disabledButtons = false;
+  bunnyOutOfBounds = false;
+
   // PixiJS variables
   canvas;
   pixiApp: Application;
@@ -21,17 +24,6 @@ export class LessonForLoopComponent implements OnInit {
   cellHeight;
   cellWidth;
   imgBunny: Sprite;
-  grid: number[][] = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  ];
   currentBunnyRow = 1;
   currentBunnyColumn = 1;
   carrotRow = 6;
@@ -125,6 +117,7 @@ export class LessonForLoopComponent implements OnInit {
   }
 
   runRabbit() {
+    this.disabledButtons = true;
     this.workspaceBlocks = [];
     const topBlocks = this.workspace.workspace.getTopBlocks(true);
     topBlocks.forEach(block => {
@@ -148,6 +141,13 @@ export class LessonForLoopComponent implements OnInit {
     for (let i = 0; i < this.workspaceBlocks.length; i++) {
       await this.moveBunny(this.workspaceBlocks[i].type);
     }
+    // enables the RUN button
+    this.disabledButtons = false;
+    // if bunny didn't get out of bounds, check if he got the carrot
+    if (!this.bunnyOutOfBounds) {
+      this.checkIfBunnyFoundTheCarrot();
+    }
+    this.bunnyOutOfBounds = false;
     console.log('gotovo');
   }
 
@@ -179,8 +179,6 @@ export class LessonForLoopComponent implements OnInit {
    */
   moveBunny(direction: string) {
     return new Promise((resolve) => {
-      this.grid[this.currentBunnyRow][this.currentBunnyColumn] = 0;
-
       switch (direction) {
         case 'moveUp': {
           this.currentBunnyRow -= 1;
@@ -199,6 +197,7 @@ export class LessonForLoopComponent implements OnInit {
           break;
         }
       }
+      this.checkIfBunnyMovedOutOfBounds();
       // leaving the Bunny some room to finish its movements to the designated cell
       setTimeout(() => {
         resolve();
@@ -225,8 +224,6 @@ export class LessonForLoopComponent implements OnInit {
       }
     } else {
       this.imgBunny.position.set(designationWidth, designationHeight);
-      this.checkIfBunnyMovedOutOfBounds();
-      this.checkIfBunnyFoundTheCarrot();
     }
   }
 
@@ -235,24 +232,24 @@ export class LessonForLoopComponent implements OnInit {
       this.alertService.error('Bunny can\'t hop out of bounds!', {autoClose: true});
       this.currentBunnyRow = 1;
       this.currentBunnyColumn = 1;
-      this.grid[1][1] = 1;
       this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
-    } else {
-      this.grid[this.currentBunnyRow][this.currentBunnyColumn] = 1;
+      this.workspaceBlocks = [];
+      this.bunnyOutOfBounds = true;
     }
   }
 
   checkIfBunnyFoundTheCarrot() {
     // checks if bunny found the carrot
-      if (this.currentBunnyRow === this.carrotRow && this.currentBunnyColumn === this.carrotColumn) {
-        this.currentBunnyRow = 1;
-        this.currentBunnyColumn = 1;
-        this.grid[1][1] = 1;
-        this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
-        this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
-        setTimeout(() => this.router.navigate(['forLoopLessonCode']), 1800);
-        this.workspace.workspace.clear();
-      }
+    if (this.currentBunnyRow === this.carrotRow && this.currentBunnyColumn === this.carrotColumn) {
+      this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
+      setTimeout(() => this.router.navigate(['forLoopLessonCode']), 1800);
+      this.workspace.workspace.clear();
+    } else {
+      this.alertService.warn('You have FAILED! Try again.', {autoClose: true});
+    }
+    this.currentBunnyRow = 1;
+    this.currentBunnyColumn = 1;
+    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
   }
 
 }
