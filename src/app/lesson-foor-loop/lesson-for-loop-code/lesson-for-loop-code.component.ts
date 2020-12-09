@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AlertService} from '../../shared/alert';
-declare let pyodide: any;
+import {PythonService} from '../../shared/python/python.service';
 
 @Component({
   selector: 'app-lesson-for-loop-code',
@@ -15,7 +15,8 @@ export class LessonForLoopCodeComponent implements OnInit {
   counter: number;
   counterArray: Array<number>;
 
-  constructor(public alertService: AlertService) { }
+  constructor(private alertService: AlertService,
+              private pythonService: PythonService) { }
 
   ngOnInit(): void {
     this.counter = this.textarea.nativeElement.rows;
@@ -27,48 +28,10 @@ export class LessonForLoopCodeComponent implements OnInit {
   }
 
   runCode() {
-    const pythonCode =
-`from io import StringIO
-import sys
-
-# Create the in-memory "file"
-temp_out = StringIO()
-
-# Replace default stdout (terminal) with our stream
-sys.stdout = temp_out
-
-# The original \`sys.stdout\` is kept in a special
-# dunder named \`sys.__stdout__\`. So you can restore
-# the original output stream to the terminal.
-# sys.stdout = sys.__stdout__
-` + this.codeInputField + '\n' +
-`output = temp_out.getvalue()
-
-# Deletes declared variables from memory
-neededVariableSet = set({'output', '__annotations__', 'neededVariableSet', 'temp_out', 'sys', '__builtins__', 'StringIO'})
-myVariables = set(dir()) - set(dir(__builtins__)) - neededVariableSet
-for varName in myVariables:
-  del globals()[varName]
-`;
-
-    try {
-      // runs Python code
-      this.alertService.clear();
-      pyodide.runPython(pythonCode);
-    } catch (err) {
-      this.alertService.error(err);
-      console.log(err);
-    }
-
-    // retrieves variable value in which we saved the console output result
-    this.consoleOutput = pyodide.globals.output;
-    // const stdout = pyodide.runPython('sys.stdout.getvalue()');
-    // console.log(stdout);
-    this.checkResult();
-  }
-
-  checkResult() {
-    if (this.consoleOutput === ('24\n' + '21\n' + '18\n' + '15\n' + '12\n' + '9\n' + '6\n' + '3\n')) {
+    const lessonSolvedCheckCode = `\nlessonPassed = output == '24\\n21\\n18\\n15\\n12\\n9\\n6\\n3\\n'\n`;
+    const pythonCodeResult = this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode);
+    this.consoleOutput = pythonCodeResult.consoleOutput;
+    if (pythonCodeResult.lessonSolved) {
       this.alertService.success('Good job!', {autoClose: true});
     }
   }
