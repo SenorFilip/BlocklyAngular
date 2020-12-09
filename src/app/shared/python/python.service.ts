@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {AlertService} from '../alert';
-import {PythonScriptResult} from './python-script-result.model';
 declare let pyodide: any;
 
 @Injectable({
@@ -25,12 +24,15 @@ sys.stdout = temp_out
 
 # serves to check if lesson was solved
 lessonPassed = False
+
+# ------------------------- user code --------------------
 `;
 
   outputVariableCode = `\noutput = temp_out.getvalue()\n`;
 
   memoryResetCode =
 `
+# ----------------------- end user code ------------------
 # Deletes declared variables from memory
 neededVariableSet = set({'output', '__annotations__', 'neededVariableSet', 'temp_out', 'sys', '__builtins__', 'StringIO', 'lessonPassed'})
 myVariables = set(dir()) - set(dir(__builtins__)) - neededVariableSet
@@ -43,18 +45,22 @@ for varName in myVariables:
     try {
       // runs Python code
       this.alertService.clear();
-      const pythonScript = this.pythonSetUpCode + inputCode + '\n' + this.outputVariableCode + lessonSolvedCheckCode + this.memoryResetCode;
+      const pythonScript = this.pythonSetUpCode + inputCode + '\n' + lessonSolvedCheckCode + this.outputVariableCode + this.memoryResetCode;
+      // console.log(pythonScript);
       pyodide.runPython(pythonScript);
+      if (pyodide.globals.lessonPassed) {
+        this.alertService.success('Good job!', {autoClose: true});
+      }
+      // retrieves variable value in which we saved the console output result
+      return pyodide.globals.output;
     } catch (err) {
       this.alertService.error(err);
-      return new PythonScriptResult(false, pyodide.globals.output);
+      // retrieves variable value in which we saved the console output result
+      return pyodide.globals.output;
     }
 
     // const stdout = pyodide.runPython('sys.stdout.getvalue()');
     // console.log(stdout);
-
-    // retrieves variable value in which we saved the console output result
-    return new PythonScriptResult(pyodide.globals.lessonPassed, pyodide.globals.output);
   }
 
 }

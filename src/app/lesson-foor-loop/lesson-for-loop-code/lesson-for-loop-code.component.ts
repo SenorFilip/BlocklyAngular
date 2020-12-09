@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AlertService} from '../../shared/alert';
 import {PythonService} from '../../shared/python/python.service';
 
 @Component({
@@ -15,8 +14,7 @@ export class LessonForLoopCodeComponent implements OnInit {
   counter: number;
   counterArray: Array<number>;
 
-  constructor(private alertService: AlertService,
-              private pythonService: PythonService) { }
+  constructor(private pythonService: PythonService) { }
 
   ngOnInit(): void {
     this.counter = this.textarea.nativeElement.rows;
@@ -28,12 +26,8 @@ export class LessonForLoopCodeComponent implements OnInit {
   }
 
   runCode() {
-    const lessonSolvedCheckCode = `\nlessonPassed = output == '24\\n21\\n18\\n15\\n12\\n9\\n6\\n3\\n'\n`;
-    const pythonCodeResult = this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode);
-    this.consoleOutput = pythonCodeResult.consoleOutput;
-    if (pythonCodeResult.lessonSolved) {
-      this.alertService.success('Good job!', {autoClose: true});
-    }
+    const lessonSolvedCheckCode = `\nlessonPassed = temp_out.getvalue() == '24\\n21\\n18\\n15\\n12\\n9\\n6\\n3\\n'\n`;
+    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode);
   }
 
   onEnter(textAreaElement: HTMLTextAreaElement) {
