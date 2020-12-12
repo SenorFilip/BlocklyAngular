@@ -11,7 +11,7 @@ import {
 export const routeNextPageTransitionAnimations =
   trigger('routeNextPageAnimations', [
     // animations for moving to the next screen in a lesson
-    transition('1 => 2, 2 => 3, 3 => 4, 31 => 32', [
+    transition('1 => 2, 2 => 3, 3 => 4, 41 => 42', [
       style({position: 'relative'}),
       query(':enter, :leave', [
         style({
@@ -47,7 +47,7 @@ export const routeNextPageTransitionAnimations =
       ])
     ]),
     // animations for going back to the screen before in a lesson
-    transition('4 => 3, 3 => 2, 2 => 1, 32 => 31', [
+    transition('4 => 3, 3 => 2, 2 => 1, 42 => 41', [
       style({position: 'relative'}),
       query(':enter, :leave', [
         style({
