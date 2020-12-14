@@ -20,15 +20,14 @@ export class LessonForLoopComponent implements OnInit {
   bunnyOutOfBounds = false;
 
   lesson: Lesson;
+  // TODO: check if this is needed
   private lessonChangedSub: Subscription;
 
   // PixiJS variables
   canvas;
   pixiApp: Application;
-  rendererWidth;
-  rendererHeight;
-  cellHeight;
-  cellWidth;
+  cellHeight: number;
+  cellWidth: number;
   imgBunny: Sprite;
   currentBunnyRow = 1;
   currentBunnyColumn = 1;
@@ -84,10 +83,10 @@ export class LessonForLoopComponent implements OnInit {
       });
 
     this.canvas = document.getElementById('pixiJsCanvas');
-    this.rendererWidth = this.canvas.offsetWidth;
-    this.rendererHeight = this.canvas.offsetHeight;
-    this.cellWidth = this.rendererWidth / 9;
-    this.cellHeight = this.rendererHeight / 9;
+    const rendererWidth = this.canvas.offsetWidth;
+    const rendererHeight = this.canvas.offsetHeight;
+    this.cellWidth = rendererWidth / 9;
+    this.cellHeight = rendererHeight / 9;
 
     this.pixiApp = new Application({
       view: this.canvas,
@@ -97,10 +96,10 @@ export class LessonForLoopComponent implements OnInit {
 
     // Adding background grid
     const backgroundContainer = new Container();
-    const textureBackground = Texture.from('assets/images/pixiJS/background.png');
+    const textureBackground = Texture.from('assets/images/pixiJS/bunny_grid.png');
     const imgBackground = new Sprite(textureBackground);
-    imgBackground.width = this.rendererWidth;
-    imgBackground.height = this.rendererHeight;
+    imgBackground.width = rendererWidth;
+    imgBackground.height = rendererHeight;
     backgroundContainer.addChild(imgBackground);
     this.pixiApp.stage.addChild(backgroundContainer);
 
