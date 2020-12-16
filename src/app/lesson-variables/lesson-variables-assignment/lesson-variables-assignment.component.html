@@ -1,17 +1,20 @@
 <div class="row-md-6">
   <div class="row">
     <div class="col-md-6 text-left">
-      <button class="btn btn-default" [routerLink]="['/variablesLesson']"><span class="glyphicon glyphicon-chevron-left"></span> Variables</button>
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/variablesLesson']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Variables
+      </button>
     </div>
     <div class="col-md-6 text-right">
-      <button class="btn btn-default"
+      <button class="btn btn-primary mt-3"
               *ngIf="lesson.isSolved"
               [routerLink]="['/variablesLessonCode']">
-        Variables and Data Types Coding Assignment <span class="glyphicon glyphicon-chevron-right"></span>
+        Variables and Data Types Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
       </button>
     </div>
   </div>
-  <div class="panel panel-success text-center" style="margin-top: 16px; padding-left: 16px; padding-bottom: 16px;">
+  <div class="card border-primary text-center mt-3 pl-3 mb-3 pt-3">
     <div cdkDropListGroup>
       <div class="row">
         <div class="col-md-2">
@@ -28,7 +31,7 @@
           </div>
         </div>
         <div class="col-md-10">
-          <div class="row" style="margin-bottom: 32px;">
+          <div class="row justify-content-center mb-4">
             <div class="example-container">
               <h2>Integer</h2>
 
@@ -66,7 +69,7 @@
             </div>
           </div>
 
-          <div class="row" style="margin-bottom: 32px;">
+          <div class="row justify-content-center mb-4">
             <div class="example-container">
               <h2>Boolean</h2>
 
@@ -103,14 +106,14 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="panel panel-info text-box" style="display: inline-block;">
-              <div class="panel-body">
+          <div class="row justify-content-center">
+            <div class="card border-info text-box mb-3">
+              <div class="card-body">
                Drag the items to their groups.
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-center pb-3">
             <button (click)="checkResults()"
                     class="btn btn-success">
               CHECK IF CORRECT

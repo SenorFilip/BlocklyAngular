@@ -9,22 +9,34 @@ import {Pokemon} from '../pokemon.model';
 })
 export class LessonBoolOperatorsAssignmentComponent implements OnInit {
 
+  progress = '25%';
+
+  task1 = 'NOT yellow';
+  task2 = `yellow AND `;
+  task3 = 'NOT yellow';
+
+  currentTask = this.task1;
+
   // PixiJS variables
   canvas;
   pixiApp: Application;
   dropArea: Graphics;
 
   pokemonSprites: Pokemon[] = [];
+  pokemonSpritesSolutionNot: Pokemon[] = [];
+  pokemonSpritesSolutionAnd: Pokemon[] = [];
+  pokemonSpritesSolutionOr: Pokemon[] = [];
+  pokemonSpritesSolutionAdvanced: Pokemon[] = [];
   pokemonStartingCoordinates = [
-    {x: 250, y: 80}, {x: 300, y: 350}, {x: 900, y: 550}, {x: 500, y: 650}, {x: 1050, y: 625}, {x: 650, y: 600},
-    {x: 750, y: 625}, {x: 400, y: 600}, {x: 1100, y: 300}, {x: 200, y: 600}, {x: 650, y: 80}, {x: 800, y: 50}
+    {x: 250, y: 80}, {x: 300, y: 350}, {x: 900, y: 570}, {x: 500, y: 650}, {x: 1100, y: 625}, {x: 650, y: 600},
+    {x: 1000, y: 450}, {x: 400, y: 550}, {x: 1200, y: 300}, {x: 200, y: 615}, {x: 650, y: 80}, {x: 800, y: 50}
   ];
   dropAreaPokemon: Pokemon[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.canvas = document.getElementById('pixiJsCanvas');
+    this.canvas = document.getElementById('pixiJsCanvasPokemon');
     const rendererWidth = this.canvas.offsetWidth;
     const rendererHeight = this.canvas.offsetHeight;
 
@@ -45,10 +57,10 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
     // Defining raised area borders
     this.dropArea = new Graphics();
     // this.dropArea.lineStyle(4, 0xFF0000);
-    this.dropArea.drawRect(400, 115, 430, 365);
+    this.dropArea.drawRect(420, 115, 460, 365);
     this.pixiApp.stage.addChild(this.dropArea);
 
-    this.definePokemonSprites();
+    this.definePokemonSpritesTextures();
     this.definePokemonSpritesAttributes();
     // adds the Pokemon sprites to the stage
     this.pokemonSprites.forEach((pokemon) => {
@@ -57,56 +69,72 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
   }
 
   // Fills Pokemon array
-  definePokemonSprites() {
+  definePokemonSpritesTextures() {
     const textureZapdos = Texture.from('assets/images/pixiJS/zapdos.png');
-    const spriteZapdos = new Sprite(textureZapdos);
-    this.pokemonSprites.push(new Pokemon('Zapdos', 'yellow', ['electric'], spriteZapdos));
+    const zapdos = new Pokemon('Zapdos', 'yellow', ['electric', 'flying'], new Sprite(textureZapdos));
+    this.pokemonSprites.push(zapdos);
+    this.pokemonSpritesSolutionOr.push(zapdos);
 
     const textureCharizard = Texture.from('assets/images/pixiJS/charizard.png');
-    const spriteCharizard = new Sprite(textureCharizard);
-    this.pokemonSprites.push(new Pokemon('Charizard', 'red', ['fire', 'flying'], spriteCharizard));
+    const charizard = new Pokemon('Charizard', 'red', ['fire', 'flying'], new Sprite(textureCharizard));
+    this.pokemonSprites.push(charizard);
+    this.pokemonSpritesSolutionNot.push(charizard);
+    this.pokemonSpritesSolutionOr.push(charizard);
 
     const textureHypno = Texture.from('assets/images/pixiJS/hypno.png');
-    const spriteHypno = new Sprite(textureHypno);
-    this.pokemonSprites.push(new Pokemon('Hypno', 'yellow', ['psychic'], spriteHypno));
+    const hypno = new Pokemon('Hypno', 'yellow', ['psychic'], new Sprite(textureHypno));
+    this.pokemonSprites.push(hypno);
+    this.pokemonSpritesSolutionAnd.push(hypno);
 
     const texturePolitoed = Texture.from('assets/images/pixiJS/politoed.png');
-    const spritePolitoed = new Sprite(texturePolitoed);
-    this.pokemonSprites.push(new Pokemon('Politoed', 'green', ['water'], spritePolitoed));
+    const politoed = new Pokemon('Politoed', 'green', ['water'], new Sprite(texturePolitoed));
+    this.pokemonSprites.push(politoed);
+    this.pokemonSpritesSolutionNot.push(politoed);
+    this.pokemonSpritesSolutionOr.push(politoed);
+    this.pokemonSpritesSolutionAdvanced.push(politoed);
 
     const textureArticuno = Texture.from('assets/images/pixiJS/articuno.png');
-    const spriteArticuno = new Sprite(textureArticuno);
-    this.pokemonSprites.push(new Pokemon('Articuno', 'blue', ['ice', 'flying'], spriteArticuno));
+    const articuno = new Pokemon('Articuno', 'blue', ['ice', 'flying'], new Sprite(textureArticuno));
+    this.pokemonSprites.push(articuno);
+    this.pokemonSpritesSolutionNot.push(articuno);
+    this.pokemonSpritesSolutionOr.push(articuno);
 
     const textureAlakazam = Texture.from('assets/images/pixiJS/alakazam.png');
-    const spriteAlakazam = new Sprite(textureAlakazam);
-    this.pokemonSprites.push(new Pokemon('Alakazam', 'yellow', ['psychic'], spriteAlakazam));
+    const alakazam = new Pokemon('Alakazam', 'yellow', ['psychic'], new Sprite(textureAlakazam));
+    this.pokemonSprites.push(alakazam);
+    this.pokemonSpritesSolutionAnd.push(alakazam);
 
     const textureNatu = Texture.from('assets/images/pixiJS/natu.png');
-    const spriteNatu = new Sprite(textureNatu);
-    this.pokemonSprites.push(new Pokemon('Natu', 'green', ['psychic', 'flying'], spriteNatu));
+    const natu = new Pokemon('Natu', 'green', ['psychic', 'flying'], new Sprite(textureNatu));
+    this.pokemonSprites.push(natu);
+    this.pokemonSpritesSolutionNot.push(natu);
+    this.pokemonSpritesSolutionOr.push(natu);
 
     const texturePikachu = Texture.from('assets/images/pixiJS/pikachu.png');
-    const spritePikachu = new Sprite(texturePikachu);
-    this.pokemonSprites.push(new Pokemon('Pikachu', 'yellow', ['electric'], spritePikachu));
+    const pikachu = new Pokemon('Pikachu', 'yellow', ['electric'], new Sprite(texturePikachu));
+    this.pokemonSprites.push(pikachu);
+    this.pokemonSpritesSolutionAdvanced.push(pikachu);
 
     const textureNidoqueen = Texture.from('assets/images/pixiJS/nidoqueen.png');
-    const spriteNidoqueen = new Sprite(textureNidoqueen);
-    this.pokemonSprites.push(new Pokemon('Nidoqueen', 'blue', ['poison', 'ground'], spriteNidoqueen));
+    const nidoqueen = new Pokemon('Nidoqueen', 'blue', ['poison', 'ground'], new Sprite(textureNidoqueen));
+    this.pokemonSprites.push(nidoqueen);
+    this.pokemonSpritesSolutionNot.push(nidoqueen);
 
     const textureSandshrew = Texture.from('assets/images/pixiJS/sandshrew.png');
-    const spriteSandshrew = new Sprite(textureSandshrew);
-    this.pokemonSprites.push(new Pokemon('Sandshrew', 'yellow', ['ground'], spriteSandshrew));
+    this.pokemonSprites.push(new Pokemon('Sandshrew', 'yellow', ['ground'], new Sprite(textureSandshrew)));
 
     const textureMagikarp = Texture.from('assets/images/pixiJS/magikarp.png');
-    const spriteMagikarp = new Sprite(textureMagikarp);
-    this.pokemonSprites.push(new Pokemon('Magikarp', 'red', ['water'], spriteMagikarp));
+    const magikarp = new Pokemon('Magikarp', 'red', ['water'], new Sprite(textureMagikarp));
+    this.pokemonSprites.push(magikarp);
+    this.pokemonSpritesSolutionNot.push(magikarp);
 
     const textureTentacool = Texture.from('assets/images/pixiJS/tentacool.png');
-    const spriteTentacool = new Sprite(textureTentacool);
-    this.pokemonSprites.push(new Pokemon('Tentacool', 'blue', ['water', 'poison'], spriteTentacool));
+    const tentacool = new Pokemon('Tentacool', 'blue', ['water', 'poison'], new Sprite(textureTentacool));
+    this.pokemonSprites.push(tentacool);
+    this.pokemonSpritesSolutionNot.push(tentacool);
   }
 
+  // defines pokemon attributes
   definePokemonSpritesAttributes() {
     this.pokemonSprites.forEach((pokemon, index) => {
       pokemon.sprite.height = 90;
@@ -138,10 +166,24 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
       pokemon.sprite.y > dropAreaSizes.y && pokemon.sprite.y < dropAreaSizes.y + dropAreaSizes.height) {
       this.dropAreaPokemon.push(pokemon);
       // console.log(this.dropAreaPokemon);
+      // console.log(pokemon.sprite);
+      // console.log(pokemon.sprite.texture.baseTexture.cacheId);
     } else {
       this.dropAreaPokemon = this.dropAreaPokemon.filter(obj => obj !== pokemon);
       // console.log(this.dropAreaPokemon);
+      // console.log(pokemon.sprite);
+      // console.log(pokemon.sprite.texture.baseTexture.cacheId);
     }
+  }
+
+  checkAnswer() {
+    this.dropAreaPokemon.forEach((pokemon) => {
+      if (this.pokemonSpritesSolutionNot.indexOf(pokemon) > -1) {
+        console.log(pokemon.name + ' je tocan odgvor');
+      } else {
+        console.log(pokemon.name + ' KRIVO');
+      }
+    });
   }
 
 }

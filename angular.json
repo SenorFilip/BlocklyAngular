@@ -44,7 +44,9 @@
               "node_modules/ngx-blockly/scripts/blockly/php_compressed.js",
               "node_modules/ngx-blockly/scripts/blockly/python_compressed.js",
               "node_modules/ngx-blockly/scripts/blockly/msg/js/en.js",
-              "src/assets/js/pyodide.js"
+              "src/assets/js/pyodide.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {

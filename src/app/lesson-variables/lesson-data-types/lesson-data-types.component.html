@@ -4,23 +4,24 @@
 <!--    </div>-->
   <div class="row">
     <div class="col-md-12 text-right">
-      <button class="btn btn-default" [routerLink]="['/variablesLesson']">Variables <span class="glyphicon glyphicon-chevron-right"></span></button>
+      <button class="btn btn-primary mt-3" [routerLink]="['/variablesLesson']">Variables <fa-icon [icon]="angleRight"></fa-icon></button>
     </div>
   </div>
-  <div class="panel panel-success" style="margin-top: 10px">
-    <div class="panel-heading"><h3>Data Types</h3></div>
-    <div class="panel-body text-success">
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Data Types</h3></div>
+    <div class="card-body">
       In Python, data can include numbers, strings (pieces of text), or Booleans (True or False).<br>
-      Python supports two types of numbers - integers and floating point numbers. (It also supports complex numbers, which will not be explained in this tutorial).
+      Python supports two types of numbers - integers and floating point numbers. <br>
+      (It also supports complex numbers, which will not be explained in this tutorial).
       <br>
       <hr>
 
-      <h4>NUMBERS</h4>
+      <h4 class="card-title">NUMBERS</h4>
       <b>Integers (int)</b><br><br>
       Integers are positive or negative whole numbers.
       Values such as 10, 32, −6, 194689, and −5 are integers, but 3.14 and 6.025 are not.<br><br>
-      <div class="panel panel-info text-box">
-        <div class="panel-body">
+      <div class="card text-box border-info mb-3">
+        <div class="card-body text-info">
           x = 8 <br>
           y = 96855286564375657641<br>
           z = -1234<br>
@@ -35,8 +36,8 @@
       For example, you might have half (0.5) of an orange.
       Numbers that use decimal points are called floating-point numbers, or floats.<br><br>
       Example:<br><br>
-      <div class="panel panel-info text-box">
-        <div class="panel-body">
+      <div class="card text-box border-info mb-3">
+        <div class="card-body text-info">
           x = 17.8<br>
           y = 1.9<br>
           z = -23.61<br>
@@ -45,22 +46,24 @@
       </div>
       <hr>
 
-      <h4>STRING</h4>
+      <h4 class="card-title">STRING</h4>
       Strings are defined either with a single quote or a double quotes.<br><br>
-      <div class="panel panel-info text-box">
-        <div class="panel-body">
+      <div class="card text-box border-info mb-3">
+        <div class="card-body text-info">
           myString = 'hello there'<br>
           myString1 = "hello there"<br>
         </div>
       </div>
-      The difference between the two is that using double quotes makes it easy to include apostrophes (whereas these would terminate the string if using single quotes).<br>
-      The same applies for the other way around. A different approach is to use backslash(\') to use an apostrophe in String encapsulated by apostrophes.<br>
+      The difference between the two is that using double quotes makes it easy to include apostrophes <br>
+      (whereas these would terminate the string if using single quotes).<br>
+      The same applies for the other way around. <br>
+      A different approach is to use backslash(\') to use an apostrophe in String encapsulated by apostrophes.<br>
       <hr>
 
-      <h4>BOOLEAN</h4>
+      <h4 class="card-title">BOOLEAN</h4>
       Boolean is a type that can be considered True or False. Think of it as Yes and No<br><br>
-      <div class="panel panel-info text-box">
-        <div class="panel-body">
+      <div class="card text-box border-info mb-3">
+        <div class="card-body text-info">
           isGrownUp = True<br>
           isOld = False<br>
         </div>

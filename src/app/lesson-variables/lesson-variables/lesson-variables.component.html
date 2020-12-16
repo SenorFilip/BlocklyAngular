@@ -4,15 +4,15 @@
 <!--    </div>-->
   <div class="row">
     <div class="col-md-6 text-left">
-      <button class="btn btn-default" [routerLink]="['/dataTypesLesson']"><span class="glyphicon glyphicon-chevron-left"></span> Data Types</button>
+      <button class="btn btn-primary mt-3" [routerLink]="['/dataTypesLesson']"><fa-icon [icon]="arrowLeft"></fa-icon> Data Types</button>
     </div>
     <div class="col-md-6 text-right">
-      <button class="btn btn-default" [routerLink]="['/variablesAssignment']">Connect Assignment <span class="glyphicon glyphicon-chevron-right"></span></button>
+      <button class="btn btn-primary mt-3" [routerLink]="['/variablesAssignment']">Connect Assignment <fa-icon [icon]="arrowRight"></fa-icon></button>
     </div>
   </div>
-  <div class="panel panel-success" style="margin-top: 10px">
-    <div class="panel-heading"><h3>Variables</h3></div>
-    <div class="panel-body text-success">
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Variables</h3></div>
+    <div class="card-body">
       Variables are like labels, that store data, think of them as containers with labels. They let you store data to use later in a program.<br><br>
 
       <img src="/assets/images/boxes.png" alt="image" width="600"><br><br>
@@ -24,8 +24,8 @@
       Variables can store numbers, words, and even complete sentences, such as "Hello reader, my name is Vin!".<br>
       Here's another example:<br><br>
 
-      <div class="panel panel-info text-box">
-        <div class="panel-body">
+      <div class="card text-box border-info mb-3">
+        <div class="card-body text-info">
           weather = "cloudy"<br>
         </div>
       </div>
@@ -41,8 +41,8 @@
         <li>Don’t start a variable name with a number, as in 3player. Using numbers elsewhere in a variable name is fine, as in player3</li>
       </ul>
 
-      <div class="panel panel-info text-box">
-        <div class="panel-body">
+      <div class="card text-box border-info mb-3">
+        <div class="card-body text-info">
           fav_num = 3  # correct<br>
           !fav_num = 3 # wrong<br>
           @fav_num = 3 # wrong<br>

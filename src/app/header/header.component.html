@@ -1,34 +1,31 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a routerLink="/"
-        class="navbar-brand">
-        Home page
-      </a>
-    </div>
-
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li appDropdown
-            routerLinkActive="active"
-            class="dropdown">
-          <a style="cursor: pointer"
-             class="dropdown-toggle"
-             role="button">
-            Lessons <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/dataTypesLesson" style="cursor: pointer">Variables and Data Types</a></li>
-            <li><a routerLink="/listsAssignment" style="cursor: pointer">Lists</a></li>
-            <li><a routerLink="/booleanOperatorsAssignment" style="cursor: pointer">Boolean Operators</a></li>
-            <li><a routerLink="/conditionsLesson" style="cursor: pointer">Conditions</a></li>
-            <li><a routerLink="/forLoopLesson" style="cursor: pointer">Loops</a></li>
-            <li><a routerLink="/functionsAssignment" style="cursor: pointer">Functions</a></li>
-            <li><a routerLink="/classesAssignment" style="cursor: pointer">Classes and Objects</a></li>
-            <li><a routerLink="/dictionariesAssignment" style="cursor: pointer">Dictionaries</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Proggly</a>
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Lessons
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a routerLinkActive="active" routerLink="/dataTypesLesson" class="dropdown-item">Variables and Data Types</a>
+          <a routerLinkActive="active" routerLink="/listsAssignment" class="dropdown-item">Lists</a>
+          <a routerLinkActive="active" routerLink="/booleanOperatorsAssignment" class="dropdown-item">Boolean Operators</a>
+          <a routerLinkActive="active" routerLink="/conditionsLesson" class="dropdown-item">Conditions</a>
+          <a routerLinkActive="active" routerLink="/forLoopLesson" class="dropdown-item">Loops</a>
+          <a routerLinkActive="active" routerLink="/functionsAssignment" class="dropdown-item">Functions</a>
+          <a routerLinkActive="active" routerLink="/classesAssignment" class="dropdown-item">Classes and Objects</a>
+          <a routerLinkActive="active" routerLink="/dictionariesAssignment" class="dropdown-item">Dictionaries/Maps</a>
+        </div>
+      </li>
+    </ul>
   </div>
 </nav>

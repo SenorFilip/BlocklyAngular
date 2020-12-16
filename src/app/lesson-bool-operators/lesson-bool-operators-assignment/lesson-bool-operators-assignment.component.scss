@@ -1,27 +1,57 @@
 .container {
-  width: 110% !important;
-  margin-left: -5%;
+  width: 120% !important;
+  max-width: 120%;
+  margin-left: -10%;
 }
 
 #pixiJsBlock {
   //background: rgba(226,148,91,0.45);
-  position: relative;
-  width: 100%;
+  //position: relative;
+  //width: 100%;
   height: 730px;
   //top: -500px;
   //left: 50%;;
-  display: block;
+  //display: block;
 }
 
-#pixiJsCanvas {
+#pixiJsCanvasPokemon {
   height: 730px;
   width: 100%;
 }
 
 #infoText {
-  position: relative;
-  //top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 75px;
+  //margin-top: 16px;
+  //position: relative;
+  //top: -50px;
+  //left: 35%;
+  //transform: translateX(-50%);
+  //margin-top: 16px;
+}
+
+#runButton {
+  //margin-top: 56px;
+  //position: relative;
+  //top: -100px;
+  //left: 65%;
+  //transform: translateX(-50%);
+  //margin-top: 16px;
+}
+
+//tr {
+//  height : 20px;
+//  line-height: 20px;
+//  //font-size: x-small;
+//  margin: 0 0 0 0;
+//}
+
+td {
+  //height : 60px;
+  //line-height: 20px !important;
+  //font-size: x-small;
+  //padding: 0 0 0 0 !important;
+  //margin-bottom: 5px;
+}
+
+tr {
+  //height: 60px;
 }

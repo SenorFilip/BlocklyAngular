@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {Lesson} from '../../shared/lesson/lesson.model';
 import {Subscription} from 'rxjs';
 import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
+import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-lesson-variables-assignment',
@@ -12,6 +13,9 @@ import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
   styleUrls: ['./lesson-variables-assignment.component.scss']
 })
 export class LessonVariablesAssignmentComponent implements OnInit {
+
+  arrowRight = faAngleRight;
+  arrowLeft = faAngleLeft;
 
   lesson: Lesson;
   private lessonChangedSub: Subscription;

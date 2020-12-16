@@ -15,7 +15,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.codingTextArea {
+.codingTextArea, .codingTextArea:focus {
   background-color: black;
   color: white;
   font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
@@ -32,7 +32,7 @@ textarea .codingTextArea {
   background-color: black;
   color: white;
   position: relative;
-  top: -11px;
+  //top: -11px;
 }
 
 .text-area {

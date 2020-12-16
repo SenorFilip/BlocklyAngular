@@ -1,27 +1,40 @@
 <div class="row mt-6">
   <div class="row-md-6">
-    <div class="jumbotron bg-danger">
-      <h1>Proggly</h1>
-      <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing
-        responsive, mobile-first projects on the web.</p>
-    </div>
-    <div class="panel panel-success" style="margin-top: 10px">
-      <div class="panel-heading">Loops</div>
-      <div class="panel-body text-success">
-        Loops or iterations are used for repeating sequences of code. They're wery usefull for many programming problems.<br>
-        Python has a WHILE and a FOR loop. We're gonna focus on the FOR loop.
-        The loop consist of three pieces:<br>
-        - begin: n = 1<br>
-        - end: n <= 6<br>
-        - change: n += 1<br>
-        <br>
-        Begin is the first value in the range. The default value is 0.<br>
-        End is the last value which the current value can't pass.<br>
-        Change is the amount by which we increment or decrement the current value.<br>
-        <br>
-        The print() method writes it's content to the console.<br>
-        <b>Now, write a loop which writes values from 24 to 0 in decrements of 3. Good luck!</b>
-      </div>
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Proggly</h1>
+      <p class="lead">is a web application made for teaching basic programming concepts.</p>
+      <hr class="my-4">
+      <p>Choose one of eight lessons we made for you</p>
+      <p class="lead">
+        <span class="row pl-4 pr-4">
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/dataTypesLesson']">Data Types and Variables</button>
+          </span>
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/listsAssignment']">Lists</button>
+          </span>
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/booleanOperatorsAssignment']">Boolean Operators</button>
+          </span>
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/conditionsLesson']">Conditions</button>
+          </span>
+        </span>
+        <span class="row mt-4 pl-4 pr-4">
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/forLoopLesson']">Loops</button>
+          </span>
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/functionsAssignment']">Functions</button>
+          </span>
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/classesAssignment']">Classes and Objects</button>
+          </span>
+          <span class="col-3">
+            <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/dictionariesAssignment']">Dictionaries/Maps</button>
+          </span>
+        </span>
+      </p>
     </div>
   </div>
 </div>

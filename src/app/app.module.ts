@@ -6,7 +6,6 @@ import {HeaderComponent} from './header/header.component';
 import {RouterModule} from '@angular/router';
 import {LessonForLoopComponent} from './lesson-for-loop/lesson-for-loop/lesson-for-loop.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {DropdownDirective} from './shared/dropdown.directive';
 import {NgxBlocklyModule} from 'ngx-blockly';
 import { LessonForLoopCodeComponent } from './lesson-for-loop/lesson-for-loop-code/lesson-for-loop-code.component';
 import {AlertModule} from './shared/alert';
@@ -23,6 +22,7 @@ import { LessonListsAssignmentComponent } from './lesson-lists/lesson-lists-assi
 import { LessonFunctionsAssignmentComponent } from './lesson-functions/lesson-functions-assignment/lesson-functions-assignment.component';
 import { LessonClassesAssignmentComponent } from './lesson-classes/lesson-classes-assignment/lesson-classes-assignment.component';
 import { LessonDictionariesAssignmentComponent } from './lesson-dictionaries/lesson-dictionaries-assignment/lesson-dictionaries-assignment.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { LessonDictionariesAssignmentComponent } from './lesson-dictionaries/les
     HeaderComponent,
     LessonForLoopComponent,
     HomePageComponent,
-    DropdownDirective,
     LessonForLoopCodeComponent,
     LessonConditionsComponent,
     LessonVariablesComponent,
@@ -51,7 +50,8 @@ import { LessonDictionariesAssignmentComponent } from './lesson-dictionaries/les
     AlertModule,
     FormsModule,
     BrowserAnimationsModule,
-    DragDropModule
+    DragDropModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

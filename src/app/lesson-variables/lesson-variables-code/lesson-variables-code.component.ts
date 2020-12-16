@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PythonService} from '../../shared/python/python.service';
+import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-lesson-variables-code',
@@ -7,6 +8,8 @@ import {PythonService} from '../../shared/python/python.service';
   styleUrls: ['./lesson-variables-code.component.scss']
 })
 export class LessonVariablesCodeComponent implements OnInit {
+
+  arrowLeft = faAngleLeft;
 
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 

@@ -1,57 +1,59 @@
-<div class="row">
-  <div class="row" style="margin-bottom: 16px;">
+<div class="container">
+  <div class="row mb-3">
     <div class="col-md-6 text-left">
-      <button class="btn btn-default" [routerLink]="['/forLoopLesson']"><span class="glyphicon glyphicon-chevron-left"></span> Bunny Assignment</button>
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/forLoopLesson']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Bunny Assignment
+      </button>
     </div>
 <!--    TODO: next lesson button -->
 <!--    <div class="col-md-6 text-right">-->
 <!--      <button class="btn btn-default" [routerLink]="['/dataTypesLesson']">Nesto <span class="glyphicon glyphicon-chevron-right"></span></button>-->
 <!--    </div>-->
   </div>
-  <div class="col-md-6">
-    <div class="form-group green-border-focus">
-      <label for="codingTextArea" class="row">Write your code here:</label>
-      <div class="row">
-        <div class="line-numbers">
-          <div *ngFor="let counter of counterArray; let i = index">{{i + 19}}</div>
-        </div>
-        <div class="text-area">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="codingTextArea" class="row">Write your code here:</label>
+        <div class="row">
+          <div class="line-numbers">
+            <div *ngFor="let counter of counterArray; let i = index">{{i + 19}}</div>
+          </div>
+          <div class="text-area">
           <textarea class="form-control codingTextArea"
                     [(ngModel)]="codeInputField"
                     id="codingTextArea"
                     #textarea
                     (keyup.enter)="onEnter(textarea)"
                     rows="15"></textarea>
+          </div>
         </div>
       </div>
     </div>
+    <div class="col-md-6" style="padding-right: 0;">
+      <label for="consoleOutput">Output result:</label>
+      <textarea class="form-control"
+                id="consoleOutput"
+                readonly
+                rows="15">{{consoleOutput}}</textarea>
+    </div>
   </div>
-  <div class="col-md-6" style="padding-right: 0;">
-    <label for="consoleOutput">Output result:</label>
-    <textarea class="form-control"
-              id="consoleOutput"
-              readonly
-              rows="15">{{consoleOutput}}</textarea>
+  <div class="row">
+    <div class="row-md-6">
+      <button (click)="runCode()"
+              class="btn btn-success">
+        RUN CODE
+      </button>
+      <button (click)="resetCode()"
+              class="btn btn-outline-secondary ml-3">
+        RESET CODE
+      </button>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="row-md-6">
-    <button (click)="runCode()"
-            class="btn btn-success">
-      RUN CODE
-    </button>
-    <button (click)="resetCode()"
-            class="btn btn-default"
-            style="margin-left: 16px;">
-      RESET CODE
-    </button>
-  </div>
-</div>
-<div class="row mt-6">
-  <div class="row-md-6">
-    <div class="panel panel-success" style="margin-top: 10px">
-      <div class="panel-heading">Loops</div>
-      <div class="panel-body text-success">
+  <div class="row">
+    <div class="card border-primary mb-3 mt-3 w-100">
+      <div class="card-header">Loops</div>
+      <div class="card-body">
         Loops or iterations are used for repeating sequences of code. They're very useful for many programming problems.<br>
         Python has a WHILE and a FOR loop. We're gonna focus on the FOR loop.
         The loop consist of three pieces:<br>

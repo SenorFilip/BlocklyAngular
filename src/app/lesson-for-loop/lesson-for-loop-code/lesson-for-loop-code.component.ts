@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PythonService} from '../../shared/python/python.service';
+import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-lesson-for-loop-code',
@@ -7,6 +8,10 @@ import {PythonService} from '../../shared/python/python.service';
   styleUrls: ['./lesson-for-loop-code.component.scss']
 })
 export class LessonForLoopCodeComponent implements OnInit {
+
+  // font awesome icon
+  arrowLeft = faAngleLeft;
+
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
   codeInputField;

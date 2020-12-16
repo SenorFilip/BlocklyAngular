@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {Lesson} from '../../shared/lesson/lesson.model';
 import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 import {Subscription} from 'rxjs';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-blockly',
@@ -15,6 +16,8 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./lesson-for-loop.component.scss']
 })
 export class LessonForLoopComponent implements OnInit {
+
+  angleRight = faAngleRight;
 
   disabledButtons = false;
   bunnyOutOfBounds = false;
