@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Application, Container, Sprite, Texture, Renderer, Graphics} from 'pixi.js';
 import {Pokemon} from '../pokemon.model';
+import {AlertService} from '../../shared/alert';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-lesson-bool-operators-assignment',
@@ -9,31 +11,42 @@ import {Pokemon} from '../pokemon.model';
 })
 export class LessonBoolOperatorsAssignmentComponent implements OnInit {
 
-  progress = '25%';
-
-  task1 = 'NOT yellow';
-  task2 = `yellow AND `;
-  task3 = 'NOT yellow';
-
-  currentTask = this.task1;
+  progress = 0;
 
   // PixiJS variables
   canvas;
   pixiApp: Application;
   dropArea: Graphics;
 
+  // all Pokemon
   pokemonSprites: Pokemon[] = [];
+
+  // correct array solutions
   pokemonSpritesSolutionNot: Pokemon[] = [];
   pokemonSpritesSolutionAnd: Pokemon[] = [];
   pokemonSpritesSolutionOr: Pokemon[] = [];
   pokemonSpritesSolutionAdvanced: Pokemon[] = [];
+
   pokemonStartingCoordinates = [
     {x: 250, y: 80}, {x: 300, y: 350}, {x: 900, y: 570}, {x: 500, y: 650}, {x: 1100, y: 625}, {x: 650, y: 600},
     {x: 1000, y: 450}, {x: 400, y: 550}, {x: 1200, y: 300}, {x: 200, y: 615}, {x: 650, y: 80}, {x: 800, y: 50}
   ];
+
+  // Pokemon currently in drop area
   dropAreaPokemon: Pokemon[] = [];
 
-  constructor() { }
+  tasks = [
+    {taskNum: 0, taskDescription: 'NOT yellow', solution: this.pokemonSpritesSolutionNot},
+    {taskNum: 1, taskDescription: 'yellow AND psychic', solution: this.pokemonSpritesSolutionAnd},
+    {taskNum: 2, taskDescription: 'green OR flying', solution: this.pokemonSpritesSolutionOr},
+    {taskNum: 3, taskDescription: `(electric OR green)<br> AND <br>(NOT flying)`, solution: this.pokemonSpritesSolutionAdvanced}
+  ];
+
+  // index of current task
+  currentTask = this.tasks[0];
+
+  constructor(public alertService: AlertService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.canvas = document.getElementById('pixiJsCanvasPokemon');
@@ -161,28 +174,58 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
     pokemon.sprite.dragging = false;
 
     const dropAreaSizes = this.dropArea.getBounds();
-    // console.log('sprite - x: ' + pokemon.sprite.x + ' y: ' + pokemon.sprite.y);
     if (pokemon.sprite.x > dropAreaSizes.x && pokemon.sprite.x < dropAreaSizes.x + dropAreaSizes.width &&
       pokemon.sprite.y > dropAreaSizes.y && pokemon.sprite.y < dropAreaSizes.y + dropAreaSizes.height) {
-      this.dropAreaPokemon.push(pokemon);
-      // console.log(this.dropAreaPokemon);
-      // console.log(pokemon.sprite);
-      // console.log(pokemon.sprite.texture.baseTexture.cacheId);
+      if (this.dropAreaPokemon.indexOf(pokemon) === -1) {
+        this.dropAreaPokemon.push(pokemon);
+      }
     } else {
       this.dropAreaPokemon = this.dropAreaPokemon.filter(obj => obj !== pokemon);
-      // console.log(this.dropAreaPokemon);
-      // console.log(pokemon.sprite);
-      // console.log(pokemon.sprite.texture.baseTexture.cacheId);
     }
   }
 
-  checkAnswer() {
-    this.dropAreaPokemon.forEach((pokemon) => {
-      if (this.pokemonSpritesSolutionNot.indexOf(pokemon) > -1) {
-        console.log(pokemon.name + ' je tocan odgvor');
+  submitAnswer() {
+    console.log(this.currentTask);
+    if (this.checkAnswer()) {
+      if (this.currentTask.taskNum < 3) {
+        this.alertService.success('Nice! Now solve the next one.', {autoClose: true});
+        // switch to the next task
+        const currentIndex = this.currentTask.taskNum;
+        this.currentTask = this.tasks[currentIndex + 1];
+        this.resetPokemonPositions();
+        this.progress += 25;
       } else {
-        console.log(pokemon.name + ' KRIVO');
+        this.progress += 25;
+        this.alertService.success('Good job. Let\'s go the next part.');
+        setTimeout(() => this.router.navigate(['/']), 1800);
       }
+      // empty drop area array
+      this.dropAreaPokemon = [];
+    } else {
+      this.alertService.error('Nope. Wrong.', {autoClose: true});
+    }
+  }
+
+  // check if the submitted answer is correct
+  checkAnswer() {
+    if (this.dropAreaPokemon.length !== this.currentTask.solution.length) {
+      return false;
+    } else {
+      this.dropAreaPokemon.forEach((pokemon) => {
+        if (this.currentTask.solution.indexOf(pokemon) < 0) {
+          return false;
+        }
+      });
+      return true;
+    }
+  }
+
+  // reset pokemon positions
+  private resetPokemonPositions() {
+    this.pokemonSprites.forEach((pokemon, index) => {
+      const originalPosition = this.pokemonStartingCoordinates[index];
+      pokemon.sprite.x = originalPosition.x;
+      pokemon.sprite.y = originalPosition.y;
     });
   }
 
