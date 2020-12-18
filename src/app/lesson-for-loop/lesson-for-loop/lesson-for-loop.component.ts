@@ -9,6 +9,7 @@ import {Lesson} from '../../shared/lesson/lesson.model';
 import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 import {Subscription} from 'rxjs';
 import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {BlocklyService} from '../../shared/blockly/blockly.service';
 
 @Component({
   selector: 'app-blockly',
@@ -64,18 +65,19 @@ export class LessonForLoopComponent implements OnInit {
     new MoveRightBlock('moveRight', null, null)
   ];
 
-  constructor(ngxToolboxBuilder: NgxToolboxBuilderService,
-              public alertService: AlertService,
+  constructor(public alertService: AlertService,
+              private blocklyService: BlocklyService,
+              // private ngxToolboxBuilder: NgxToolboxBuilderService,
               private router: Router,
               private lessonSolvedService: LessonSolvedService) {
-    ngxToolboxBuilder.nodes = [
-      new ForLoopBlock('myCustomLoop', null, null),
-      new MoveUpBlock('moveUp', null, null),
-      new MoveDownBlock('moveDown', null, null),
-      new MoveLeftBlock('moveLeft', null, null),
-      new MoveRightBlock('moveRight', null, null)
-    ];
-    this.config.toolbox = ngxToolboxBuilder.build();
+    // ngxToolboxBuilder.nodes = [
+    //   new ForLoopBlock('myCustomLoop', null, null),
+    //   new MoveUpBlock('moveUp', null, null),
+    //   new MoveDownBlock('moveDown', null, null),
+    //   new MoveLeftBlock('moveLeft', null, null),
+    //   new MoveRightBlock('moveRight', null, null)
+    // ];
+    this.config.toolbox = this.blocklyService.getNgxToolboxBuilder();
   }
 
   ngOnInit() {
