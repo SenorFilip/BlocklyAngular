@@ -6,9 +6,8 @@
         <fa-icon [icon]="arrowLeft"></fa-icon> Variables
       </button>
     </div>
-    <div class="col-md-6 text-right">
+    <div *ngIf="lesson.isSolved" class="col-md-6 text-right">
       <button class="btn btn-primary mt-3"
-              *ngIf="lesson.isSolved"
               [routerLink]="['/variablesLessonCode']">
         Variables and Data Types Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
       </button>

@@ -23,6 +23,7 @@ import { LessonFunctionsAssignmentComponent } from './lesson-functions/lesson-fu
 import { LessonClassesAssignmentComponent } from './lesson-classes/lesson-classes-assignment/lesson-classes-assignment.component';
 import { LessonDictionariesAssignmentComponent } from './lesson-dictionaries/lesson-dictionaries-assignment/lesson-dictionaries-assignment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LessonListsAssignmentComponent,
     LessonFunctionsAssignmentComponent,
     LessonClassesAssignmentComponent,
-    LessonDictionariesAssignmentComponent
+    LessonDictionariesAssignmentComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,

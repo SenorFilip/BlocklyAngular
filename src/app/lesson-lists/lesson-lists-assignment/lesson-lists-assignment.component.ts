@@ -1,9 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig } from 'ngx-blockly';
+import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService} from 'ngx-blockly';
 import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
-import {ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock} from '../../lesson-for-loop/lesson-for-loop/custom.blocks';
+import { MoveDownBlock, MoveRightBlock, MoveUpBlock} from '../../lesson-for-loop/lesson-for-loop/custom.blocks';
 import {Application} from 'pixi.js';
-import {BlocklyService} from '../../shared/blockly/blockly.service';
 
 @Component({
   selector: 'app-lesson-lists-assignment',
@@ -17,16 +16,16 @@ export class LessonListsAssignmentComponent implements OnInit {
   pixiApp: Application;
 
   // Blockly variables
-  @ViewChild(NgxBlocklyComponent) workspace1;
+  @ViewChild(NgxBlocklyComponent) workspace;
   code: string;
-  workspaceBlocks: Blockly.Block[] = [];
+  // workspaceBlocks: Blockly.Block[] = [];
 
-  public config1: NgxBlocklyConfig = {
+  public config: NgxBlocklyConfig = {
     scrollbars: true,
     trashcan: true
   };
 
-  public generatorConfig1: NgxBlocklyGeneratorConfig = {
+  public generatorConfig: NgxBlocklyGeneratorConfig = {
     dart: true,
     javascript: true,
     lua: true,
@@ -35,53 +34,31 @@ export class LessonListsAssignmentComponent implements OnInit {
     xml: true
   };
 
-  public customBlocks1: CustomBlock[] = [
-    new ForLoopBlock('myCustomLoop', null, null),
+  public customBlocks: CustomBlock[] = [
     new MoveUpBlock('moveUp', null, null),
     new MoveDownBlock('moveDown', null, null),
-    new MoveLeftBlock('moveLeft', null, null),
     new MoveRightBlock('moveRight', null, null)
   ];
 
-  constructor(
-    private blocklyService: BlocklyService
-) {
-    // ngxToolboxBuilder.nodes = [
-    //   new ForLoopBlock('myCustomLoop', null, null),
-    //   new MoveUpBlock('moveUp', null, null),
-    //   new MoveDownBlock('moveDown', null, null),
-    //   new MoveLeftBlock('moveLeft', null, null),
-    //   new MoveRightBlock('moveRight', null, null)
-    // ];
-    // setTimeout(() => {
-    //   this.config1.toolbox = ngxToolboxBuilder.build();
-    // }, 1000);
-    this.config1.toolbox = this.blocklyService.getNgxToolboxBuilder();
+  constructor(private ngxToolboxBuilderService: NgxToolboxBuilderService) {
+    this.ngxToolboxBuilderService.nodes = this.customBlocks;
+    this.config.toolbox = this.ngxToolboxBuilderService.build();
   }
 
   ngOnInit(): void {
-    // this.workspace1.workspace.render();
     this.canvas = document.getElementById('pixiJsListsCanvas');
-    const rendererWidth = this.canvas.offsetWidth;
-    const rendererHeight = this.canvas.offsetHeight;
+    // const rendererWidth = this.canvas.offsetWidth;
+    // const rendererHeight = this.canvas.offsetHeight;
 
     this.pixiApp = new Application({
       view: this.canvas,
       backgroundColor: 0x66aa77,
       resizeTo: this.canvas,
     });
-
-    // setTimeout(() => {
-    //   // this.config1.toolbox = ngxToolboxBuilder.build();
-    //   this.workspace1.workspace.render();
-    // }, 1000);
   }
-
-  // ngOnDestroy() {
-  //   this.ngxToolboxBuilder.nodes = undefined;
-  // }
 
   onCode(code: string) {
     console.log(code);
   }
+
 }

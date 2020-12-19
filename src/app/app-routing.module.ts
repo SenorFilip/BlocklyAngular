@@ -14,6 +14,7 @@ import {LessonBoolOperatorsAssignmentComponent} from './lesson-bool-operators/le
 import {LessonFunctionsAssignmentComponent} from './lesson-functions/lesson-functions-assignment/lesson-functions-assignment.component';
 import {LessonClassesAssignmentComponent} from './lesson-classes/lesson-classes-assignment/lesson-classes-assignment.component';
 import {LessonDictionariesAssignmentComponent} from './lesson-dictionaries/lesson-dictionaries-assignment/lesson-dictionaries-assignment.component';
+import {RedirectComponent} from './redirect/redirect.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, data: { lessonAnimationState: 0}},
@@ -29,7 +30,9 @@ const appRoutes: Routes = [
   {path: 'forLoopLessonCode', component: LessonForLoopCodeComponent, data: { animationState: '42', lessonAnimationState: 5}},
   {path: 'functionsAssignment', component: LessonFunctionsAssignmentComponent, data: { animationState: '51', lessonAnimationState: 6}},
   {path: 'classesAssignment', component: LessonClassesAssignmentComponent, data: { animationState: '61', lessonAnimationState: 7}},
-  {path: 'dictionariesAssignment', component: LessonDictionariesAssignmentComponent, data: { animationState: '71', lessonAnimationState: 8}}
+  {path: 'dictionariesAssignment', component: LessonDictionariesAssignmentComponent,
+    data: { animationState: '71', lessonAnimationState: 8}},
+  {path: 'redirect/:path', component: RedirectComponent, data: { lessonAnimationState: 9}}
 ];
 
 @NgModule({
