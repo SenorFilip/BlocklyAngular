@@ -129,17 +129,15 @@ export class LessonForLoopComponent implements OnInit {
     this.disabledButtons = true;
     this.workspaceBlocks = [];
     const topBlocks = this.workspace.workspace.getTopBlocks(true);
-    topBlocks.forEach(block => {
-      let currentBlock = block;
-      while (currentBlock !== null ) {
-        if (currentBlock.type === 'myCustomLoop') {
-          this.unwrapLoopBlock(currentBlock);
-        } else {
-          this.workspaceBlocks.push(currentBlock);
-        }
-        currentBlock = currentBlock.getNextBlock();
+    let currentBlock = topBlocks[0];
+    while (currentBlock !== null ) {
+      if (currentBlock.type === 'myCustomLoop') {
+        this.unwrapLoopBlock(currentBlock);
+      } else {
+        this.workspaceBlocks.push(currentBlock);
       }
-    });
+      currentBlock = currentBlock.getNextBlock();
+    }
 
     this.makeBunnyMove();
   }
@@ -147,8 +145,8 @@ export class LessonForLoopComponent implements OnInit {
   async makeBunnyMove() {
     // makeBunnyMove() {
     console.log('\n----sadrzaj');
-    for (let i = 0; i < this.workspaceBlocks.length; i++) {
-      await this.moveBunny(this.workspaceBlocks[i].type);
+    for (const block of this.workspaceBlocks) {
+      await this.moveBunny(block.type);
     }
     // enables the RUN button
     this.disabledButtons = false;

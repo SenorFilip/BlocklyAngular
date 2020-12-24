@@ -25,15 +25,18 @@
       <canvas id="pixiJsListsCanvas"></canvas>
     </div>
   </div>
-<!--  <div class="row mt-3 justify-content-center">-->
-<!--    <button class="btn btn-success" (click)="runRabbit()">Run Rabbit, Run!!!</button>-->
-<!--  </div>-->
+  <div class="row mt-3 justify-content-center">
+    <button class="btn btn-success"
+            (click)="sendPeople()"
+            [disabled]="disabledButtons">
+      Send people to D'CLUB
+    </button>
+  </div>
   <div class="row mt-3 justify-content-center">
     <div class="card border-primary text-center text-box">
       <div class="card-body">
         <h4>
-          Get the bunny to the carrot. <br><br>
-          Try to use the <b>REPEAT</b> block in your solution.
+          Create a list of people the same as the bouncer's list.
         </h4>
       </div>
     </div>

@@ -1,0 +1,530 @@
+{
+  "frames": {
+    "club.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 950,
+        "h": 533
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 0,
+        "w": 950,
+        "h": 533
+      },
+      "sourceSize": {
+        "w": 960,
+        "h": 540
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "johnSnow-1.png": {
+      "frame": {
+        "x": 950,
+        "y": 0,
+        "w": 137,
+        "h": 244
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 3,
+        "w": 137,
+        "h": 244
+      },
+      "sourceSize": {
+        "w": 177,
+        "h": 263
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "johnSnow-2.png": {
+      "frame": {
+        "x": 1194,
+        "y": 0,
+        "w": 135,
+        "h": 242
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 3,
+        "w": 135,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 177,
+        "h": 263
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gandalf-1.png": {
+      "frame": {
+        "x": 1436,
+        "y": 0,
+        "w": 142,
+        "h": 211
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 7,
+        "w": 142,
+        "h": 211
+      },
+      "sourceSize": {
+        "w": 225,
+        "h": 225
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gandalf-2.png": {
+      "frame": {
+        "x": 1194,
+        "y": 135,
+        "w": 150,
+        "h": 204
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 14,
+        "w": 150,
+        "h": 204
+      },
+      "sourceSize": {
+        "w": 225,
+        "h": 225
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "bouncer-1.png": {
+      "frame": {
+        "x": 950,
+        "y": 137,
+        "w": 108,
+        "h": 191
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 108,
+        "h": 191
+      },
+      "sourceSize": {
+        "w": 113,
+        "h": 191
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mario-1.png": {
+      "frame": {
+        "x": 1141,
+        "y": 137,
+        "w": 48,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 16,
+        "w": 48,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 106,
+        "h": 123
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mario-3.png": {
+      "frame": {
+        "x": 1141,
+        "y": 233,
+        "w": 48,
+        "h": 90
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 28,
+        "y": 22,
+        "w": 48,
+        "h": 90
+      },
+      "sourceSize": {
+        "w": 106,
+        "h": 123
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "bouncer-2.png": {
+      "frame": {
+        "x": 950,
+        "y": 245,
+        "w": 108,
+        "h": 188
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 3,
+        "w": 108,
+        "h": 188
+      },
+      "sourceSize": {
+        "w": 113,
+        "h": 191
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "marvel-2.png": {
+      "frame": {
+        "x": 1647,
+        "y": 0,
+        "w": 87,
+        "h": 181
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 49,
+        "y": 27,
+        "w": 87,
+        "h": 181
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "yoda-1.png": {
+      "frame": {
+        "x": 1828,
+        "y": 0,
+        "w": 177,
+        "h": 177
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 9,
+        "w": 177,
+        "h": 177
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 208
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mario-2.png": {
+      "frame": {
+        "x": 2005,
+        "y": 0,
+        "w": 42,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 19,
+        "w": 42,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 106,
+        "h": 123
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "yoda-2.png": {
+      "frame": {
+        "x": 1647,
+        "y": 87,
+        "w": 177,
+        "h": 177
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 8,
+        "w": 177,
+        "h": 177
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 208
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "marvel-1.png": {
+      "frame": {
+        "x": 1824,
+        "y": 177,
+        "w": 88,
+        "h": 176
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 27,
+        "w": 88,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "harry-2.png": {
+      "frame": {
+        "x": 1398,
+        "y": 142,
+        "w": 156,
+        "h": 155
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 21,
+        "w": 156,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 259,
+        "h": 194
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "megamen-2.png": {
+      "frame": {
+        "x": 1554,
+        "y": 142,
+        "w": 73,
+        "h": 110
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 18,
+        "w": 73,
+        "h": 110
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "wonderWoman-1.png": {
+      "frame": {
+        "x": 1554,
+        "y": 252,
+        "w": 69,
+        "h": 116
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 3,
+        "w": 69,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "harry-1.png": {
+      "frame": {
+        "x": 1398,
+        "y": 297,
+        "w": 155,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 52,
+        "y": 21,
+        "w": 155,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 259,
+        "h": 194
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "wonderWoman-2.png": {
+      "frame": {
+        "x": 1623,
+        "y": 264,
+        "w": 69,
+        "h": 116
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 3,
+        "w": 69,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "megamen-1.png": {
+      "frame": {
+        "x": 1623,
+        "y": 333,
+        "w": 110,
+        "h": 101
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 27,
+        "w": 110,
+        "h": 101
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "megamen-3.png": {
+      "frame": {
+        "x": 1189,
+        "y": 285,
+        "w": 96,
+        "h": 101
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 27,
+        "w": 96,
+        "h": 101
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations": {
+    "bouncer": ["bouncer-1.png","bouncer-2.png"],
+    "gandalf": ["gandalf-1.png","gandalf-2.png"],
+    "harryPotter": ["harry-1.png","harry-2.png"],
+    "johnSnow": ["johnSnow-1.png","johnSnow-2.png"],
+    "superMario": ["mario-1.png","mario-2.png","mario-3.png"],
+    "captainMarvel": ["marvel-1.png","marvel-2.png"],
+    "megaMan": ["megamen-1.png","megamen-2.png","megamen-3.png"],
+    "wonderWoman": ["wonderWoman-1.png","wonderWoman-2.png"],
+    "yoda": ["yoda-1.png","yoda-2.png"]
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.6",
+    "image": "spritesheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2047,
+      "h": 533
+    },
+    "scale": 1
+  }
+}

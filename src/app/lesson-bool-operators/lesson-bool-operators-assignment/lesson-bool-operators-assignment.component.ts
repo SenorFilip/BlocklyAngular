@@ -60,7 +60,7 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
 
     // Adding background grid
     const backgroundContainer = new Container();
-    const textureBackground = Texture.from('assets/images/pixiJS/pokemon_heaven.png');
+    const textureBackground = Texture.from('assets/images/pixiJS/pokemon/pokemon_heaven.png');
     const imgBackground = new Sprite(textureBackground);
     imgBackground.width = rendererWidth;
     imgBackground.height = rendererHeight;
@@ -83,65 +83,65 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
 
   // Fills Pokemon array
   definePokemonSpritesTextures() {
-    const textureZapdos = Texture.from('assets/images/pixiJS/zapdos.png');
+    const textureZapdos = Texture.from('assets/images/pixiJS/pokemon/zapdos.png');
     const zapdos = new Pokemon('Zapdos', 'yellow', ['electric', 'flying'], new Sprite(textureZapdos));
     this.pokemonSprites.push(zapdos);
     this.pokemonSpritesSolutionOr.push(zapdos);
 
-    const textureCharizard = Texture.from('assets/images/pixiJS/charizard.png');
+    const textureCharizard = Texture.from('assets/images/pixiJS/pokemon/charizard.png');
     const charizard = new Pokemon('Charizard', 'red', ['fire', 'flying'], new Sprite(textureCharizard));
     this.pokemonSprites.push(charizard);
     this.pokemonSpritesSolutionNot.push(charizard);
     this.pokemonSpritesSolutionOr.push(charizard);
 
-    const textureHypno = Texture.from('assets/images/pixiJS/hypno.png');
+    const textureHypno = Texture.from('assets/images/pixiJS/pokemon/hypno.png');
     const hypno = new Pokemon('Hypno', 'yellow', ['psychic'], new Sprite(textureHypno));
     this.pokemonSprites.push(hypno);
     this.pokemonSpritesSolutionAnd.push(hypno);
 
-    const texturePolitoed = Texture.from('assets/images/pixiJS/politoed.png');
+    const texturePolitoed = Texture.from('assets/images/pixiJS/pokemon/politoed.png');
     const politoed = new Pokemon('Politoed', 'green', ['water'], new Sprite(texturePolitoed));
     this.pokemonSprites.push(politoed);
     this.pokemonSpritesSolutionNot.push(politoed);
     this.pokemonSpritesSolutionOr.push(politoed);
     this.pokemonSpritesSolutionAdvanced.push(politoed);
 
-    const textureArticuno = Texture.from('assets/images/pixiJS/articuno.png');
+    const textureArticuno = Texture.from('assets/images/pixiJS/pokemon/articuno.png');
     const articuno = new Pokemon('Articuno', 'blue', ['ice', 'flying'], new Sprite(textureArticuno));
     this.pokemonSprites.push(articuno);
     this.pokemonSpritesSolutionNot.push(articuno);
     this.pokemonSpritesSolutionOr.push(articuno);
 
-    const textureAlakazam = Texture.from('assets/images/pixiJS/alakazam.png');
+    const textureAlakazam = Texture.from('assets/images/pixiJS/pokemon/alakazam.png');
     const alakazam = new Pokemon('Alakazam', 'yellow', ['psychic'], new Sprite(textureAlakazam));
     this.pokemonSprites.push(alakazam);
     this.pokemonSpritesSolutionAnd.push(alakazam);
 
-    const textureNatu = Texture.from('assets/images/pixiJS/natu.png');
+    const textureNatu = Texture.from('assets/images/pixiJS/pokemon/natu.png');
     const natu = new Pokemon('Natu', 'green', ['psychic', 'flying'], new Sprite(textureNatu));
     this.pokemonSprites.push(natu);
     this.pokemonSpritesSolutionNot.push(natu);
     this.pokemonSpritesSolutionOr.push(natu);
 
-    const texturePikachu = Texture.from('assets/images/pixiJS/pikachu.png');
+    const texturePikachu = Texture.from('assets/images/pixiJS/pokemon/pikachu.png');
     const pikachu = new Pokemon('Pikachu', 'yellow', ['electric'], new Sprite(texturePikachu));
     this.pokemonSprites.push(pikachu);
     this.pokemonSpritesSolutionAdvanced.push(pikachu);
 
-    const textureNidoqueen = Texture.from('assets/images/pixiJS/nidoqueen.png');
+    const textureNidoqueen = Texture.from('assets/images/pixiJS/pokemon/nidoqueen.png');
     const nidoqueen = new Pokemon('Nidoqueen', 'blue', ['poison', 'ground'], new Sprite(textureNidoqueen));
     this.pokemonSprites.push(nidoqueen);
     this.pokemonSpritesSolutionNot.push(nidoqueen);
 
-    const textureSandshrew = Texture.from('assets/images/pixiJS/sandshrew.png');
+    const textureSandshrew = Texture.from('assets/images/pixiJS/pokemon/sandshrew.png');
     this.pokemonSprites.push(new Pokemon('Sandshrew', 'yellow', ['ground'], new Sprite(textureSandshrew)));
 
-    const textureMagikarp = Texture.from('assets/images/pixiJS/magikarp.png');
+    const textureMagikarp = Texture.from('assets/images/pixiJS/pokemon/magikarp.png');
     const magikarp = new Pokemon('Magikarp', 'red', ['water'], new Sprite(textureMagikarp));
     this.pokemonSprites.push(magikarp);
     this.pokemonSpritesSolutionNot.push(magikarp);
 
-    const textureTentacool = Texture.from('assets/images/pixiJS/tentacool.png');
+    const textureTentacool = Texture.from('assets/images/pixiJS/pokemon/tentacool.png');
     const tentacool = new Pokemon('Tentacool', 'blue', ['water', 'poison'], new Sprite(textureTentacool));
     this.pokemonSprites.push(tentacool);
     this.pokemonSpritesSolutionNot.push(tentacool);
