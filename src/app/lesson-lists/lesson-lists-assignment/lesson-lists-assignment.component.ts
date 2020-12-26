@@ -16,6 +16,7 @@ import {AlertService} from '../../shared/alert';
 import {ClubPersonModel} from '../club-person.model';
 import {ClubSpriteModel} from '../club-sprite.model';
 import {Router} from '@angular/router';
+import {InputPersonModel} from '../input-person.model';
 
 @Component({
   selector: 'app-lesson-lists-assignment',
@@ -35,7 +36,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
   gameLoopWrongSpriteIndex = -1;
 
   disabledButtons = false;
-  inputList: string[] = [];
+  inputList: InputPersonModel[] = [];
   allSpritesList: ClubSpriteModel[] = [];
   bouncerClubSprites: ClubPersonModel[] = [
     { code: 'gandalf', name: 'Gandalf' }, { code: 'harryPotter', name: 'Harry Potter' }, { code: 'johnSnow', name: 'John Snow' },
@@ -117,7 +118,6 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
     this.pixiApp.ticker.add(() => {
       this.gameLoop();
     });
-
   }
 
   onCode(code: string) {
@@ -257,7 +257,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
         return;
       }
       listContent.forEach((block) => {
-        this.inputList.push(block.type);
+        this.inputList.push(new InputPersonModel(block.type, false));
       });
 
       // if the list is shorter than the bouncers list, set result to 1 (list to short)
@@ -273,7 +273,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
     // send sprite one by one to the bouncer
     // if list is too long or we sent the wrong person
     // the loop breaks
-    for (const spriteName of this.inputList) {
+    for (const person of this.inputList) {
       if (this.finalResult === 3 || this.finalResult === 2) {
         break;
       }
@@ -297,7 +297,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
     this.responseText.text = text;
     this.bouncerResponseTextContainer.visible = true;
     this.bouncerListContainer.visible = false;
-    // if the result is not good, show new list and set response test to invisible
+    // if the result is not correct, show new list and set response test to invisible
     if (this.finalResult !== 0) {
       setTimeout(() => {
         this.randomizeList();
@@ -315,7 +315,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
       this.inputList = [];
       this.disabledButtons = false;
       this.finalResult = 0;
-    }, 3000);
+    }, 7000);
   }
 
   private movePerson() {
@@ -323,7 +323,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
       // leaving the person some room to finish its movements to the club
       setTimeout(() => {
         resolve();
-      }, 4500);
+      }, 5000);
     });
   }
 
@@ -333,8 +333,9 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
     // get the last sprite
     const person = this.inputList[(this.finalResult === 3 || this.finalResult === 2)
       ? this.gameLoopWrongSpriteIndex : this.currentSpriteIndex];
-    if (person !== undefined) {
-      const clubSprite: ClubSpriteModel = this.allSpritesList.find(i => i.code === person);
+    // stops the sprite which passed the bouncer from moving again
+    if (person !== undefined && !person.hasPassedBouncer) {
+      const clubSprite: ClubSpriteModel = this.allSpritesList.find(i => i.code === person.name);
       clubSprite.sprite.visible = true;
       clubSprite.sprite.play();
       // if the input list was too long or the person was wrong
@@ -349,7 +350,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
           // 2 - input list is too long
           this.finalResult = 2;
           this.gameLoopWrongSpriteIndex = this.currentSpriteIndex;
-        } else if (person === this.bouncerClubSprites[this.currentSpriteIndex].code) {
+        } else if (person.name === this.bouncerClubSprites[this.currentSpriteIndex].code) {
           this.addCheckMark();
         } else {
           // 3 - wrong person
@@ -364,6 +365,8 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
             // set sprite to invisible after his walk to the club
             clubSprite.sprite.visible = false;
             clubSprite.sprite.position.set(-100, this.rendererHeight - clubSprite.yCoordSubstraction);
+            // this.lastPersonThatWalkedIn = this.currentSpriteIndex;
+            person.hasPassedBouncer = true;
             this.pixiApp.ticker.start();
           }, 1000);
         }
