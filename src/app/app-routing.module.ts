@@ -5,7 +5,6 @@ import {LessonForLoopComponent} from './lesson-for-loop/lesson-for-loop/lesson-f
 import {HomePageComponent} from './home-page/home-page.component';
 import {LessonForLoopCodeComponent} from './lesson-for-loop/lesson-for-loop-code/lesson-for-loop-code.component';
 import {LessonVariablesComponent} from './lesson-variables/lesson-variables/lesson-variables.component';
-import {LessonConditionsComponent} from './lesson-conditions/lesson-conditions/lesson-conditions.component';
 import {LessonDataTypesComponent} from './lesson-variables/lesson-data-types/lesson-data-types.component';
 import {LessonVariablesAssignmentComponent} from './lesson-variables/lesson-variables-assignment/lesson-variables-assignment.component';
 import {LessonVariablesCodeComponent} from './lesson-variables/lesson-variables-code/lesson-variables-code.component';
@@ -15,6 +14,7 @@ import {LessonFunctionsAssignmentComponent} from './lesson-functions/lesson-func
 import {LessonClassesAssignmentComponent} from './lesson-classes/lesson-classes-assignment/lesson-classes-assignment.component';
 import {LessonDictionariesAssignmentComponent} from './lesson-dictionaries/lesson-dictionaries-assignment/lesson-dictionaries-assignment.component';
 import {RedirectComponent} from './redirect/redirect.component';
+import {LessonConditionsAssignmentComponent} from './lesson-conditions/lesson-conditions-assignment/lesson-conditions-assignment.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, data: { lessonAnimationState: 0}},
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   {path: 'listsAssignment', component: LessonListsAssignmentComponent, data: { animationState: '11', lessonAnimationState: 2}},
   {path: 'booleanOperatorsAssignment', component: LessonBoolOperatorsAssignmentComponent,
     data: { animationState: '21', lessonAnimationState: 3}},
-  {path: 'conditionsLesson', component: LessonConditionsComponent, data: { animationState: '31', lessonAnimationState: 4}},
+  {path: 'conditionsLesson', component: LessonConditionsAssignmentComponent, data: { animationState: '31', lessonAnimationState: 4}},
   {path: 'forLoopLesson', component: LessonForLoopComponent, data: { animationState: '41', lessonAnimationState: 5}},
   {path: 'forLoopLessonCode', component: LessonForLoopCodeComponent, data: { animationState: '42', lessonAnimationState: 5}},
   {path: 'functionsAssignment', component: LessonFunctionsAssignmentComponent, data: { animationState: '51', lessonAnimationState: 6}},

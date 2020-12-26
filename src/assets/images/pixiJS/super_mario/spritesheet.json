@@ -1,0 +1,380 @@
+{
+  "frames": {
+    "background.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540
+      },
+      "sourceSize": {
+        "w": 960,
+        "h": 540
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gumba_1.png": {
+      "frame": {
+        "x": 960,
+        "y": 0,
+        "w": 49,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gumba_2.png": {
+      "frame": {
+        "x": 1009,
+        "y": 0,
+        "w": 49,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin_1.png": {
+      "frame": {
+        "x": 1058,
+        "y": 0,
+        "w": 41,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 9,
+        "w": 41,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 58
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin_2.png": {
+      "frame": {
+        "x": 1099,
+        "y": 0,
+        "w": 31,
+        "h": 40
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 9,
+        "w": 31,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 58
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin_6.png": {
+      "frame": {
+        "x": 1139,
+        "y": 0,
+        "w": 31,
+        "h": 40
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 9,
+        "w": 31,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 58
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin_3.png": {
+      "frame": {
+        "x": 1179,
+        "y": 0,
+        "w": 19,
+        "h": 40
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 9,
+        "w": 19,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 58
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin_5.png": {
+      "frame": {
+        "x": 1219,
+        "y": 0,
+        "w": 19,
+        "h": 40
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 9,
+        "w": 19,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 58
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "coin_4.png": {
+      "frame": {
+        "x": 1259,
+        "y": 0,
+        "w": 9,
+        "h": 40
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 9,
+        "w": 9,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 58
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "superMarioWin.png": {
+      "frame": {
+        "x": 1299,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "superMario_3.png": {
+      "frame": {
+        "x": 1259,
+        "y": 9,
+        "w": 29,
+        "h": 32
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 29,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "superMarioStanding.png": {
+      "frame": {
+        "x": 1179,
+        "y": 19,
+        "w": 24,
+        "h": 32
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 0,
+        "w": 24,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "superMario_1.png": {
+      "frame": {
+        "x": 1211,
+        "y": 19,
+        "w": 26,
+        "h": 30
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 2,
+        "w": 26,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "superMario_2.png": {
+      "frame": {
+        "x": 1099,
+        "y": 31,
+        "w": 22,
+        "h": 30
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 2,
+        "w": 22,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "superMarioGameOver.png": {
+      "frame": {
+        "x": 1058,
+        "y": 43,
+        "w": 28,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 0,
+        "w": 28,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations": {
+    "coin": ["coin_1.png","coin_2.png","coin_3.png","coin_4.png","coin_5.png","coin_6.png"],
+    "gumba": ["gumba_1.png","gumba_2.png"],
+    "superMario": ["superMario_1.png","superMario_2.png","superMario_3.png"]
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.6",
+    "image": "spritesheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1331,
+      "h": 540
+    },
+    "scale": 1
+  }
+}
