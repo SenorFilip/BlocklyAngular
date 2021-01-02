@@ -129,6 +129,11 @@ export class LessonForLoopComponent implements OnInit {
     this.disabledButtons = true;
     this.workspaceBlocks = [];
     const topBlocks = this.workspace.workspace.getTopBlocks(true);
+    if (topBlocks.length === 0) {
+      this.disabledButtons = false;
+      this.alertService.warn('You have FAILED! Try again.', {autoClose: true});
+      return;
+    }
     let currentBlock = topBlocks[0];
     while (currentBlock !== null ) {
       if (currentBlock.type === 'myCustomLoop') {
