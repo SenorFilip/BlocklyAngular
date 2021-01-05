@@ -11,7 +11,7 @@ import {
   SuperMarioBlock,
   WonderWomanBlock,
   YodaBlock
-} from './custom.blocks';
+} from '../../shared/custom.blocks';
 import {AlertService} from '../../shared/alert';
 import {ClubPersonModel} from '../club-person.model';
 import {ClubSpriteModel} from '../club-sprite.model';

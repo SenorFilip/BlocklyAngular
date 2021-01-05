@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService} from 'ngx-blockly';
 import {AnimatedSprite, Application, Graphics, Loader, Sprite, Spritesheet, utils} from 'pixi.js';
 import {IfBlock} from './custom.blocks';
-import {MoveDownBlock, MoveRightBlock} from '../../lesson-for-loop/lesson-for-loop/custom.blocks';
+import {MoveDownBlock, MoveRightBlock} from '../../shared/custom.blocks';
 import {AlertService} from '../../shared/alert';
 import {IfBlockLessonModel} from '../if-block-lesson.model';
 import {Router} from '@angular/router';
