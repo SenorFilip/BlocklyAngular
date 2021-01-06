@@ -439,16 +439,16 @@ export class VehicleBlock extends CustomBlock {
 
     defineBlock() {
         this.block.appendDummyInput()
-            .appendField('Vehicle');
+            .appendField('VEHICLE');
         this.block.appendDummyInput()
-            .appendField('Type:')
+            .appendField('  Type:    ')
             .appendField(new Blockly.FieldDropdown([
                 ['Car', 'car'],
                 ['Van', 'van'],
                 ['Truck', 'Truck']
             ]), 'type');
         this.block.appendDummyInput()
-            .appendField('Color:')
+            .appendField('  Color:   ')
             .appendField(new Blockly.FieldDropdown([
                 [{src: 'assets/images/blockly/red.jpg', width: 40, height: 20, alt: '*'}, 'red'],
                 [{src: 'assets/images/blockly/blue.png', width: 40, height: 20, alt: '*'}, 'blue'],
@@ -456,9 +456,11 @@ export class VehicleBlock extends CustomBlock {
                 [{src: 'assets/images/blockly/blue.png', width: 40, height: 20, alt: '*'}, 'blue'],
                 [{src: 'assets/images/blockly/blue.png', width: 40, height: 20, alt: '*'}, 'blue'],
                 [{src: 'assets/images/blockly/green.jpg', width: 40, height: 20, alt: '*'}, 'green']
-                ]), 'color');
+                ]), 'color')
+          // added for right padding on the block
+          .appendField('    ');
         this.block.appendDummyInput()
-            .appendField('Wheels:')
+            .appendField('  Wheels:')
             .appendField(new Blockly.FieldDropdown([
                 ['Bronze', 'bronze'],
                 ['Platinum', 'platinum'],

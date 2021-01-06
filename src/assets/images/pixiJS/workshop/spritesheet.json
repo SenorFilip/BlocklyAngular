@@ -1,0 +1,183 @@
+{
+  "frames": {
+    "garage.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 1194,
+        "h": 552
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1194,
+        "h": 552
+      },
+      "sourceSize": {
+        "w": 1194,
+        "h": 552
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "truck.png": {
+      "frame": {
+        "x": 1197,
+        "y": 1,
+        "w": 835,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 229,
+        "w": 835,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 840,
+        "h": 859
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "van.png": {
+      "frame": {
+        "x": 1197,
+        "y": 353,
+        "w": 338,
+        "h": 157
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 15,
+        "w": 338,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 347,
+        "h": 173
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "car.png": {
+      "frame": {
+        "x": 1537,
+        "y": 353,
+        "w": 331,
+        "h": 103
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 80,
+        "w": 331,
+        "h": 103
+      },
+      "sourceSize": {
+        "w": 347,
+        "h": 231
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "bronzeRims.png": {
+      "frame": {
+        "x": 1870,
+        "y": 353,
+        "w": 73,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 23,
+        "y": 10,
+        "w": 73,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 118,
+        "h": 95
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "goldRims.png": {
+      "frame": {
+        "x": 1945,
+        "y": 353,
+        "w": 73,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 23,
+        "y": 10,
+        "w": 73,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 118,
+        "h": 95
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "platinumRims.png": {
+      "frame": {
+        "x": 1870,
+        "y": 427,
+        "w": 73,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 23,
+        "y": 10,
+        "w": 73,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 118,
+        "h": 95
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.6",
+    "image": "spritesheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2033,
+      "h": 554
+    },
+    "scale": 1
+  }
+}
