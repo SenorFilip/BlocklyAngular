@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Application, Container, Sprite, Texture, Renderer, Graphics} from 'pixi.js';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Application, Graphics, Loader, Sprite, Spritesheet, utils} from 'pixi.js';
 import {Pokemon} from '../pokemon.model';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   templateUrl: './lesson-bool-operators-assignment.component.html',
   styleUrls: ['./lesson-bool-operators-assignment.component.scss']
 })
-export class LessonBoolOperatorsAssignmentComponent implements OnInit {
+export class LessonBoolOperatorsAssignmentComponent implements OnInit, OnDestroy {
 
   progress = 0;
 
@@ -17,10 +17,12 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
   canvas;
   pixiApp: Application;
   dropArea: Graphics;
+  sheet: Spritesheet;
+  rendererWidth: number;
+  rendererHeight: number;
 
   // all Pokemon
   pokemonSprites: Pokemon[] = [];
-
   // correct array solutions
   pokemonSpritesSolutionNot: Pokemon[] = [];
   pokemonSpritesSolutionAnd: Pokemon[] = [];
@@ -50,22 +52,32 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.canvas = document.getElementById('pixiJsCanvasPokemon');
-    const rendererWidth = this.canvas.offsetWidth;
-    const rendererHeight = this.canvas.offsetHeight;
+    this.rendererWidth = this.canvas.offsetWidth;
+    this.rendererHeight = this.canvas.offsetHeight;
 
     this.pixiApp = new Application({
       view: this.canvas,
       resizeTo: this.canvas,
     });
 
-    // Adding background grid
-    const backgroundContainer = new Container();
-    const textureBackground = Texture.from('assets/images/pixiJS/pokemon/pokemon_heaven.png');
-    const imgBackground = new Sprite(textureBackground);
-    imgBackground.width = rendererWidth;
-    imgBackground.height = rendererHeight;
-    backgroundContainer.addChild(imgBackground);
-    this.pixiApp.stage.addChild(backgroundContainer);
+    // adding spritesheet to loader if we already didn't
+    if (Loader.shared.resources.spritesheet === undefined) {
+      Loader.shared.add('spritesheet', 'assets/images/pixiJS/pokemon/spritesheet.json');
+    }
+    Loader.shared.load(() => {
+      this.setup();
+    });
+  }
+
+  setup() {
+    // the sprite sheet we've just loaded:
+    this.sheet = Loader.shared.resources.spritesheet.spritesheet;
+
+    // initialize background sprite
+    const background = new Sprite(this.sheet.textures['pokemon_heaven.png']);
+    background.width = this.rendererWidth;
+    background.height = this.rendererHeight;
+    this.pixiApp.stage.addChild(background);
 
     // Defining raised area borders
     this.dropArea = new Graphics();
@@ -83,66 +95,66 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
 
   // Fills Pokemon array
   definePokemonSpritesTextures() {
-    const textureZapdos = Texture.from('assets/images/pixiJS/pokemon/zapdos.png');
-    const zapdos = new Pokemon('Zapdos', 'yellow', ['electric', 'flying'], new Sprite(textureZapdos));
+    const zapdos = new Pokemon('Zapdos', 'yellow', ['electric', 'flying'],
+      new Sprite(this.sheet.textures['zapdos.png']));
     this.pokemonSprites.push(zapdos);
     this.pokemonSpritesSolutionOr.push(zapdos);
 
-    const textureCharizard = Texture.from('assets/images/pixiJS/pokemon/charizard.png');
-    const charizard = new Pokemon('Charizard', 'red', ['fire', 'flying'], new Sprite(textureCharizard));
+    const charizard = new Pokemon('Charizard', 'red', ['fire', 'flying'],
+      new Sprite(this.sheet.textures['charizard.png']));
     this.pokemonSprites.push(charizard);
     this.pokemonSpritesSolutionNot.push(charizard);
     this.pokemonSpritesSolutionOr.push(charizard);
 
-    const textureHypno = Texture.from('assets/images/pixiJS/pokemon/hypno.png');
-    const hypno = new Pokemon('Hypno', 'yellow', ['psychic'], new Sprite(textureHypno));
+    const hypno = new Pokemon('Hypno', 'yellow', ['psychic'],
+      new Sprite(this.sheet.textures['hypno.png']));
     this.pokemonSprites.push(hypno);
     this.pokemonSpritesSolutionAnd.push(hypno);
 
-    const texturePolitoed = Texture.from('assets/images/pixiJS/pokemon/politoed.png');
-    const politoed = new Pokemon('Politoed', 'green', ['water'], new Sprite(texturePolitoed));
+    const politoed = new Pokemon('Politoed', 'green', ['water'],
+      new Sprite(this.sheet.textures['politoed.png']));
     this.pokemonSprites.push(politoed);
     this.pokemonSpritesSolutionNot.push(politoed);
     this.pokemonSpritesSolutionOr.push(politoed);
     this.pokemonSpritesSolutionAdvanced.push(politoed);
 
-    const textureArticuno = Texture.from('assets/images/pixiJS/pokemon/articuno.png');
-    const articuno = new Pokemon('Articuno', 'blue', ['ice', 'flying'], new Sprite(textureArticuno));
+    const articuno = new Pokemon('Articuno', 'blue', ['ice', 'flying'],
+      new Sprite(this.sheet.textures['articuno.png']));
     this.pokemonSprites.push(articuno);
     this.pokemonSpritesSolutionNot.push(articuno);
     this.pokemonSpritesSolutionOr.push(articuno);
 
-    const textureAlakazam = Texture.from('assets/images/pixiJS/pokemon/alakazam.png');
-    const alakazam = new Pokemon('Alakazam', 'yellow', ['psychic'], new Sprite(textureAlakazam));
+    const alakazam = new Pokemon('Alakazam', 'yellow', ['psychic'],
+      new Sprite(this.sheet.textures['alakazam.png']));
     this.pokemonSprites.push(alakazam);
     this.pokemonSpritesSolutionAnd.push(alakazam);
 
-    const textureNatu = Texture.from('assets/images/pixiJS/pokemon/natu.png');
-    const natu = new Pokemon('Natu', 'green', ['psychic', 'flying'], new Sprite(textureNatu));
+    const natu = new Pokemon('Natu', 'green', ['psychic', 'flying'],
+      new Sprite(this.sheet.textures['natu.png']));
     this.pokemonSprites.push(natu);
     this.pokemonSpritesSolutionNot.push(natu);
     this.pokemonSpritesSolutionOr.push(natu);
 
-    const texturePikachu = Texture.from('assets/images/pixiJS/pokemon/pikachu.png');
-    const pikachu = new Pokemon('Pikachu', 'yellow', ['electric'], new Sprite(texturePikachu));
+    const pikachu = new Pokemon('Pikachu', 'yellow', ['electric'],
+      new Sprite(this.sheet.textures['pikachu.png']));
     this.pokemonSprites.push(pikachu);
     this.pokemonSpritesSolutionAdvanced.push(pikachu);
 
-    const textureNidoqueen = Texture.from('assets/images/pixiJS/pokemon/nidoqueen.png');
-    const nidoqueen = new Pokemon('Nidoqueen', 'blue', ['poison', 'ground'], new Sprite(textureNidoqueen));
+    const nidoqueen = new Pokemon('Nidoqueen', 'blue', ['poison', 'ground'],
+      new Sprite(this.sheet.textures['nidoqueen.png']));
     this.pokemonSprites.push(nidoqueen);
     this.pokemonSpritesSolutionNot.push(nidoqueen);
 
-    const textureSandshrew = Texture.from('assets/images/pixiJS/pokemon/sandshrew.png');
-    this.pokemonSprites.push(new Pokemon('Sandshrew', 'yellow', ['ground'], new Sprite(textureSandshrew)));
+    this.pokemonSprites.push(new Pokemon('Sandshrew', 'yellow', ['ground'],
+      new Sprite(this.sheet.textures['sandshrew.png'])));
 
-    const textureMagikarp = Texture.from('assets/images/pixiJS/pokemon/magikarp.png');
-    const magikarp = new Pokemon('Magikarp', 'red', ['water'], new Sprite(textureMagikarp));
+    const magikarp = new Pokemon('Magikarp', 'red', ['water'],
+      new Sprite(this.sheet.textures['magikarp.png']));
     this.pokemonSprites.push(magikarp);
     this.pokemonSpritesSolutionNot.push(magikarp);
 
-    const textureTentacool = Texture.from('assets/images/pixiJS/pokemon/tentacool.png');
-    const tentacool = new Pokemon('Tentacool', 'blue', ['water', 'poison'], new Sprite(textureTentacool));
+    const tentacool = new Pokemon('Tentacool', 'blue', ['water', 'poison'],
+      new Sprite(this.sheet.textures['tentacool.png']));
     this.pokemonSprites.push(tentacool);
     this.pokemonSpritesSolutionNot.push(tentacool);
   }
@@ -227,6 +239,12 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit {
       pokemon.sprite.x = originalPosition.x;
       pokemon.sprite.y = originalPosition.y;
     });
+  }
+
+  ngOnDestroy(): void {
+    // clears images from cache and loader
+    Loader.shared.reset();
+    utils.clearTextureCache();
   }
 
 }

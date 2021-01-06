@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, NgxToolboxBuilderService} from 'ngx-blockly';
 import {ForLoopBlock, MoveDownBlock, MoveLeftBlock, MoveRightBlock, MoveUpBlock} from '../../shared/custom.blocks';
 import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
-import {Application, Container, Sprite, Texture} from 'pixi.js';
+import {Application, Loader, Sprite, Spritesheet, utils} from 'pixi.js';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
 import {Lesson} from '../../shared/lesson/lesson.model';
@@ -15,11 +15,12 @@ import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
   templateUrl: './lesson-for-loop.component.html',
   styleUrls: ['./lesson-for-loop.component.scss']
 })
-export class LessonForLoopComponent implements OnInit {
+export class LessonForLoopComponent implements OnInit, OnDestroy {
 
   angleRight = faAngleRight;
 
-  disabledButtons = false;
+  isButtonDisabled = false;
+  isBunnyRunning = false;
   bunnyOutOfBounds = false;
 
   lesson: Lesson;
@@ -29,6 +30,9 @@ export class LessonForLoopComponent implements OnInit {
   // PixiJS variables
   canvas;
   pixiApp: Application;
+  rendererWidth: number;
+  rendererHeight: number;
+  sheet: Spritesheet;
   cellHeight: number;
   cellWidth: number;
   imgBunny: Sprite;
@@ -80,57 +84,98 @@ export class LessonForLoopComponent implements OnInit {
       });
 
     this.canvas = document.getElementById('pixiJsCanvas');
-    const rendererWidth = this.canvas.offsetWidth;
-    const rendererHeight = this.canvas.offsetHeight;
-    this.cellWidth = rendererWidth / 9;
-    this.cellHeight = rendererHeight / 9;
+    this.rendererWidth = this.canvas.offsetWidth;
+    this. rendererHeight = this.canvas.offsetHeight;
+    this.cellWidth = this.rendererWidth / 9;
+    this.cellHeight = this.rendererHeight / 9;
+
+    // this.pixiApp = new Application({
+    //   view: this.canvas,
+    //   // backgroundColor: 0xeba42f,
+    //   resizeTo: this.canvas,
+    // });
 
     this.pixiApp = new Application({
       view: this.canvas,
-      backgroundColor: 0xeba42f,
       resizeTo: this.canvas,
     });
 
-    // Adding background grid
-    const backgroundContainer = new Container();
-    const textureBackground = Texture.from('assets/images/pixiJS/bunny_grid.png');
-    const imgBackground = new Sprite(textureBackground);
-    imgBackground.width = rendererWidth;
-    imgBackground.height = rendererHeight;
-    backgroundContainer.addChild(imgBackground);
-    this.pixiApp.stage.addChild(backgroundContainer);
+    // adding spritesheet to loader if we already didn't
+    if (Loader.shared.resources.spritesheet === undefined) {
+      Loader.shared.add('spritesheet', 'assets/images/pixiJS/bunny/spritesheet.json');
+    }
+    Loader.shared.load(() => {
+      this.setup();
+    });
 
-    // Adding carrot image
-    const textureCarrot = Texture.from('assets/images/pixiJS/carrot.png');
-    const imgCarrot = new Sprite(textureCarrot);
-    imgCarrot.height = this.cellHeight;
-    imgCarrot.width = this.cellWidth;
-    imgCarrot.position.set(this.cellWidth * this.carrotColumn, this.cellHeight * this.carrotRow);
-    this.pixiApp.stage.addChild(imgCarrot);
-
-    // Adding bunny image
-    const textureBunny = Texture.from('assets/images/pixiJS/bunny.png');
-    this.imgBunny = new Sprite(textureBunny);
-    this.imgBunny.height = this.cellHeight;
-    this.imgBunny.width = this.cellWidth;
-    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
-    this.pixiApp.stage.addChild(this.imgBunny);
+    // // Adding background grid
+    // const backgroundContainer = new Container();
+    // const textureBackground = Texture.from('assets/images/pixiJS/bunny_grid.png');
+    // const imgBackground = new Sprite(textureBackground);
+    // imgBackground.width = rendererWidth;
+    // imgBackground.height = rendererHeight;
+    // backgroundContainer.addChild(imgBackground);
+    // this.pixiApp.stage.addChild(backgroundContainer);
+    //
+    // // Adding carrot image
+    // const textureCarrot = Texture.from('assets/images/pixiJS/carrot.png');
+    // const imgCarrot = new Sprite(textureCarrot);
+    // imgCarrot.height = this.cellHeight;
+    // imgCarrot.width = this.cellWidth;
+    // imgCarrot.position.set(this.cellWidth * this.carrotColumn, this.cellHeight * this.carrotRow);
+    // this.pixiApp.stage.addChild(imgCarrot);
+    //
+    // // Adding bunny image
+    // const textureBunny = Texture.from('assets/images/pixiJS/bunny.png');
+    // this.imgBunny = new Sprite(textureBunny);
+    // this.imgBunny.height = this.cellHeight;
+    // this.imgBunny.width = this.cellWidth;
+    // this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+    // this.pixiApp.stage.addChild(this.imgBunny);
 
     // this.pixiApp.ticker.add(this.update);
     this.pixiApp.ticker.add(this.smoothlyMoveRabbit);
     this.pixiApp.ticker.maxFPS = 40;
   }
 
-  update() {
-    console.log('It loops!');
+  setup() {
+    // the sprite sheet we've just loaded:
+    this.sheet = Loader.shared.resources.spritesheet.spritesheet;
+
+    // initialize background sprite
+    const background = new Sprite(this.sheet.textures['background.png']);
+    background.width = this.rendererWidth;
+    background.height = this.rendererHeight;
+    this.pixiApp.stage.addChild(background);
+
+    // Adding carrot image
+    // const textureCarrot = Texture.from('assets/images/pixiJS/carrot.png');
+    const imgCarrot = new Sprite(this.sheet.textures['carrot.png']);
+    imgCarrot.height = this.cellHeight;
+    imgCarrot.width = this.cellWidth;
+    imgCarrot.position.set(this.cellWidth * this.carrotColumn, this.cellHeight * this.carrotRow);
+    this.pixiApp.stage.addChild(imgCarrot);
+
+    // Adding bunny image
+    // const textureBunny = Texture.from('assets/images/pixiJS/bunny.png');
+    this.imgBunny = new Sprite(this.sheet.textures['bunny.png']);
+    this.imgBunny.height = this.cellHeight;
+    this.imgBunny.width = this.cellWidth;
+    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+    this.pixiApp.stage.addChild(this.imgBunny);
   }
 
+  // update() {
+  //   console.log('It loops!');
+  // }
+
   runRabbit() {
-    this.disabledButtons = true;
+    this.isButtonDisabled = true;
+    this.isBunnyRunning = true;
     this.workspaceBlocks = [];
     const topBlocks = this.workspace.workspace.getTopBlocks(true);
     if (topBlocks.length === 0) {
-      this.disabledButtons = false;
+      this.isButtonDisabled = false;
       this.alertService.warn('You have FAILED! Try again.', {autoClose: true});
       return;
     }
@@ -143,18 +188,19 @@ export class LessonForLoopComponent implements OnInit {
       }
       currentBlock = currentBlock.getNextBlock();
     }
-
     this.makeBunnyMove();
   }
 
   async makeBunnyMove() {
     // makeBunnyMove() {
-    console.log('\n----sadrzaj');
     for (const block of this.workspaceBlocks) {
+      if (this.bunnyOutOfBounds) {
+        break;
+      }
       await this.moveBunny(block.type);
     }
     // enables the RUN button
-    this.disabledButtons = false;
+    this.isButtonDisabled = false;
     // if bunny didn't get out of bounds, check if he got the carrot
     if (!this.bunnyOutOfBounds) {
       this.checkIfBunnyFoundTheCarrot();
@@ -218,24 +264,26 @@ export class LessonForLoopComponent implements OnInit {
   }
 
   smoothlyMoveRabbit = () => {
-    const designationWidth = this.cellWidth * this.currentBunnyColumn;
-    const designationHeight = this.cellHeight * this.currentBunnyRow;
-    // check if current X coordinate is approximately the same as designated X coordinate
-    if (Math.abs(this.imgBunny.x - designationWidth) > 0.04 * this.cellWidth) {
-      if (this.imgBunny.x < designationWidth) {
-        this.imgBunny.x += this.cellWidth / 40;
+    if (this.isBunnyRunning && !this.bunnyOutOfBounds) {
+      const designationWidth = this.cellWidth * this.currentBunnyColumn;
+      const designationHeight = this.cellHeight * this.currentBunnyRow;
+      // check if current X coordinate is approximately the same as designated X coordinate
+      if (Math.abs(this.imgBunny.x - designationWidth) > 0.04 * this.cellWidth) {
+        if (this.imgBunny.x < designationWidth) {
+          this.imgBunny.x += this.cellWidth / 40;
+        } else {
+          this.imgBunny.x -= this.cellWidth / 40;
+        }
+        // check if current Y coordinate is approximately the same as designated Y coordinate
+      } else if (Math.abs(this.imgBunny.y - designationHeight) > 0.04 * this.cellHeight) {
+        if (this.imgBunny.y < designationHeight) {
+          this.imgBunny.y += this.cellHeight / 40;
+        } else {
+          this.imgBunny.y -= this.cellHeight / 40;
+        }
       } else {
-        this.imgBunny.x -= this.cellWidth / 40;
+        this.imgBunny.position.set(designationWidth, designationHeight);
       }
-      // check if current Y coordinate is approximately the same as designated Y coordinate
-    } else if (Math.abs(this.imgBunny.y - designationHeight) > 0.04 * this.cellHeight) {
-      if (this.imgBunny.y < designationHeight) {
-        this.imgBunny.y += this.cellHeight / 40;
-      } else {
-        this.imgBunny.y -= this.cellHeight / 40;
-      }
-    } else {
-      this.imgBunny.position.set(designationWidth, designationHeight);
     }
   }
 
@@ -265,6 +313,12 @@ export class LessonForLoopComponent implements OnInit {
     this.currentBunnyRow = 1;
     this.currentBunnyColumn = 1;
     this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+  }
+
+  ngOnDestroy(): void {
+    // clears images from cache and loader
+    Loader.shared.reset();
+    utils.clearTextureCache();
   }
 
 }

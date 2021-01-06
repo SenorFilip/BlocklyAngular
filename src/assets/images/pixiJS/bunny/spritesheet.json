@@ -1,0 +1,87 @@
+{
+  "frames": {
+    "background.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 800,
+        "h": 500
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 500
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 500
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "bunny.png": {
+      "frame": {
+        "x": 803,
+        "y": 1,
+        "w": 69,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 2,
+        "w": 69,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 50
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "carrot.png": {
+      "frame": {
+        "x": 874,
+        "y": 1,
+        "w": 34,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 10,
+        "w": 34,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 52
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.6",
+    "image": "spritesheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 909,
+      "h": 502
+    },
+    "scale": 1
+  }
+}
