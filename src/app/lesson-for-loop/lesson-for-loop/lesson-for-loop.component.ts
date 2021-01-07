@@ -89,12 +89,6 @@ export class LessonForLoopComponent implements OnInit, OnDestroy {
     this.cellWidth = this.rendererWidth / 9;
     this.cellHeight = this.rendererHeight / 9;
 
-    // this.pixiApp = new Application({
-    //   view: this.canvas,
-    //   // backgroundColor: 0xeba42f,
-    //   resizeTo: this.canvas,
-    // });
-
     this.pixiApp = new Application({
       view: this.canvas,
       resizeTo: this.canvas,
@@ -107,31 +101,6 @@ export class LessonForLoopComponent implements OnInit, OnDestroy {
     Loader.shared.load(() => {
       this.setup();
     });
-
-    // // Adding background grid
-    // const backgroundContainer = new Container();
-    // const textureBackground = Texture.from('assets/images/pixiJS/bunny_grid.png');
-    // const imgBackground = new Sprite(textureBackground);
-    // imgBackground.width = rendererWidth;
-    // imgBackground.height = rendererHeight;
-    // backgroundContainer.addChild(imgBackground);
-    // this.pixiApp.stage.addChild(backgroundContainer);
-    //
-    // // Adding carrot image
-    // const textureCarrot = Texture.from('assets/images/pixiJS/carrot.png');
-    // const imgCarrot = new Sprite(textureCarrot);
-    // imgCarrot.height = this.cellHeight;
-    // imgCarrot.width = this.cellWidth;
-    // imgCarrot.position.set(this.cellWidth * this.carrotColumn, this.cellHeight * this.carrotRow);
-    // this.pixiApp.stage.addChild(imgCarrot);
-    //
-    // // Adding bunny image
-    // const textureBunny = Texture.from('assets/images/pixiJS/bunny.png');
-    // this.imgBunny = new Sprite(textureBunny);
-    // this.imgBunny.height = this.cellHeight;
-    // this.imgBunny.width = this.cellWidth;
-    // this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
-    // this.pixiApp.stage.addChild(this.imgBunny);
 
     // this.pixiApp.ticker.add(this.update);
     this.pixiApp.ticker.add(this.smoothlyMoveRabbit);
@@ -149,7 +118,6 @@ export class LessonForLoopComponent implements OnInit, OnDestroy {
     this.pixiApp.stage.addChild(background);
 
     // Adding carrot image
-    // const textureCarrot = Texture.from('assets/images/pixiJS/carrot.png');
     const imgCarrot = new Sprite(this.sheet.textures['carrot.png']);
     imgCarrot.height = this.cellHeight;
     imgCarrot.width = this.cellWidth;
@@ -157,17 +125,12 @@ export class LessonForLoopComponent implements OnInit, OnDestroy {
     this.pixiApp.stage.addChild(imgCarrot);
 
     // Adding bunny image
-    // const textureBunny = Texture.from('assets/images/pixiJS/bunny.png');
     this.imgBunny = new Sprite(this.sheet.textures['bunny.png']);
     this.imgBunny.height = this.cellHeight;
     this.imgBunny.width = this.cellWidth;
     this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
     this.pixiApp.stage.addChild(this.imgBunny);
   }
-
-  // update() {
-  //   console.log('It loops!');
-  // }
 
   runRabbit() {
     this.isButtonDisabled = true;

@@ -59,7 +59,7 @@ export class MyMovesFunctionBodyBlock extends CustomBlock {
 
     defineBlock() {
         this.block.appendDummyInput()
-            .appendField('MY MOVES function content');
+            .appendField('MY MOVES function definition');
         this.block.appendStatementInput('functionContent')
             .setCheck(null);
         this.block.setColour(135);
