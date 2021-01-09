@@ -197,7 +197,6 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit, OnDestroy
   }
 
   submitAnswer() {
-    console.log(this.currentTask);
     if (this.checkAnswer()) {
       if (this.currentTask.taskNum < 3) {
         this.alertService.success('Nice! Now solve the next one.', {autoClose: true});
