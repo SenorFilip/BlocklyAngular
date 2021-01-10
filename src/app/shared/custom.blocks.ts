@@ -486,15 +486,15 @@ export class CoatBlock extends CustomBlock {
 
     defineBlock() {
         this.block.appendDummyInput()
-            .appendField('Get coat with number: ')
-            .appendField(new Blockly.FieldNumber(0), 'coatNumber');
+            .appendField('Get coat with tag: ')
+            .appendField(new Blockly.FieldTextInput(''), 'coatTag');
         this.block.setColour(345);
         this.block.setTooltip('');
         this.block.setHelpUrl('');
     }
 
     toPythonCode(block: VehicleBlock): string | any[] {
-        return 'Coat[' + this.block.getFieldValue('coatNumber') + ']';
+        return 'Coat[' + this.block.getFieldValue('coatTag') + ']';
     }
 }
 
