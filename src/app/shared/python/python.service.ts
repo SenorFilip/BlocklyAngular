@@ -10,6 +10,7 @@ export class PythonService {
   pythonSetUpCode =
 `from io import StringIO
 import sys
+from js import document
 
 # Create the in-memory "file"
 temp_out = StringIO()
@@ -28,13 +29,15 @@ lessonPassed = False
 # ------------------------- user code --------------------
 `;
 
-  outputVariableCode = `\noutput = temp_out.getvalue()\n`;
-
   memoryResetCode =
 `
+outputTextAreaElement = document.getElementById("consoleOutput")
+outputTextAreaElement.value = temp_out.getvalue()
+
 # ----------------------- end user code ------------------
 # Deletes declared variables from memory
-neededVariableSet = set({'output', '__annotations__', 'neededVariableSet', 'temp_out', 'sys', '__builtins__', 'StringIO', 'lessonPassed'})
+neededVariableSet = set({'output', '__annotations__', 'neededVariableSet', 'temp_out',
+'sys', '__builtins__', 'StringIO', 'lessonPassed', 'outputTextAreaElement', 'js'})
 myVariables = set(dir()) - set(dir(__builtins__)) - neededVariableSet
 for varName in myVariables:
   del globals()[varName]`;
@@ -45,22 +48,14 @@ for varName in myVariables:
     try {
       // runs Python code
       this.alertService.clear();
-      const pythonScript = this.pythonSetUpCode + inputCode + '\n' + lessonSolvedCheckCode + this.outputVariableCode + this.memoryResetCode;
-      // console.log(pythonScript);
+      const pythonScript = this.pythonSetUpCode + inputCode + '\n' + lessonSolvedCheckCode + this.memoryResetCode;
       pyodide.runPython(pythonScript);
-      if (pyodide.globals.lessonPassed) {
+      if (pyodide.pyimport('lessonPassed')) {
         this.alertService.success('Good job!', {autoClose: true});
       }
-      // retrieves variable value in which we saved the console output result
-      return pyodide.globals.output;
     } catch (err) {
       this.alertService.error(err);
-      // retrieves variable value in which we saved the console output result
-      return pyodide.globals.output;
     }
-
-    // const stdout = pyodide.runPython('sys.stdout.getvalue()');
-    // console.log(stdout);
   }
 
 }

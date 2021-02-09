@@ -86,7 +86,8 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
 
   public config: NgxBlocklyConfig = {
     scrollbars: true,
-    trashcan: true
+    trashcan: true,
+    renderer: 'zelos'
   };
 
   public generatorConfig: NgxBlocklyGeneratorConfig = {

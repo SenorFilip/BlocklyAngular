@@ -121,7 +121,9 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
 
     // adding spritesheet to loader if we already didn't
     if (Loader.shared.resources.spritesheet === undefined) {
-      Loader.shared.add('spritesheet', 'assets/images/pixiJS/mouse/spritesheet.json');
+      // dodavanje spritesheet-a u Loader
+      Loader.shared.add(
+        'spritesheet', 'assets/images/pixiJS/mouse/spritesheet.json');
     }
     Loader.shared.load(() => {
       this.setup();

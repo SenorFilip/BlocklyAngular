@@ -55,7 +55,8 @@ export class LessonConditionsAssignmentComponent implements OnInit, OnDestroy {
 
   public config: NgxBlocklyConfig = {
     scrollbars: true,
-    trashcan: true
+    trashcan: true,
+    renderer: 'zelos'
   };
 
   public generatorConfig: NgxBlocklyGeneratorConfig = {
@@ -123,7 +124,8 @@ export class LessonConditionsAssignmentComponent implements OnInit, OnDestroy {
     this.pixiApp.stage.addChild((this.superMarioSprite));
 
     // create an animated sprite for Mario moving
-    this.superMarioAnimatedSprite = new AnimatedSprite(this.sheet.animations.superMario);
+    this.superMarioAnimatedSprite =
+      new AnimatedSprite(this.sheet.animations.superMario);
     this.superMarioAnimatedSprite.animationSpeed = 0.065;
     this.superMarioAnimatedSprite.width = 45;
     this.superMarioAnimatedSprite.height = 45;

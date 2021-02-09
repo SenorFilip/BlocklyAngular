@@ -15,7 +15,6 @@ export class LessonForLoopCodeComponent implements OnInit {
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
   codeInputField;
-  consoleOutput;
   counter: number;
   counterArray: Array<number>;
 
@@ -32,7 +31,7 @@ export class LessonForLoopCodeComponent implements OnInit {
 
   runCode() {
     const lessonSolvedCheckCode = `\nlessonPassed = temp_out.getvalue() == '24\\n21\\n18\\n15\\n12\\n9\\n6\\n3\\n'\n`;
-    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode);
+    this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode);
   }
 
   onEnter(textAreaElement: HTMLTextAreaElement) {
