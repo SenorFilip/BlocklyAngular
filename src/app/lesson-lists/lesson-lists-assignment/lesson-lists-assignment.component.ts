@@ -307,7 +307,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
       }, 2000);
     } else {
       this.alertService.success('You got it. Let\'s go the next part of the lesson.');
-      setTimeout(() => this.router.navigate(['']), 3500);
+      setTimeout(() => this.router.navigate(['listsLesson']), 3500);
     }
 
     setTimeout(() => {

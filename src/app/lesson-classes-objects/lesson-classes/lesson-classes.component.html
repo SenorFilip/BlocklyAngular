@@ -1,0 +1,91 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/classesAssignment']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Vehicle Assignment</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/objectsLesson']">
+        Objects <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Classes  </h3></div>
+    <div class="card-body">
+
+
+      Pizza, dog and pen are things, known in the English language as nouns and in Python as <b>objects</b>.<br>
+      The idea of objects is an important one in the world of computers.<br>
+      Objects are a way of organizing code in a program and breaking things down to make it easier to think about complex ideas.<br><br>
+
+      In Python, objects are defined by <b>classes</b>, which we can think of as a way to classify objects into groups. <br>
+      Here is a tree diagram of the classes that dogs and pizza would fit into based on our preceding definitions:<br><br>
+
+      <img src="assets/images/lessons/thingsHierarchy.png" alt="image" width="400"><br><br>
+
+      The main class is Things. Below the Things class, we have Inanimate and Animate.<br>
+      These are further broken down into just Food and Pizza for Inanimate, and Animals, Mammals, and Dogs for Animate. <br>
+      We can use classes to organize bits of Python code.<br><br>
+
+      Now let’s create the same set of classes as shown in our tree diagram, starting from the top. <br>
+      We define classes using the class keyword followed by a name.<br>
+      Since Things is the broadest class, we’ll create it first:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> class Things:
+          <div class="indentedRow">pass</div>
+        </div>
+      </div>
+
+      We name the class Things and use the pass statement to let Python know that we’re not going to give any more information.<br>
+      <i>pass</i> is used when we want to provide a class or function but don’t want to fill in the details at the moment.<br>
+      Next, we’ll add the other classes and build some relationships between them.<br><br><br>
+
+      <h5 class="card-title">Children and Parents</h5>
+
+      If a class is a part of another class, then it’s a <b>child</b> of that class, and the other class is its <b>parent</b>. <br>
+      Classes can be both children of and parents to other classes. In our tree diagram, the class above another class is its parent,<br>
+      and the class below it is its child. For example, Inanimate and Animate are both children of the class Things, meaning that Things is their parent.<br>
+      To tell Python that a class is a child of another class, we add the name of the parent class in parentheses after the name of our new class, like this:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> class Inanimate(Things):
+          <div class="indentedRow">pass</div>
+          >> class Animate(Things):
+          <div class="indentedRow">pass</div>
+        </div>
+      </div>
+
+      Let’s try the same thing with the Pizza class. We create the Food class with the parent class Inanimate and Pizza with the parent class Food like so:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> class Food(Inanimate):
+          <div class="indentedRow">pass</div>
+          >> class Pizza(Food):
+          <div class="indentedRow">pass</div>
+        </div>
+      </div>
+
+      And we can organize the Animals, Mammals, and Dogs classes using their parent classes as well:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> class Animals(Animate):
+          <div class="indentedRow">pass</div>
+          >> class Mammals(Animals):
+          <div class="indentedRow">pass</div>
+          >> class Dogs(Mammals):
+          <div class="indentedRow">pass</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

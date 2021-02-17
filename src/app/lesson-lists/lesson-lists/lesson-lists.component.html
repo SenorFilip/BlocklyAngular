@@ -1,0 +1,86 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/listsAssignment']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Club List Assignment</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/listsAssignment/code']">
+        Lists Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Lists</h3></div>
+    <div class="card-body">
+      Lists are structures that can contain any type of variable, and they can contain as many variables as you wish.<br>
+      Creating a list takes a bit more typing than creating a string, but a list is more useful than a string because
+      it can be manipulated..<br>
+      Here's how you create and print a list:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> shopping_list = ['carrots', 'potatoes', 'tomatoes', 'pasta', 'salt']<br>
+          >> print(shopping_list)
+          <div style="color: #316C75">['carrots', 'potatoes', 'tomatoes', 'pasta', 'salt']</div>
+        </div>
+      </div>
+
+      We can also print the third item in the shopping_list (tomatoes) by entering its position in the list
+      (called the <i>index position</i>)<br> inside square brackets ([]), like this:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> print(shopping_list[2])
+          <div style="color: #316C75">tomatoes</div>
+        </div>
+      </div>
+
+      You've probably noticed that we used the number 2 instead of 3. That is because lists start at<br>
+      index position 0, so the first item in a list is 0, the second is 1, and the third is 2. <br>
+      You can also access items from the end of the list. Just be careful because the last index starts from -1.<br>
+      That may not make a lot of sense to humans, but it does to computers.<br><br>
+
+      <img src="assets/images/lessons/list.jpg" alt="image" width="350"><br><br>
+      <hr>
+
+      <h4 class="card-title">MANIPULATION</h4>
+      <b>Adding items</b><br><br>
+
+      To add items to a list, we use the <i>append</i> function. A function is a chunk of code that tells Python to do something.<br>
+      In this case, append adds an item to the end of a list.<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> shopping_list.append('onions')<br>
+          >> print(shopping_list)
+          <div style="color: #316C75">['carrots', 'potatoes', 'tomatoes', 'pasta', 'salt', 'onions']</div>
+        </div>
+      </div>
+
+      <b>Removing items</b><br><br>
+
+      To remove items from a list, use the <i>del</i> command (short for delete).<br>
+      For example, to remove the fifth item in the shopping list, salt, do this:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> del shopping_list[4]<br>
+          >> print(shopping_list)
+          <div style="color: #316C75">['carrots', 'potatoes', 'tomatoes', 'pasta', 'onions']</div>
+        </div>
+      </div>
+
+      Something more to know: <br>
+      <ul>
+        <li>You can get a subset of a string. Etc. <strong>print( shopping_list[2:5] )</strong> which prints item from index
+          position 2 up to (but not including) index position 5</li>
+        <li>They can contain mixtures of data types. Like numbers, strings and other lists.</li>
+        <li>We can join lists by adding them, just like adding numbers, using a plus (+) sign</li>
+      </ul>
+    </div>
+  </div>
+</div>
+

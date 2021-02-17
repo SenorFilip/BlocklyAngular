@@ -10,6 +10,19 @@
 
 .text-box {
   width: fit-content;
+  background-color: rgba(232, 236, 232, .5);
+}
+
+.code-box {
+  font: 1.3rem Inconsolata, monospace;
+}
+
+.indentedRow {
+  margin-left:4em;
+}
+
+.comment-code {
+  color: #58D340;
 }
 
 html, body { height: 100%; }

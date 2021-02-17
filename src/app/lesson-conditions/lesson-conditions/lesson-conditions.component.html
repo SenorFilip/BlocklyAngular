@@ -1,0 +1,120 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/conditionsAssignment']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Super Mario Assignment</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/conditionsAssignment/code']">
+        Conditions Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Conditions</h3></div>
+    <div class="card-body">
+
+      So far, we haven't been able to do anything conditionally; we cannot tell Python "do this in some cases and do this other thing" in others.<br>
+      But this is the sort of logic we use everyday when making simple decisions.<br>
+      Programming languages like Python have tools to mimic those real-world choices.<br>
+      Many of the decisions we make throughout the day – "it's cold, so put on a coat"; "you're running late, so text your friend";<br>
+      "you're hungry, so eat something" – have an if-then structure. Just like you, Python can make if-then decisions.<br>
+      <hr>
+      <h5 class="card-title">IF statement</h5>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> age = 13<br>
+          >> if age > 20:<br>
+          <div class="indentedRow">print('You are too old!')</div>
+          <div style="color: #316C75"></div>
+        </div>
+      </div>
+
+      An if statement is made up of the if keyword, followed by a condition and a colon (:), as in if age > 20:. The lines following the colon must be in a block, <br>
+      and if the answer to the question is yes (or <b>true</b>, as we say in Python programming), the commands in the block will be run.<br><br><br>
+
+      <h5 class="card-title">IF-THEN-ELSE statement</h5>
+
+      In addition to using if statements to do something when a condition is met (True), we can also use if statements to do something when a condition is not true.<br>
+      For example, we might print one message to the screen if your age is 12 and another if it’s not 12 (False).<br>
+      The trick here is to use an <b>if-then-else</b> statement, which essentially says “If something is true, then do this; or else, do that.”<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> print("Want to hear a joke?")
+          <div style="color: #316C75">Want to hear a joke?</div>
+          >> age = 15<br>
+          >> if age >= 12:
+          <div class="indentedRow">print("Last time I got caught stealing a calendar I got 12 months.")</div>
+          else:
+          <div class="indentedRow">print("Shh. It's a secret.")</div>
+          <div style="color: #316C75">Last time I got caught stealing a calendar I got 12 months.</div>
+        </div>
+      </div>
+
+      Because we’ve set the age variable to 15, and the condition is asking whether age is equal to 15, you should see the first print message on the screen.<br>
+      If we change the age variable to a number lower than 12 we should se the second print message.<br><br><br>
+
+      <h5 class="card-title">ELIF statement</h5>
+
+      We can extend an if statement even further with <b>elif</b> (which is short for else-if). For example, we can check if a person’s age is 10,<br>
+      11, or 12 (and so on) and have our program do something different based on the answer.<br>
+      These statements are different from if-then-else statements in that there can be more than one elif in the same statement:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> age = 12<br>
+          >> if age == 10: <em class="comment-code"># 1</em>
+          <div class="indentedRow">
+            print("What do you call an unhappy cranberry?")<em class="comment-code"># 2</em><br>
+            print("A blueberry!")
+          </div>
+          elif age == 11: <em class="comment-code"># 3</em>
+          <div class="indentedRow">
+            print("What did the green grape say to the blue grape?")<br>
+            print("Breathe! Breathe!")
+          </div>
+          elif age == 12: <em class="comment-code"># 4</em>
+          <div class="indentedRow">
+            print("What did 0 say to 8?")<em class="comment-code"># 5</em><br>
+            print("Hi guys!")
+          </div>
+          <div class="indentedRow">
+            print("Why wasn't 10 afraid of 7?")<br>
+            print("Because rather than eating 9, 7 8 pi.")
+          </div>
+          else:
+          <div class="indentedRow">print("Huh?")</div>
+          <div style="color: #316C75">What did 0 say to 8? Hi guys!</div>
+        </div>
+      </div>
+
+      In this example, the if statement on the second line checks to see if the value of the age variable is equal to 10 at <em class="comment-code">1</em>.<br>
+      The print statement that follows at <em class="comment-code">2</em> is run if age is equal to 10. However, since we’ve set age equal to 12, <br>
+      the computer jumps to the next if statement at <em class="comment-code">3</em> and checks if the value of age is equal to 11. It isn’t, <br>
+      so the computer jumps to the next if statement at <em class="comment-code">4</em> to see if age is equal to 12. It is, so this time,
+      the computer executes the print command at <em class="comment-code">5</em>.<br><br>
+
+      <hr>
+
+      Something more to know: <br>
+      <ul>
+        <li>
+          As you probably noticed we put multiple print functions under the IF statement. They all get called when the statement is true.<br>
+          That is called a <b>block</b> of code. Their indentation has the be the same or else we will get a <i>SyntaxError</i>
+        </li>
+        <li>You can get a subset of a string. Etc. <strong>print( shopping_list[2:5] )</strong> which prints item from index
+          position 2 up to (but not including) index position 5</li>
+        <li>They can contain mixtures of data types. Like numbers, strings and other lists.</li>
+        <li>We can join lists by adding them, just like adding numbers, using a plus (+) sign</li>
+      </ul><br>
+
+      <img src="assets/images/lessons/blockOfCode.png" alt="image" width="400"><br><br>
+
+    </div>
+  </div>
+</div>
+

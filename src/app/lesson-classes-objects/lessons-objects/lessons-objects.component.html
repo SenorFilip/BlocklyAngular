@@ -1,0 +1,124 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+            <button class="btn btn-primary mt-3"
+                    [routerLink]="['/classesLesson']">
+              <fa-icon [icon]="arrowLeft"></fa-icon> Classes</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/classesAssignment/code']">
+        Classes and Objects Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Objects</h3></div>
+    <div class="card-body">
+
+      We now have a bunch of classes, but what about putting some things into those classes? Say we have a dog named Bobo.<br>
+      We know that he belongs in the class Dogs, but what do we use, in programming terms, to describe single dog called Bobo?<br>
+      We call Bobo an object of the class Dogs (you may also see the term instance of the class). To “introduce” Bobo to Python,<br>
+      we use this little snippet of code:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> bobo = Dogs()
+        </div>
+      </div>
+
+      This code tells Python to create an object in the Dogs class and assign it to the variable reginald. Like a function,<br>
+      the class name is followed by parentheses.<br><br>
+
+      <hr>
+
+      <h5 class="card-title">Functions</h5>
+
+      But what does the <i>bobo</i> object do? Well, nothing at the moment. To make our objects useful, when we create our classes,<br>
+      we also need to define <b>functions</b> that can be used with the objects in that class. Rather than just using the pass keyword immediately<br>
+      after the class definition, we can add function definitions.<br><br>
+
+      When we define a function that is associated with a class, we do so in the same way that we define any other function, except that we indent<br>
+      it beneath the class definition.<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> class ThisIsMySillyClass:
+          <div class="indentedRow">def this_is_a_class_function():</div>
+          <div class="indentedRow"><div class="indentedRow">print('I am a class function')</div></div>
+          <div class="indentedRow">def this_is_also_a_class_function():</div>
+          <div class="indentedRow"><div class="indentedRow">print('I am also a class function. See?')</div></div>
+        </div>
+      </div>
+
+      We can add characteristics to each class to describe what it is and what it can do. A characteristic is a trait that all <br>
+      of the members of the class (and its children) share. For example, what do all animals have in common? Well, to start with, they all breathe.<br>
+      They also move and eat. What about mammals? Mammals all feed their young with milk. And they breathe, move, and eat.<br>
+      We know that dogs bark, and like all mammals, they feed their young with milk, breathe, move, and eat food. When we add these characteristics to<br>
+      our tree diagram, we get something like this:<br><br>
+
+      <img src="assets/images/lessons/addingFunctions.png" alt="image" width="400"><br><br>
+
+      Because bobo is an object, we can call (or run) functions provided by his class (the Giraffes class) and its parent classes. We call<br>
+      functions on an object by using the dot operator and the name of the function. To tell Bobo the dog to move or bark, we can call the<br>
+      functions like this:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> bobo = Dogs()<br>
+          >> bobo.move()<br>
+          >> bobo.bark()
+        </div>
+      </div>
+
+      <hr>
+
+      <h5 class="card-title">Variables</h5>
+
+      Functions are like actions, but Classes have something that can describe each object called <b>variables</b>. For example, the Dogs class<br>
+      variable can be number_of_fleas, fur_color, weight, name...
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> class Dogs:
+          <div class="indentedRow">name = ""</div>
+          <div class="indentedRow">weight = 0</div>
+          <div class="indentedRow">fur_color = ""</div>
+          <div class="indentedRow">number_of_fleas = 0</div><br>
+          <div class="indentedRow">def __init__(self, name, weight, color, flea_number):</div>
+          <div class="indentedRow">
+            <div class="indentedRow">
+              self.name = name<br>
+              self.weight = weight<br>
+              self.fur_color = color<br>
+              self.number_of_fleas = flea_number
+            </div>
+          </div><br>
+          <div class="indentedRow">def description(self):</div>
+          <div class="indentedRow">
+            <div class="indentedRow">
+              desc_str = "%s has %s kg. His fur color is %s and he has %s fleas." % (self.name, self.weight, self.fur_color, self.number_of_fleas)
+            </div>
+          </div>
+          <div class="indentedRow"><div class="indentedRow">return desc_str</div></div><br>
+          >> bobo = Dogs("Bobo", 10, "brown", 0)<br>
+          >> print(bobo.description())
+          <div style="color: #316C75">Bobo has 10 kg. His fur color is brown and he has 0 fleas.</div>
+        </div>
+      </div>
+
+      <ul>
+        <li>
+          The <b>self</b> keyword represents the instance of the class.<br>
+          By using the “self” keyword we can access the attributes and methods of the class in python.
+        </li>
+        <li>
+          The <b>__init__</b> method is something called <b>constructors</b>. Constructors are used to initialize the object’s state.<br>
+          The task of constructors is to initialize(assign values) to the data members of the class when an object of class is created.
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+

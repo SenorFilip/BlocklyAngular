@@ -241,7 +241,7 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
           this.mouseAnimatedSprite.textures = this.textureMouseWon;
           this.mouseAnimatedSprite.play();
           this.alertService.success('Mouse got the cheese!\n Let\'s get to the next part.');
-          setTimeout(() => this.router.navigate(['/']), 1800);
+          setTimeout(() => this.router.navigate(['functionsLesson']), 1800);
         }
       }
 

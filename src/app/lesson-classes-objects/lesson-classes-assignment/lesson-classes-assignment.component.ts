@@ -327,7 +327,7 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
       } else {
         this.progress += 34;
         this.alertService.success('Good job. Let\'s go the next part.');
-        setTimeout(() => this.router.navigate(['/']), 1800);
+        setTimeout(() => this.router.navigate(['classesLesson']), 1800);
       }
     } else {
       this.alertService.error('Nope. Wrong vehicle.', {autoClose: true});

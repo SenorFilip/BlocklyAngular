@@ -229,7 +229,7 @@ export class LessonDictionariesAssignmentComponent implements OnInit, OnDestroy 
         this.progress += 34;
         this.alertService.success('Nice! Now let\'s go the next part.');
         this.workspace.workspace.clear();
-        setTimeout(() => this.router.navigate(['/']), 1800);
+        setTimeout(() => this.router.navigate(['dictionariesLesson']), 1800);
         this.isCoatBeingDelivered = false;
       }
     } else {

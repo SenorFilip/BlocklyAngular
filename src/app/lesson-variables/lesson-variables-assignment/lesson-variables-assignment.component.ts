@@ -130,7 +130,7 @@ export class LessonVariablesAssignmentComponent implements OnInit {
         this.lesson.isSolved = true;
         this.lessonSolvedService.updateLesson(this.lesson);
         this.alertService.success('Nice job. You\'re being transported to the next assignment');
-        setTimeout(() => this.router.navigate(['variablesLessonCode']), 1800);
+        setTimeout(() => this.router.navigate(['variablesAssignment/code']), 1800);
       }
     }
   }

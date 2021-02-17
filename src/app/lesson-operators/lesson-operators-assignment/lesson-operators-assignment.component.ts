@@ -1,15 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Application, Graphics, Loader, Sprite, Spritesheet, utils} from 'pixi.js';
+import {Application, Graphics, Loader, Sprite, Spritesheet, Texture, utils} from 'pixi.js';
 import {Pokemon} from '../pokemon.model';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-lesson-bool-operators-assignment',
-  templateUrl: './lesson-bool-operators-assignment.component.html',
-  styleUrls: ['./lesson-bool-operators-assignment.component.scss']
+  templateUrl: './lesson-operators-assignment.component.html',
+  styleUrls: ['./lesson-operators-assignment.component.scss']
 })
-export class LessonBoolOperatorsAssignmentComponent implements OnInit, OnDestroy {
+export class LessonOperatorsAssignmentComponent implements OnInit, OnDestroy {
 
   progress = 0;
 
@@ -17,7 +17,6 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit, OnDestroy
   canvas;
   pixiApp: Application;
   dropArea: Graphics;
-  sheet: Spritesheet;
   rendererWidth: number;
   rendererHeight: number;
 
@@ -60,21 +59,15 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit, OnDestroy
       resizeTo: this.canvas,
     });
 
-    // adding spritesheet to loader if we already didn't
-    if (Loader.shared.resources.spritesheet === undefined) {
-      Loader.shared.add('spritesheet', 'assets/images/pixiJS/pokemon/spritesheet.json');
-    }
     Loader.shared.load(() => {
       this.setup();
     });
   }
 
   setup() {
-    // the sprite sheet we've just loaded:
-    this.sheet = Loader.shared.resources.spritesheet.spritesheet;
-
     // initialize background sprite
-    const background = new Sprite(this.sheet.textures['pokemon_heaven.png']);
+    const textureBackground = Texture.from('assets/images/pixiJS/pokemon/pokemon_heaven.png');
+    const background = new Sprite(textureBackground);
     background.width = this.rendererWidth;
     background.height = this.rendererHeight;
     this.pixiApp.stage.addChild(background);
@@ -95,66 +88,78 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit, OnDestroy
 
   // Fills Pokemon array
   definePokemonSpritesTextures() {
+    const textureZapdos = Texture.from('assets/images/pixiJS/pokemon/zapdos.png');
     const zapdos = new Pokemon('Zapdos', 'yellow', ['electric', 'flying'],
-      new Sprite(this.sheet.textures['zapdos.png']));
+      new Sprite(textureZapdos));
     this.pokemonSprites.push(zapdos);
     this.pokemonSpritesSolutionOr.push(zapdos);
 
+    const textureCharizard = Texture.from('assets/images/pixiJS/pokemon/charizard.png');
     const charizard = new Pokemon('Charizard', 'red', ['fire', 'flying'],
-      new Sprite(this.sheet.textures['charizard.png']));
+      new Sprite(textureCharizard));
     this.pokemonSprites.push(charizard);
     this.pokemonSpritesSolutionNot.push(charizard);
     this.pokemonSpritesSolutionOr.push(charizard);
 
+    const textureHypno = Texture.from('assets/images/pixiJS/pokemon/hypno.png');
     const hypno = new Pokemon('Hypno', 'yellow', ['psychic'],
-      new Sprite(this.sheet.textures['hypno.png']));
+      new Sprite(textureHypno));
     this.pokemonSprites.push(hypno);
     this.pokemonSpritesSolutionAnd.push(hypno);
 
+    const texturePolitoed = Texture.from('assets/images/pixiJS/pokemon/politoed.png');
     const politoed = new Pokemon('Politoed', 'green', ['water'],
-      new Sprite(this.sheet.textures['politoed.png']));
+      new Sprite(texturePolitoed));
     this.pokemonSprites.push(politoed);
     this.pokemonSpritesSolutionNot.push(politoed);
     this.pokemonSpritesSolutionOr.push(politoed);
     this.pokemonSpritesSolutionAdvanced.push(politoed);
 
+    const textureArticuno = Texture.from('assets/images/pixiJS/pokemon/articuno.png');
     const articuno = new Pokemon('Articuno', 'blue', ['ice', 'flying'],
-      new Sprite(this.sheet.textures['articuno.png']));
+      new Sprite(textureArticuno));
     this.pokemonSprites.push(articuno);
     this.pokemonSpritesSolutionNot.push(articuno);
     this.pokemonSpritesSolutionOr.push(articuno);
 
+    const textureAlakazam = Texture.from('assets/images/pixiJS/pokemon/alakazam.png');
     const alakazam = new Pokemon('Alakazam', 'yellow', ['psychic'],
-      new Sprite(this.sheet.textures['alakazam.png']));
+      new Sprite(textureAlakazam));
     this.pokemonSprites.push(alakazam);
     this.pokemonSpritesSolutionAnd.push(alakazam);
 
+    const textureNatu = Texture.from('assets/images/pixiJS/pokemon/natu.png');
     const natu = new Pokemon('Natu', 'green', ['psychic', 'flying'],
-      new Sprite(this.sheet.textures['natu.png']));
+      new Sprite(textureNatu));
     this.pokemonSprites.push(natu);
     this.pokemonSpritesSolutionNot.push(natu);
     this.pokemonSpritesSolutionOr.push(natu);
 
+    const texturePikachu = Texture.from('assets/images/pixiJS/pokemon/pikachu.png');
     const pikachu = new Pokemon('Pikachu', 'yellow', ['electric'],
-      new Sprite(this.sheet.textures['pikachu.png']));
+      new Sprite(texturePikachu));
     this.pokemonSprites.push(pikachu);
     this.pokemonSpritesSolutionAdvanced.push(pikachu);
 
+    const textureNidoqueen = Texture.from('assets/images/pixiJS/pokemon/nidoqueen.png');
     const nidoqueen = new Pokemon('Nidoqueen', 'blue', ['poison', 'ground'],
-      new Sprite(this.sheet.textures['nidoqueen.png']));
+      new Sprite(textureNidoqueen));
     this.pokemonSprites.push(nidoqueen);
     this.pokemonSpritesSolutionNot.push(nidoqueen);
 
+    const textureSandshrew = Texture.from('assets/images/pixiJS/pokemon/sandshrew.png');
     this.pokemonSprites.push(new Pokemon('Sandshrew', 'yellow', ['ground'],
-      new Sprite(this.sheet.textures['sandshrew.png'])));
+      new Sprite(textureSandshrew)));
 
+    const textureMagikarp = Texture.from('assets/images/pixiJS/pokemon/magikarp.png');
     const magikarp = new Pokemon('Magikarp', 'red', ['water'],
-      new Sprite(this.sheet.textures['magikarp.png']));
+      new Sprite(textureMagikarp));
     this.pokemonSprites.push(magikarp);
     this.pokemonSpritesSolutionNot.push(magikarp);
 
+    const textureTentacool = Texture.from('assets/images/pixiJS/pokemon/tentacool.png');
     const tentacool = new Pokemon('Tentacool', 'blue', ['water', 'poison'],
-      new Sprite(this.sheet.textures['tentacool.png']));
+      new Sprite(textureTentacool));
     this.pokemonSprites.push(tentacool);
     this.pokemonSpritesSolutionNot.push(tentacool);
   }
@@ -208,7 +213,7 @@ export class LessonBoolOperatorsAssignmentComponent implements OnInit, OnDestroy
       } else {
         this.progress += 25;
         this.alertService.success('Good job. Let\'s go the next part.');
-        setTimeout(() => this.router.navigate(['/']), 1800);
+        setTimeout(() => this.router.navigate(['/operatorsLesson']), 1800);
       }
       // empty drop area array
       this.dropAreaPokemon = [];

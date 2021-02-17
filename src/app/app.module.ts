@@ -16,14 +16,27 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LessonVariablesAssignmentComponent} from './lesson-variables/lesson-variables-assignment/lesson-variables-assignment.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {LessonVariablesCodeComponent} from './lesson-variables/lesson-variables-code/lesson-variables-code.component';
-import {LessonBoolOperatorsAssignmentComponent} from './lesson-bool-operators/lesson-bool-operators-assignment/lesson-bool-operators-assignment.component';
+import {LessonOperatorsAssignmentComponent} from './lesson-operators/lesson-operators-assignment/lesson-operators-assignment.component';
 import {LessonListsAssignmentComponent} from './lesson-lists/lesson-lists-assignment/lesson-lists-assignment.component';
 import {LessonFunctionsAssignmentComponent} from './lesson-functions/lesson-functions-assignment/lesson-functions-assignment.component';
-import {LessonClassesAssignmentComponent} from './lesson-classes/lesson-classes-assignment/lesson-classes-assignment.component';
+import {LessonClassesAssignmentComponent} from './lesson-classes-objects/lesson-classes-assignment/lesson-classes-assignment.component';
 import {LessonDictionariesAssignmentComponent} from './lesson-dictionaries/lesson-dictionaries-assignment/lesson-dictionaries-assignment.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RedirectComponent} from './redirect/redirect.component';
 import {LessonConditionsAssignmentComponent} from './lesson-conditions/lesson-conditions-assignment/lesson-conditions-assignment.component';
+import { LessonListsComponent } from './lesson-lists/lesson-lists/lesson-lists.component';
+import { LessonListsCodeComponent } from './lesson-lists/lesson-lists-code/lesson-lists-code.component';
+import { LessonOperatorsComponent } from './lesson-operators/lesson-operators/lesson-operators.component';
+import { LessonOperatorsCodeComponent } from './lesson-operators/lesson-operators-code/lesson-operators-code.component';
+import { LessonConditionsCodeComponent } from './lesson-conditions/lesson-conditions-code/lesson-conditions-code.component';
+import { LessonConditionsComponent } from './lesson-conditions/lesson-conditions/lesson-conditions.component';
+import { LessonFunctionsComponent } from './lesson-functions/lesson-functions/lesson-functions.component';
+import { LessonFunctionsCodeComponent } from './lesson-functions/lesson-functions-code/lesson-functions-code.component';
+import { LessonClassesComponent } from './lesson-classes-objects/lesson-classes/lesson-classes.component';
+import { LessonClassesCodeComponent } from './lesson-classes-objects/lesson-classes-code/lesson-classes-code.component';
+import { LessonDictionariesComponent } from './lesson-dictionaries/lesson-dictionaries/lesson-dictionaries.component';
+import { LessonDictionariesCodeComponent } from './lesson-dictionaries/lesson-dictionaries-code/lesson-dictionaries-code.component';
+import { LessonsObjectsComponent } from './lesson-classes-objects/lessons-objects/lessons-objects.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +49,26 @@ import {LessonConditionsAssignmentComponent} from './lesson-conditions/lesson-co
     LessonDataTypesComponent,
     LessonVariablesAssignmentComponent,
     LessonVariablesCodeComponent,
-    LessonBoolOperatorsAssignmentComponent,
+    LessonOperatorsAssignmentComponent,
     LessonListsAssignmentComponent,
     LessonFunctionsAssignmentComponent,
     LessonClassesAssignmentComponent,
     LessonDictionariesAssignmentComponent,
     RedirectComponent,
-    LessonConditionsAssignmentComponent
+    LessonConditionsAssignmentComponent,
+    LessonListsComponent,
+    LessonListsCodeComponent,
+    LessonOperatorsComponent,
+    LessonOperatorsCodeComponent,
+    LessonConditionsCodeComponent,
+    LessonConditionsComponent,
+    LessonFunctionsComponent,
+    LessonFunctionsCodeComponent,
+    LessonClassesComponent,
+    LessonClassesCodeComponent,
+    LessonDictionariesComponent,
+    LessonDictionariesCodeComponent,
+    LessonsObjectsComponent
   ],
   imports: [
     BrowserModule,

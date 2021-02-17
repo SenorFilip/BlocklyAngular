@@ -1,0 +1,112 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/operatorsAssignment']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Pokemon Assignment</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/operatorsAssignment/code']">
+        Operators Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Operators</h3></div>
+    <div class="card-body">
+      Python uses boolean logic to evaluate conditions. The boolean values True and False are returned when an expression is compared or evaluated.<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> x = 2<br>
+          >> print(x == 2)<br>
+          <div style="color: #316C75">True</div>
+          >> print(x == 3)<br>
+          <div style="color: #316C75">False</div>
+          >> print(x < 3)<br>
+          <div style="color: #316C75">True</div>
+        </div>
+      </div>
+
+      Notice that variable assignment is done using a single equals operator "=", whereas comparison between two variables is done using the double equals operator "==".
+      The "not equals" operator is marked as "!=".<br><br>
+      <hr>
+      <h4 class="card-title">Boolean operators</h4>
+
+      Sometimes, you'll want to deal with more than one logical expression at a time.<br>
+      You might like to see if one thing is true and another thing is true, one thing or another thing is true, or maybe see if both things are true.<br>
+      Python has a few special words to help you do all that: <i>and</i>, <i>or</i>, and <i>not</i>.<br><br>
+
+      <b>And</b><br>
+
+      <i>and</i> is a special keyword in Python that figures out whether, given two expressions, both are true. If so, Python will say <i>True</i> ; if not, it'll say <i>False</i>.<br>
+      Here's a few examples:<br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> True and True
+          <div style="color: #316C75">True</div>
+          >> 2 > 0 and 4949 > 48
+          <div style="color: #316C75">True</div>
+          >> True and False
+          <div style="color: #316C75">False</div>
+          >> 2 > 0 and 4949 < 48
+          <div style="color: #316C75">False</div>
+          >> False and True
+          <div style="color: #316C75">False</div>
+          >> 2 < 0 and 4949 > 48
+          <div style="color: #316C75">False</div>
+        </div>
+      </div>
+
+      <b>Or</b><br>
+
+      <i>or</i> is another special keyword that figures out whether, given two expressions, one or the other or both are true. <br>
+      If so, Python will say <i>True</i> ; if not, it'll say <i>False.</i> Here's a few examples:<br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> True or False
+          <div style="color: #316C75">True</div>
+          >> False or True
+          <div style="color: #316C75">True</div>
+          >> 3 > 0 or 0 < 3
+          <div style="color: #316C75">True</div>
+          >> 3 < 0 or 0 > 3
+          <div style="color: #316C75">False</div>
+          >> 3 > 0 or 0 > 3
+          <div style="color: #316C75">True</div>
+          >> 3 > 0 or 0 < 3
+          <div style="color: #316C75">True</div>
+          >> True or True
+          <div style="color: #316C75">True</div>
+        </div>
+      </div>
+
+      <b>Not</b><br>
+
+      <i>not</i> is Python's last keyword for combining booleans. When you put it in front of something, it negates, or reverses, that expression.<br>
+      So things that were true become false, and things that were false become true. For example:<br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> not True
+          <div style="color: #316C75">False</div>
+          >> not False
+          <div style="color: #316C75">True</div>
+          >> not True and True
+          <div style="color: #316C75">False</div>
+          >> not False and True
+          <div style="color: #316C75">True</div>
+          >> not (3 > 0)
+          <div style="color: #316C75">False</div>
+          >> not (3 < 0)
+          <div style="color: #316C75">True</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

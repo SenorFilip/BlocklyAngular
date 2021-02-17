@@ -1,0 +1,116 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/functionsAssignment']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Mouse Assignment</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/functionsAssignment/code']">
+        Functions Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Functions</h3></div>
+    <div class="card-body">
+      In the real world you may have a morning routine like brushing teeth and drinking tea or coffee. These actions may seem boring at times cause<br>
+      they have to be repeated. For example, imagine you had to type this in Python every morning:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> print('Turn of alarm')<br>
+          <div style="color: #316C75">Turn of alarm</div>
+          >> print('Brush your teeth')<br>
+          <div style="color: #316C75">Brush your teeth</div>
+          >> print('Make some coffee')<br>
+          <div style="color: #316C75">Make some coffee</div>
+        </div>
+      </div>
+
+      That seems like a lot to type. Python offers a way to reuse code using something called <b>functions</b>.<br>
+      We already learned how to create list. Imagine creating a list from 0 to 999. That's a bit too much code.<br>
+      Instead of writing every list element by hand we can use the build in function called <i>range</i>.<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> myList = range(0, 1000)<em class="comment-code"># 1000 is not included</em><br>
+          >> print(myList)
+          <div style="color: #316C75">[0, 1, 2, 3, ..., 997, 998, 999]</div>
+        </div>
+      </div>
+
+      Functions are chunks of code that tell Python to do something. <br>
+      They are one way to reuse code—you can use functions in your programs again and again.<br>
+      When you’re writing simple programs, functions are handy. Once you start writing long, more complicated programs, like games,<br>
+      functions are essential (assuming you want to finish writing your program this century).<br><br><br>
+
+      <h5 class="card-title">Parts of a function</h5>
+
+      A function has three parts: a <i>name</i>, <i>parameters</i>, and a <i>body</i>. Here’s an example of a simple function:<br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> def testfunc(myName):<br>
+          <div class="indentedRow">print('hello ' + myName)</div>
+        </div>
+      </div>
+
+      The name of this function is <i>testfunc</i>. It has a single parameter, <i>myName</i>, and its body is the block of code immediately following<br>
+      the line beginning with def (short for define). A parameter is a variable that exists only while a function is being used.<br>
+      You can run the function by calling its name, using parentheses around the parameter value:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> testfunc('Filip'):<br>
+          <div style="color: #316C75">hello Filip</div>
+        </div>
+      </div>
+
+      The function could take two, three, or any number of parameters, instead of just one:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> def testfunc(firstName, lastName):<br>
+          <div class="indentedRow">print('hello %s %s' % (firstName, lastName))</div>
+        </div>
+      </div>
+
+      The two values for these parameters are separated by a comma:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> firstN = 'Filip'<br>
+          >> lastN = 'Filipčić'<br>
+          >> testfunc(firstN, lastN):<br>
+          <div style="color: #316C75">hello Filip Filipčić</div>
+        </div>
+      </div>
+      <hr>
+
+      A function is often used to return a value, using a <i>return</i> statement.<br>
+      For example, you could write a function to calculate how much money you were saving:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> def savings(pocket_money, lemon_stand_money, spending):<br>
+          <div class="indentedRow">return pocket_money + lemon_stand_money – spending</div>
+        </div>
+      </div>
+
+      This function takes three parameters. It adds the first two (pocket_money and lemon_stand_money) and subtracts the last (spending). <br>
+      The result is returned and can be assigned to a variable (the same way we set other values to variables) or printed:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> result = savings(10, 15, 7)<br>
+          >> print(result)
+          <div style="color: #316C75">18</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

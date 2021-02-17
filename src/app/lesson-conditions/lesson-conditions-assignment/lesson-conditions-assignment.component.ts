@@ -306,7 +306,7 @@ export class LessonConditionsAssignmentComponent implements OnInit, OnDestroy {
             this.superMarioSprite.visible = true;
             this.marioIsRunning = false;
             this.alertService.success('Nice job Mario!\n Let\'s get to coding.');
-            setTimeout(() => this.router.navigate(['/']), 1800);
+            setTimeout(() => this.router.navigate(['conditionsLesson']), 1800);
           } else {
             this.marioFailedResetEverything('Mario is missing some coins! Try again.');
           }

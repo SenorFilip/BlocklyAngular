@@ -1,0 +1,110 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/dictionariesAssignment']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Cinema Assignment</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/dictionariesAssignment/code']">
+        Dictionaries Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Maps/Dictionaries</h3></div>
+    <div class="card-body">
+
+      In Python, a <b>map</b> (also referred to as a dict, short for dictionary) is a collection of things, like lists and tuples.<br>
+      The difference between maps and lists or tuples is that each item in a map has a <i>key</i> and a corresponding <i>value</i>.<br>
+      For example, say we have a list of people and their favorite sports. We could put this information into a Python list, with the<br>
+      person’s name followed by their sport, like so:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> favorite_sports = ['Ralph Williams, Football',
+          <div class="indentedRow">'Michael Tippett, Basketball',</div>
+          <div class="indentedRow">'Edward Elgar, Baseball',</div>
+          <div class="indentedRow">'Rebecca Clarke, Netball',</div>
+          <div class="indentedRow">'Ethel Smyth, Badminton',</div>
+          <div class="indentedRow">'Frank Bridge, Rugby']</div>
+        </div>
+      </div>
+
+      If I asked you what Rebecca Clarke’s favorite sport is, you could skim through that list and find the answer is netball.<br>
+      But what if the list included 100 (or many more) people? Now, if we store this same information in a map, <br>
+      with the person’s name as the key and their favorite sport as the value, the Python code would look like this:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> favorite_sports = {{ '{' }}'Ralph Williams' : 'Football',
+          <div class="indentedRow">'Michael Tippett' : 'Basketball',</div>
+          <div class="indentedRow">'Edward Elgar' : 'Baseball',</div>
+          <div class="indentedRow">'Rebecca Clarke' : 'Netball',</div>
+          <div class="indentedRow">'Ethel Smyth' : 'Badminton',</div>
+          <div class="indentedRow">'Frank Bridge' : 'Rugby'{{ '}' }}</div>
+        </div>
+      </div>
+
+      We use colons to separate each key from its value, and each key and value is surrounded by single quotes. <br>
+      Notice, too, that the items in a map are enclosed in braces ({{ '{}' }}), not parentheses or square brackets.<br><br>
+
+      <img src="assets/images/lessons/keyValue.png" alt="image" width="450"><br><br>
+
+      Now, to get Rebecca Clarke’s favorite sport, we access our map favorite_sports using her name as the key, like so:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> print(favorite_sports['Rebecca Clarke'])
+          <div style="color: #316C75">Netball</div>
+        </div>
+      </div>
+
+      To delete a value in a map, use its key. For example, here’s how to remove Ethel Smyth:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> del favorite_sports['Ethel Smyth']<br>
+          >> print(favorite_sports)
+          <div style="color: #316C75">
+            {{ '{' }}'Rebecca Clarke': 'Netball', 'Michael Tippett': 'Basketball',<br>
+            'Ralph Williams': 'Ice Hockey', 'Edward Elgar': 'Baseball', 'Frank Bridge': 'Rugby' }
+          </div>
+        </div>
+      </div>
+
+      To replace a value in a map, we also use its key:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> favorite_sports['Ralph Williams'] = 'Ice Hockey'<br>
+          >> print(favorite_sports)
+          <div style="color: #316C75">
+            {{ '{' }}'Rebecca Clarke': 'Netball', 'Michael Tippett': 'Basketball',<br>
+            'Ralph Williams': 'Ice Hockey', 'Edward Elgar': 'Baseball', 'Frank Bridge': 'Rugby'}
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      Something more to know: <br>
+      <ul>
+        <li>
+          You can loop through maps just like through lists. The syntax looks like this:<br>
+          <div class="card text-box border-info mb-3 code-box">
+            <div class="card-body text-info">
+              for key, value in mapVariable.items():
+              <div class="indentedRow">print(key)</div>
+              <div class="indentedRow">print(value)</div>
+            </div>
+          </div>
+        </li>
+        <li>There's a function called <b>len()</b> which accepts a list or map as a parameter and returns the length of the given parameter</li>
+      </ul><br>
+
+    </div>
+  </div>
+</div>
+
