@@ -1,1 +1,59 @@
-<p>lesson-lists-code works!</p>
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/listsLesson']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Lists Lesson
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="codingTextArea" class="row">Write your code here:</label>
+        <div class="row">
+          <div class="line-numbers">
+            <div *ngFor="let counter of counterArray; let i = index">{{i + 19}}</div>
+          </div>
+          <div class="text-area">
+          <textarea class="form-control codingTextArea"
+                    [(ngModel)]="codeInputField"
+                    id="codingTextArea"
+                    #textarea
+                    (keyup.enter)="onEnter(textarea)"
+                    rows="20"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="consoleOutput">Output result:</label>
+      <textarea class="form-control"
+                id="consoleOutput"
+                readonly
+                rows="20">{{consoleOutput}}</textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row-md-6">
+      <button (click)="runCode()"
+              class="btn btn-success">
+        RUN CODE
+      </button>
+      <button (click)="resetCode()"
+              class="btn btn-outline-secondary ml-3">
+        RESET CODE
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card border-primary mb-3 mt-3 w-100">
+      <div class="card-header">Lists Coding Assignment</div>
+      <div class="card-body">
+        In this exercise, you will need to add numbers and strings to the correct lists using the <b>append</b> list method.<br>
+        Add the numbers 1, 2, and 3 to the "numbers" list, and the words 'hello' and 'world' to the strings list.<br>
+        Fill in the variable <b>second_name</b> with the second name in the names list, using the brackets operator [].
+      </div>
+    </div>
+  </div>
+</div>
