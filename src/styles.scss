@@ -52,3 +52,22 @@ textarea .codingTextArea {
   display: inline-block;
   width: 95%;
 }
+
+.container-blockly-pixijs {
+  width: 150% !important;
+  max-width: 150%;
+  margin-left: -25%;
+}
+
+.containerBlockly {
+  height: 500px;
+}
+
+.pixiJsBlock {
+  height: 500px;
+}
+
+.pixiJsCanvas {
+  height: 500px;
+  width: 100%;
+}

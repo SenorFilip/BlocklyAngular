@@ -1,1 +1,61 @@
-<p>lesson-dictionaries-code works!</p>
+<div class="container container-blockly-pixijs">
+  <div class="row mb-3">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/dictionariesLesson']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Maps/Dictionaries Lesson
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <label for="codingTextArea" class="row">Write your code here:</label>
+        <div class="row">
+          <div class="line-numbers">
+            <div *ngFor="let counter of counterArray; let i = index">{{i + 20}}</div>
+          </div>
+          <div class="text-area">
+          <textarea class="form-control codingTextArea"
+                    [(ngModel)]="codeInputField"
+                    id="codingTextArea"
+                    #textarea
+                    (keyup.enter)="onEnter(textarea)"
+                    rows="20"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="consoleOutput">Output result:</label>
+      <textarea class="form-control"
+                id="consoleOutput"
+                readonly
+                rows="20">{{consoleOutput}}</textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row-md-6">
+      <button (click)="runCode()"
+              class="btn btn-success">
+        RUN CODE
+      </button>
+      <button (click)="resetCode()"
+              class="btn btn-outline-secondary ml-3">
+        RESET CODE
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card border-primary mb-3 mt-3 w-100">
+      <div class="card-header">Maps/Dictionaries Coding Assignment</div>
+      <div class="card-body">
+        Remove Steve from the grades map. Change Ryan's grade to a 3.<br>
+        Calculate the average grade of the class by looping through the list and save the result in a variable called
+        <b>averageGrade.</b><br><br>
+        ** Hint **<br>
+        Add up all the grades in a loop and divide the result with the length of the map.
+      </div>
+    </div>
+  </div>
+</div>

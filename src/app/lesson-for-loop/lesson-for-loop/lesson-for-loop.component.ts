@@ -84,7 +84,7 @@ export class LessonForLoopComponent implements OnInit, OnDestroy {
         this.lesson = lessonsSolved[this.lesson.id];
       });
 
-    this.canvas = document.getElementById('pixiJsCanvas');
+    this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this. rendererHeight = this.canvas.offsetHeight;
     this.cellWidth = this.rendererWidth / 9;

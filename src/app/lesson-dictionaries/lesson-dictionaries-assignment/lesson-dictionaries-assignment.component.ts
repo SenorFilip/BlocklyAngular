@@ -79,7 +79,7 @@ export class LessonDictionariesAssignmentComponent implements OnInit, OnDestroy 
   }
 
   ngOnInit(): void {
-    this.canvas = document.getElementById('pixiJsCinemaCanvas');
+    this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
 

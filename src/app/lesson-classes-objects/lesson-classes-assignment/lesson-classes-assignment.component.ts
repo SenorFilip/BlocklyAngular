@@ -111,7 +111,7 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.canvas = document.getElementById('pixiJsClassesCanvas');
+    this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
 

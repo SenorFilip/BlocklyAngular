@@ -1,1 +1,65 @@
-<p>lesson-functions-code works!</p>
+<div class="container container-blockly-pixijs">
+  <div class="row mb-3">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/functionsLesson']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Functions Lesson
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="codingTextArea" class="row">Write your code here:</label>
+        <div class="row">
+          <div class="line-numbers">
+            <div *ngFor="let counter of counterArray; let i = index">{{i + 20}}</div>
+          </div>
+          <div class="text-area">
+          <textarea class="form-control codingTextArea"
+                    [(ngModel)]="codeInputField"
+                    id="codingTextArea"
+                    #textarea
+                    (keyup.enter)="onEnter(textarea)"
+                    rows="20"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="consoleOutput">Output result:</label>
+      <textarea class="form-control"
+                id="consoleOutput"
+                readonly
+                rows="20">{{consoleOutput}}</textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row-md-6">
+      <button (click)="runCode()"
+              class="btn btn-success">
+        RUN CODE
+      </button>
+      <button (click)="resetCode()"
+              class="btn btn-outline-secondary ml-3">
+        RESET CODE
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card border-primary mb-3 mt-3 w-100">
+      <div class="card-header">Functions Coding Assignment</div>
+      <div class="card-body">
+        Create a function called <b>calculateRest</b> which accepts 2 parameters (<i>totalValue, percentage</i>).
+        The function has to calculate the percentage of the <i>totalValue</i> variable.<br>
+        Then subtract that number from <i>totalValue</i> and return the result. The body of the function should look like this: <br><br>
+        <div class="card text-box border-info mb-3 code-box">
+          <div class="card-body text-info">
+            return totalValue - totalValue * percentage / 100
+          </div>
+        </div>
+        Call the function with parameters(<b>100, 20</b>) and assign its result into a variable called <b>result</b>.
+      </div>
+    </div>
+  </div>
+</div>

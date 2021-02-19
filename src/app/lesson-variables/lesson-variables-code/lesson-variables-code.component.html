@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-blockly-pixijs">
   <div class="row mb-3">
     <div class="col-md-6 text-left">
       <button class="btn btn-primary mt-3"
@@ -13,7 +13,7 @@
         <label for="codingTextArea" class="row">Write your code here:</label>
         <div class="row">
           <div class="line-numbers">
-            <div *ngFor="let counter of counterArray; let i = index">{{i + 19}}</div>
+            <div *ngFor="let counter of counterArray; let i = index">{{i + 20}}</div>
           </div>
           <div class="text-area">
           <textarea class="form-control codingTextArea"
@@ -50,11 +50,13 @@
     <div class="card border-primary mb-3 mt-3 w-100">
       <div class="card-header">Data Types and Variables Coding Assignment</div>
       <div class="card-body">
-        The target of this exercise is to create a string, an integer, a floating point number and a boolean. <br>
-        The string should be named <b>myString</b> and should contain the word <b>"hello"</b>. <br>
-        The floating point number should be named <b>myFloat</b> and should contain the number <b>10.0.</b> <br>
-        The integer should be named <b>myInt</b> and should contain the number <b>20</b>, <br>
-        and the boolean should be named <b>myBoolean</b> and it should contain the value <b>False</b>.
+        The target of this exercise is to create a string, an integer, a floating point number and a boolean:
+        <ul>
+          <li>The string should be named <b>myString</b> and should contain the word <b>"hello"</b></li>
+          <li>The floating point number should be named <b>myFloat</b> and should contain the number <b>10.5</b></li>
+          <li>The integer should be named <b>myInt</b> and should contain the number <b>20</b></li>
+          <li>The boolean should be named <b>myBoolean</b> and it should contain the value <b>False</b></li>
+        </ul>
       </div>
     </div>
   </div>

@@ -106,7 +106,7 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.canvas = document.getElementById('pixiJsFunctionsCanvas');
+    this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
     this.paddingTopBottom = this.rendererHeight / 14;

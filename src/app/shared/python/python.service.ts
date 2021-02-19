@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AlertService} from '../alert';
 import {Router} from '@angular/router';
+
 declare let pyodide: any;
 
 @Injectable({
@@ -10,7 +11,7 @@ export class PythonService {
 
   pythonSetUpCode =
 `from io import StringIO
-import sys
+import sys, inspect
 from js import document
 
 # Create the in-memory "file"
@@ -38,7 +39,7 @@ outputTextAreaElement.value = temp_out.getvalue()
 # ----------------------- end user code ------------------
 # Deletes declared variables from memory
 neededVariableSet = set({'output', '__annotations__', 'neededVariableSet', 'temp_out',
-'sys', '__builtins__', 'StringIO', 'lessonPassed', 'outputTextAreaElement', 'js'})
+'sys', 'inspect', '__builtins__', 'StringIO', 'lessonPassed', 'outputTextAreaElement', 'js'})
 myVariables = set(dir()) - set(dir(__builtins__)) - neededVariableSet
 for varName in myVariables:
   del globals()[varName]`;

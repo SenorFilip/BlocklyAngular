@@ -98,7 +98,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
     // randomize club list
     this.randomizeList();
 
-    this.canvas = document.getElementById('pixiJsListsCanvas');
+    this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
 
