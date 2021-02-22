@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {LessonForLoopComponent} from './lesson-for-loop/lesson-for-loop/lesson-for-loop.component';
+import {LessonLoopsAssignmentComponent} from './lesson-loops/lesson-loops-assignment/lesson-loops-assignment.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {LessonForLoopCodeComponent} from './lesson-for-loop/lesson-for-loop-code/lesson-for-loop-code.component';
+import {LessonLoopsCodeComponent} from './lesson-loops/lesson-loops-code/lesson-loops-code.component';
 import {LessonVariablesComponent} from './lesson-variables/lesson-variables/lesson-variables.component';
 import {LessonDataTypesComponent} from './lesson-variables/lesson-data-types/lesson-data-types.component';
 import {LessonVariablesAssignmentComponent} from './lesson-variables/lesson-variables-assignment/lesson-variables-assignment.component';
@@ -28,6 +28,7 @@ import {LessonClassesCodeComponent} from './lesson-classes-objects/lesson-classe
 import {LessonDictionariesComponent} from './lesson-dictionaries/lesson-dictionaries/lesson-dictionaries.component';
 import {LessonDictionariesCodeComponent} from './lesson-dictionaries/lesson-dictionaries-code/lesson-dictionaries-code.component';
 import {LessonsObjectsComponent} from './lesson-classes-objects/lessons-objects/lessons-objects.component';
+import {LessonLoopsComponent} from './lesson-loops/lesson-loops/lesson-loops.component';
 
 const appRoutes: Routes = [
   {path: 'home', component: HomePageComponent, data: { lessonAnimationState: 0}},
@@ -44,8 +45,9 @@ const appRoutes: Routes = [
   {path: 'conditionsAssignment', component: LessonConditionsAssignmentComponent, data: { animationState: '31', lessonAnimationState: 4}},
   {path: 'conditionsLesson', component: LessonConditionsComponent, data: { animationState: '32', lessonAnimationState: 4}},
   {path: 'conditionsAssignment/code', component: LessonConditionsCodeComponent, data: { animationState: '33', lessonAnimationState: 4}},
-  {path: 'forLoopAssignment', component: LessonForLoopComponent, data: { animationState: '41', lessonAnimationState: 5}},
-  {path: 'forLoopAssignment/code', component: LessonForLoopCodeComponent, data: { animationState: '42', lessonAnimationState: 5}},
+  {path: 'loopsAssignment', component: LessonLoopsAssignmentComponent, data: { animationState: '41', lessonAnimationState: 5}},
+  {path: 'loopsLesson', component: LessonLoopsComponent, data: { animationState: '42', lessonAnimationState: 5}},
+  {path: 'loopsAssignment/code', component: LessonLoopsCodeComponent, data: { animationState: '43', lessonAnimationState: 5}},
   {path: 'functionsAssignment', component: LessonFunctionsAssignmentComponent, data: { animationState: '51', lessonAnimationState: 6}},
   {path: 'functionsLesson', component: LessonFunctionsComponent, data: { animationState: '52', lessonAnimationState: 6}},
   {path: 'functionsAssignment/code', component: LessonFunctionsCodeComponent, data: { animationState: '53', lessonAnimationState: 6}},

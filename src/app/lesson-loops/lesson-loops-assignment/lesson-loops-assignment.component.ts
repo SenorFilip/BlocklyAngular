@@ -12,10 +12,10 @@ import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-blockly',
-  templateUrl: './lesson-for-loop.component.html',
-  styleUrls: ['./lesson-for-loop.component.scss']
+  templateUrl: './lesson-loops-assignment.component.html',
+  styleUrls: ['./lesson-loops-assignment.component.scss']
 })
-export class LessonForLoopComponent implements OnInit, OnDestroy {
+export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
 
   angleRight = faAngleRight;
 

@@ -4,10 +4,10 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HeaderComponent} from './header/header.component';
 import {RouterModule} from '@angular/router';
-import {LessonForLoopComponent} from './lesson-for-loop/lesson-for-loop/lesson-for-loop.component';
+import {LessonLoopsAssignmentComponent} from './lesson-loops/lesson-loops-assignment/lesson-loops-assignment.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {NgxBlocklyModule} from 'ngx-blockly';
-import {LessonForLoopCodeComponent} from './lesson-for-loop/lesson-for-loop-code/lesson-for-loop-code.component';
+import {LessonLoopsCodeComponent} from './lesson-loops/lesson-loops-code/lesson-loops-code.component';
 import {AlertModule} from './shared/alert';
 import {FormsModule} from '@angular/forms';
 import {LessonVariablesComponent} from './lesson-variables/lesson-variables/lesson-variables.component';
@@ -37,14 +37,15 @@ import { LessonClassesCodeComponent } from './lesson-classes-objects/lesson-clas
 import { LessonDictionariesComponent } from './lesson-dictionaries/lesson-dictionaries/lesson-dictionaries.component';
 import { LessonDictionariesCodeComponent } from './lesson-dictionaries/lesson-dictionaries-code/lesson-dictionaries-code.component';
 import { LessonsObjectsComponent } from './lesson-classes-objects/lessons-objects/lessons-objects.component';
+import { LessonLoopsComponent } from './lesson-loops/lesson-loops/lesson-loops.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LessonForLoopComponent,
+    LessonLoopsAssignmentComponent,
     HomePageComponent,
-    LessonForLoopCodeComponent,
+    LessonLoopsCodeComponent,
     LessonVariablesComponent,
     LessonDataTypesComponent,
     LessonVariablesAssignmentComponent,
@@ -68,7 +69,8 @@ import { LessonsObjectsComponent } from './lesson-classes-objects/lessons-object
     LessonClassesCodeComponent,
     LessonDictionariesComponent,
     LessonDictionariesCodeComponent,
-    LessonsObjectsComponent
+    LessonsObjectsComponent,
+    LessonLoopsComponent
   ],
   imports: [
     BrowserModule,

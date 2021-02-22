@@ -4,10 +4,10 @@ import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-lesson-for-loop-code',
-  templateUrl: './lesson-for-loop-code.component.html',
-  styleUrls: ['./lesson-for-loop-code.component.scss']
+  templateUrl: './lesson-loops-code.component.html',
+  styleUrls: ['./lesson-loops-code.component.scss']
 })
-export class LessonForLoopCodeComponent implements OnInit {
+export class LessonLoopsCodeComponent implements OnInit {
 
   // font awesome icon
   arrowLeft = faAngleLeft;
@@ -24,13 +24,29 @@ export class LessonForLoopCodeComponent implements OnInit {
     this.counter = this.textarea.nativeElement.rows;
     this.counterArray = new Array(this.counter);
 
-    this.codeInputField =
-`for number in range(1, 6, 1):
-  print(number)`;
+    this.codeInputField = ``;
   }
 
   runCode() {
-    const lessonSolvedCheckCode = `\nlessonPassed = temp_out.getvalue() == '24\\n21\\n18\\n15\\n12\\n9\\n6\\n3\\n'\n`;
+    const lessonSolvedCheckCode = `
+    lessonPassed = True
+print('\\n')
+
+if 'myList1' in locals():
+    if myList1 != list(range(1, 21)):
+        print('Your myList1 list is wrong')
+        lessonPassed = False
+else:
+    print('You didn\\'t create the myList1 list')
+    lessonPassed = False
+if 'myList2' in locals():
+    if myList2 != list(range(2, 21, 2)):
+        print('Your myList2 list is wrong')
+        lessonPassed = False
+else:
+    print('You didn\\'t create the myList2 list')
+    lessonPassed = False
+    `;
     this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode);
   }
 
@@ -44,8 +60,6 @@ export class LessonForLoopCodeComponent implements OnInit {
   }
 
   resetCode() {
-    this.codeInputField =
-`for number in range(1, 6, 1):
-  print(number)`;
+    this.codeInputField = ``;
   }
 }
