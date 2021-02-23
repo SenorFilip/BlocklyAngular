@@ -1,6 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import {PythonService} from '../../shared/python/python.service';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-bool-operators-code',
@@ -11,6 +13,8 @@ export class LessonOperatorsCodeComponent implements OnInit {
 
   arrowLeft = faAngleLeft;
 
+  lesson: Lesson;
+
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
   codeInputField;
@@ -18,9 +22,12 @@ export class LessonOperatorsCodeComponent implements OnInit {
   counter: number;
   counterArray: Array<number>;
 
-  constructor(private pythonService: PythonService) { }
+  constructor(private pythonService: PythonService,
+              private lessonSolvedService: LessonSolvedService) { }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('operatorsCode');
+
     this.counter = this.textarea.nativeElement.rows;
     this.counterArray = new Array(this.counter);
 
@@ -52,7 +59,7 @@ if task3 == False:
   lessonPassed = False
   print('value3 is wrong.')
 `;
-    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, checkResultCode);
+    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, checkResultCode, this.lesson);
   }
 
   onEnter(textAreaElement: HTMLTextAreaElement) {

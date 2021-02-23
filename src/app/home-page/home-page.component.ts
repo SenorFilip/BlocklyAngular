@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LessonSolvedService} from '../shared/lesson/lesson-solved.service';
+import {Lesson} from '../shared/lesson/lesson.model';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  lessonsSolved: Lesson[];
+
+  constructor(private lessonSolvedService: LessonSolvedService) { }
 
   ngOnInit() {
+    this.lessonsSolved = this.lessonSolvedService.getAllLessons();
   }
 
 }

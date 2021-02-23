@@ -12,6 +12,10 @@ import {AnimatedSprite, Application, Loader, Sprite, Spritesheet, Texture, utils
 import {AlertService} from '../../shared/alert';
 import * as Blockly from 'ngx-blockly/scripts/blockly/typings/blockly';
 import {Router} from '@angular/router';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {Subscription} from 'rxjs';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-functions-assignment',
@@ -19,6 +23,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./lesson-functions-assignment.component.scss']
 })
 export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
+
+  arrowRight = faAngleRight;
+
+  lesson: Lesson;
+  private lessonChangedSub: Subscription;
 
   buttonsDisabled = false;
   isMouseRunning = false;
@@ -100,12 +109,19 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
 
   constructor(private ngxToolboxBuilderService: NgxToolboxBuilderService,
               private router: Router,
-              public alertService: AlertService) {
+              public alertService: AlertService,
+              private lessonSolvedService: LessonSolvedService) {
     this.ngxToolboxBuilderService.nodes = this.customBlocks;
     this.config.toolbox = this.ngxToolboxBuilderService.build();
   }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('functionsAssignment');
+    this.lessonChangedSub = this.lessonSolvedService.lessonsChanged.subscribe(
+      (lessonsSolved: Lesson[]) => {
+        this.lesson = lessonsSolved[this.lesson.id];
+      });
+
     this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
@@ -237,6 +253,10 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
           this.reset();
           return;
         } else {
+          // sets lesson as solved
+          this.lesson.isSolved = true;
+          this.lessonSolvedService.updateLesson(this.lesson);
+
           this.isMouseRunning = false;
           this.mouseAnimatedSprite.textures = this.textureMouseWon;
           this.mouseAnimatedSprite.play();

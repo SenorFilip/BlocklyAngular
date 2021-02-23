@@ -22,12 +22,72 @@ export class LessonSolvedService {
     ),
     new Lesson(
       2,
-      'loopBunny',
+      'listsAssignment',
       false
     ),
     new Lesson(
       3,
+      'listsCode',
+      false
+    ),
+    new Lesson(
+      4,
+      'operatorsAssignment',
+      false
+    ),
+    new Lesson(
+      5,
+      'operatorsCode',
+      false
+    ),
+    new Lesson(
+      6,
+      'conditionsAssignment',
+      false
+    ),
+    new Lesson(
+      7,
+      'conditionsCode',
+      false
+    ),
+    new Lesson(
+      8,
+      'loopBunny',
+      false
+    ),
+    new Lesson(
+      9,
       'loopCode',
+      false
+    ),
+    new Lesson(
+      10,
+      'functionsAssignment',
+      false
+    ),
+    new Lesson(
+      11,
+      'functionsCode',
+      false
+    ),
+    new Lesson(
+      12,
+      'classesAssignment',
+      false
+    ),
+    new Lesson(
+      13,
+      'classesCode',
+      false
+    ),
+    new Lesson(
+      14,
+      'mapsAssignment',
+      false
+    ),
+    new Lesson(
+      15,
+      'mapsCode',
       false
     )
   ];
@@ -41,6 +101,10 @@ export class LessonSolvedService {
 
   getLesson(name: string) {
     return this.lessonsSolved.find((l) => l.name === name);
+  }
+
+  getAllLessons() {
+    return this.lessonsSolved;
   }
 
 }

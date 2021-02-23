@@ -1,16 +1,12 @@
 <div class="container container-blockly-pixijs">
   <div class="row mb-3">
-    <!--    TODO: Add button to before lesson -->
-    <!--    <div class="col-md-12 text-right">-->
-    <!--      <button class="btn btn-default" [routerLink]="['/forLoopLessonCode']">Loops Coding Assignment <span class="glyphicon glyphicon-chevron-right"></span></button>-->
-    <!--    </div>-->
-    <!--    <div class="col-md-12 text-right" >-->
-    <!--      <button class="btn btn-primary mt-3"-->
-    <!--              *ngIf="lesson.isSolved"-->
-    <!--              [routerLink]="['/forLoopLessonCode']">-->
-    <!--        Loops Coding Assignment <fa-icon [icon]="angleRight"></fa-icon>-->
-    <!--      </button>-->
-    <!--    </div>-->
+    <div class="col"></div>
+    <div *ngIf="lesson.isSolved" class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/functionsLesson']">
+        Functions Lesson <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
   </div>
   <div class="row">
     <div class="containerBlockly col">

@@ -1,6 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import {PythonService} from '../../shared/python/python.service';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-conditions-code',
@@ -11,6 +13,8 @@ export class LessonConditionsCodeComponent implements OnInit {
 
   arrowLeft = faAngleLeft;
 
+  lesson: Lesson;
+
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
   codeInputField;
@@ -18,9 +22,12 @@ export class LessonConditionsCodeComponent implements OnInit {
   counter: number;
   counterArray: Array<number>;
 
-  constructor(private pythonService: PythonService) { }
+  constructor(private pythonService: PythonService,
+              private lessonSolvedService: LessonSolvedService) { }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('conditionsCode');
+
     this.counter = this.textarea.nativeElement.rows;
     this.counterArray = new Array(this.counter);
 
@@ -46,7 +53,7 @@ else:
     const checkResultCode = `
 lessonPassed = temp_out.getvalue() == 'Ravenclaw\\n'
 `;
-    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, checkResultCode);
+    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, checkResultCode, this.lesson);
   }
 
   onEnter(textAreaElement: HTMLTextAreaElement) {

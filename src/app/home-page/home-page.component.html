@@ -7,30 +7,62 @@
     <p class="lead">
       <span class="row pl-4 pr-4">
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/dataTypesLesson']">Data Types and Variables</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[0].isSolved && lessonsSolved[1].isSolved}"
+                  [routerLink]="['/dataTypesLesson']">
+            Data Types and Variables
+          </button>
         </span>
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/listsAssignment']">Lists</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[2].isSolved && lessonsSolved[3].isSolved}"
+                  [routerLink]="['/listsAssignment']">
+            Lists
+          </button>
         </span>
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/operatorsAssignment']">Operators</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[4].isSolved && lessonsSolved[5].isSolved}"
+                  [routerLink]="['/operatorsAssignment']">
+            Operators
+          </button>
         </span>
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/conditionsAssignment']">Conditions</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[6].isSolved && lessonsSolved[7].isSolved}"
+                  [routerLink]="['/conditionsAssignment']">
+            Conditions
+          </button>
         </span>
       </span>
       <span class="row mt-4 pl-4 pr-4">
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/loopsAssignment']">Loops</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[8].isSolved && lessonsSolved[9].isSolved}"
+                  [routerLink]="['/loopsAssignment']">
+            Loops
+          </button>
         </span>
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/functionsAssignment']">Functions</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[10].isSolved && lessonsSolved[11].isSolved}"
+                  [routerLink]="['/functionsAssignment']">
+            Functions
+          </button>
         </span>
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/classesAssignment']">Classes and Objects</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[12].isSolved && lessonsSolved[13].isSolved}"
+                  [routerLink]="['/classesAssignment']">
+            Classes and Objects
+          </button>
         </span>
         <span class="col-3">
-          <button class="btn btn-outline-secondary btn-lg" [routerLink]="['/dictionariesAssignment']">Dictionaries/Maps</button>
+          <button class="btn btn-outline-secondary btn-lg"
+                  [ngClass]="{'btn-outline-success' : lessonsSolved[14].isSolved && lessonsSolved[15].isSolved}"
+                  [routerLink]="['/dictionariesAssignment']">
+            Dictionaries/Maps
+          </button>
         </span>
       </span>
     </p>

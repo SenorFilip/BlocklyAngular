@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AlertService} from '../alert';
 import {Router} from '@angular/router';
+import {Lesson} from '../lesson/lesson.model';
+import {LessonSolvedService} from '../lesson/lesson-solved.service';
 
 declare let pyodide: any;
 
@@ -45,15 +47,18 @@ for varName in myVariables:
   del globals()[varName]`;
 
   constructor(private alertService: AlertService,
+              private lessonSolvedService: LessonSolvedService,
               private router: Router) { }
 
-  runPythonCode(inputCode: string, lessonSolvedCheckCode: string) {
+  runPythonCode(inputCode: string, lessonSolvedCheckCode: string, lesson: Lesson) {
     try {
       // runs Python code
       this.alertService.clear();
       const pythonScript = this.pythonSetUpCode + inputCode + '\n' + lessonSolvedCheckCode + this.memoryResetCode;
       pyodide.runPython(pythonScript);
       if (pyodide.pyimport('lessonPassed')) {
+        lesson.isSolved = true;
+        this.lessonSolvedService.updateLesson(lesson);
         this.alertService.success('Good job!', {autoClose: true});
         setTimeout(() => this.router.navigate(['/']), 1800);
       }

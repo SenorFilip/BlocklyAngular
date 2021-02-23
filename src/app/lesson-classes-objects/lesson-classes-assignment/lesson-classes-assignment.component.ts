@@ -5,6 +5,10 @@ import {VehicleBlock} from '../../shared/custom.blocks';
 import {VehicleModel} from '../vehicle.model';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {Subscription} from 'rxjs';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-lesson-classes-assignment',
@@ -12,6 +16,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./lesson-classes-assignment.component.scss']
 })
 export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
+
+  arrowRight = faAngleRight;
+
+  lesson: Lesson;
+  private lessonChangedSub: Subscription;
 
   progress = 0;
   tasks = [
@@ -105,12 +114,19 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
 
   constructor(private ngxToolboxBuilderService: NgxToolboxBuilderService,
               private router: Router,
-              public alertService: AlertService) {
+              public alertService: AlertService,
+              private lessonSolvedService: LessonSolvedService) {
     this.ngxToolboxBuilderService.nodes = this.customBlocks;
     this.config.toolbox = this.ngxToolboxBuilderService.build();
   }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('classesAssignment');
+    this.lessonChangedSub = this.lessonSolvedService.lessonsChanged.subscribe(
+      (lessonsSolved: Lesson[]) => {
+        this.lesson = lessonsSolved[this.lesson.id];
+      });
+
     this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
@@ -325,6 +341,10 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
         this.currentVehicleTarget = this.tasks[currentIndex + 1];
         this.alertService.success('Nice! Now create the next vehicle.', {autoClose: true});
       } else {
+        // sets lesson as solved
+        this.lesson.isSolved = true;
+        this.lessonSolvedService.updateLesson(this.lesson);
+
         this.progress += 34;
         this.alertService.success('Good job. Let\'s go the next part.');
         setTimeout(() => this.router.navigate(['classesLesson']), 1800);

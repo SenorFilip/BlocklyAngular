@@ -17,6 +17,10 @@ import {ClubPersonModel} from '../club-person.model';
 import {ClubSpriteModel} from '../club-sprite.model';
 import {Router} from '@angular/router';
 import {InputPersonModel} from '../input-person.model';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {Subscription} from 'rxjs';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-lists-assignment',
@@ -24,6 +28,11 @@ import {InputPersonModel} from '../input-person.model';
   styleUrls: ['./lesson-lists-assignment.component.scss']
 })
 export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
+
+  arrowRight = faAngleRight;
+
+  lesson: Lesson;
+  private lessonChangedSub: Subscription;
 
   /**
    * 0 - good!
@@ -89,12 +98,19 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
 
   constructor(private ngxToolboxBuilderService: NgxToolboxBuilderService,
               public alertService: AlertService,
-              private router: Router) {
+              private router: Router,
+              private lessonSolvedService: LessonSolvedService) {
     this.ngxToolboxBuilderService.nodes = this.customBlocks;
     this.config.toolbox = this.ngxToolboxBuilderService.build();
   }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('listsAssignment');
+    this.lessonChangedSub = this.lessonSolvedService.lessonsChanged.subscribe(
+      (lessonsSolved: Lesson[]) => {
+        this.lesson = lessonsSolved[this.lesson.id];
+      });
+
     // randomize club list
     this.randomizeList();
 
@@ -306,6 +322,10 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
         this.bouncerListContainer.visible = true;
       }, 2000);
     } else {
+      // sets lesson as solved
+      this.lesson.isSolved = true;
+      this.lessonSolvedService.updateLesson(this.lesson);
+
       this.alertService.success('You got it. Let\'s go the next part of the lesson.');
       setTimeout(() => this.router.navigate(['listsLesson']), 3500);
     }

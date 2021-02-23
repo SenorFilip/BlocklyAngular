@@ -4,6 +4,10 @@ import {CustomBlock, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorC
 import {CoatBlock} from '../../shared/custom.blocks';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {Subscription} from 'rxjs';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-dictionaries-assignment',
@@ -11,6 +15,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./lesson-dictionaries-assignment.component.scss']
 })
 export class LessonDictionariesAssignmentComponent implements OnInit, OnDestroy {
+
+  arrowRight = faAngleRight;
+
+  lesson: Lesson;
+  private lessonChangedSub: Subscription;
 
   counterCoatPosition = {
     x: 405,
@@ -73,12 +82,19 @@ export class LessonDictionariesAssignmentComponent implements OnInit, OnDestroy 
 
   constructor(private ngxToolboxBuilderService: NgxToolboxBuilderService,
               private router: Router,
-              public alertService: AlertService) {
+              public alertService: AlertService,
+              private lessonSolvedService: LessonSolvedService) {
     this.ngxToolboxBuilderService.nodes = this.customBlocks;
     this.config.toolbox = this.ngxToolboxBuilderService.build();
   }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('mapsAssignment');
+    this.lessonChangedSub = this.lessonSolvedService.lessonsChanged.subscribe(
+      (lessonsSolved: Lesson[]) => {
+        this.lesson = lessonsSolved[this.lesson.id];
+      });
+
     this.canvas = document.getElementsByClassName('pixiJsCanvas')[0];
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
@@ -226,6 +242,10 @@ export class LessonDictionariesAssignmentComponent implements OnInit, OnDestroy 
         this.coatBeingSubmitted.sprite.position.set(this.coatBeingSubmitted.coordinates.x, this.coatBeingSubmitted.coordinates.y);
         this.buttonsDisabled = false;
     } else {
+        // sets lesson as solved
+        this.lesson.isSolved = true;
+        this.lessonSolvedService.updateLesson(this.lesson);
+
         this.progress += 34;
         this.alertService.success('Nice! Now let\'s go the next part.');
         this.workspace.workspace.clear();

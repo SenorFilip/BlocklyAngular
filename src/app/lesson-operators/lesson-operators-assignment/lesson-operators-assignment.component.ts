@@ -3,6 +3,10 @@ import {Application, Graphics, Loader, Sprite, Spritesheet, Texture, utils} from
 import {Pokemon} from '../pokemon.model';
 import {AlertService} from '../../shared/alert';
 import {Router} from '@angular/router';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {Subscription} from 'rxjs';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-bool-operators-assignment',
@@ -10,6 +14,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./lesson-operators-assignment.component.scss']
 })
 export class LessonOperatorsAssignmentComponent implements OnInit, OnDestroy {
+
+  arrowRight = faAngleRight;
+
+  lesson: Lesson;
+  private lessonChangedSub: Subscription;
 
   progress = 0;
 
@@ -47,9 +56,16 @@ export class LessonOperatorsAssignmentComponent implements OnInit, OnDestroy {
   currentTask = this.tasks[0];
 
   constructor(public alertService: AlertService,
-              private router: Router) { }
+              private router: Router,
+              private lessonSolvedService: LessonSolvedService) { }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('operatorsAssignment');
+    this.lessonChangedSub = this.lessonSolvedService.lessonsChanged.subscribe(
+      (lessonsSolved: Lesson[]) => {
+        this.lesson = lessonsSolved[this.lesson.id];
+      });
+
     this.canvas = document.getElementById('pixiJsCanvasPokemon');
     this.rendererWidth = this.canvas.offsetWidth;
     this.rendererHeight = this.canvas.offsetHeight;
@@ -211,6 +227,10 @@ export class LessonOperatorsAssignmentComponent implements OnInit, OnDestroy {
         this.resetPokemonPositions();
         this.progress += 25;
       } else {
+        // sets lesson as solved
+        this.lesson.isSolved = true;
+        this.lessonSolvedService.updateLesson(this.lesson);
+
         this.progress += 25;
         this.alertService.success('Good job. Let\'s go the next part.');
         setTimeout(() => this.router.navigate(['/operatorsLesson']), 1800);

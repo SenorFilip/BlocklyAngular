@@ -1,6 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PythonService} from '../../shared/python/python.service';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-for-loop-code',
@@ -9,8 +11,9 @@ import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 })
 export class LessonLoopsCodeComponent implements OnInit {
 
-  // font awesome icon
   arrowLeft = faAngleLeft;
+
+  lesson: Lesson;
 
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
@@ -18,9 +21,12 @@ export class LessonLoopsCodeComponent implements OnInit {
   counter: number;
   counterArray: Array<number>;
 
-  constructor(private pythonService: PythonService) { }
+  constructor(private pythonService: PythonService,
+              private lessonSolvedService: LessonSolvedService) { }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('loopCode');
+
     this.counter = this.textarea.nativeElement.rows;
     this.counterArray = new Array(this.counter);
 
@@ -29,7 +35,7 @@ export class LessonLoopsCodeComponent implements OnInit {
 
   runCode() {
     const lessonSolvedCheckCode = `
-    lessonPassed = True
+lessonPassed = True
 print('\\n')
 
 if 'myList1' in locals():
@@ -47,7 +53,7 @@ else:
     print('You didn\\'t create the myList2 list')
     lessonPassed = False
     `;
-    this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode);
+    this.pythonService.runPythonCode(this.codeInputField, lessonSolvedCheckCode, this.lesson);
   }
 
   onEnter(textAreaElement: HTMLTextAreaElement) {

@@ -1,6 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import {PythonService} from '../../shared/python/python.service';
+import {Lesson} from '../../shared/lesson/lesson.model';
+import {LessonSolvedService} from '../../shared/lesson/lesson-solved.service';
 
 @Component({
   selector: 'app-lesson-dictionaries-code',
@@ -11,6 +13,8 @@ export class LessonDictionariesCodeComponent implements OnInit {
 
   arrowLeft = faAngleLeft;
 
+  lesson: Lesson;
+
   @ViewChild('textarea', {static: true}) textarea: ElementRef;
 
   codeInputField;
@@ -18,13 +22,25 @@ export class LessonDictionariesCodeComponent implements OnInit {
   counter: number;
   counterArray: Array<number>;
 
-  constructor(private pythonService: PythonService) { }
+  constructor(private pythonService: PythonService,
+              private lessonSolvedService: LessonSolvedService) { }
 
   ngOnInit(): void {
+    this.lesson = this.lessonSolvedService.getLesson('mapsCode');
+
     this.counter = this.textarea.nativeElement.rows;
     this.counterArray = new Array(this.counter);
 
-    this.codeInputField = ``;
+    this.codeInputField =
+`grades = {
+"John" : 1,
+"Jack" : 5,
+"Jill" : 3,
+"Steve" : 4,
+"Marie" : 4,
+"Mark" : 5,
+"Ryan" : 2
+}`;
   }
 
   runCode() {
@@ -36,7 +52,7 @@ if "Steve" in grades:
     print("You didn\\'t remove Steve from the grades map")
     lessonPassed = False
 if grades['Ryan'] != 3:
-    print("You didn\\'t change Ryans grade")
+    print("You didn\\'t change Ryan's grade")
     lessonPassed = False
 if not 'averageGrade' in locals():
     print('You didn\\'t define averageGrade or you named it wrong')
@@ -46,7 +62,7 @@ else:
         print('Your average grade is wrong')
         lessonPassed = False
 `;
-    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, checkResultCode);
+    this.consoleOutput = this.pythonService.runPythonCode(this.codeInputField, checkResultCode, this.lesson);
   }
 
   onEnter(textAreaElement: HTMLTextAreaElement) {
@@ -59,7 +75,16 @@ else:
   }
 
   resetCode() {
-    this.codeInputField = ``;
+    this.codeInputField =
+`grades = {
+"John" : 1,
+"Jack" : 5,
+"Jill" : 3,
+"Steve" : 4,
+"Marie" : 4,
+"Mark" : 5,
+"Ryan" : 2
+}`;
   }
 
 }
