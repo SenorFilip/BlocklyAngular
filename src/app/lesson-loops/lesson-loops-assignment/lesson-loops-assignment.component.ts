@@ -21,7 +21,7 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
 
   isButtonDisabled = false;
   isBunnyRunning = false;
-  bunnyOutOfBounds = false;
+  currentBlock = 0;
 
   lesson: Lesson;
   private lessonChangedSub: Subscription;
@@ -35,8 +35,8 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
   cellHeight: number;
   cellWidth: number;
   imgBunny: Sprite;
-  currentBunnyRow = 1;
-  currentBunnyColumn = 1;
+  destinationRow = 1;
+  destinationColumn = 1;
   carrotRow = 6;
   carrotColumn = 6;
 
@@ -44,6 +44,7 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
   @ViewChild(NgxBlocklyComponent) workspace;
   code: string;
   workspaceBlocks: Blockly.Block[] = [];
+  currentBlockTarget: Blockly.Block;
 
   public config: NgxBlocklyConfig = {
     scrollbars: true,
@@ -102,8 +103,9 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
       this.setup();
     });
 
-    // this.pixiApp.ticker.add(this.update);
-    this.pixiApp.ticker.add(this.smoothlyMoveRabbit);
+    this.pixiApp.ticker.add(() => {
+      this.gameLoop();
+    });
     this.pixiApp.ticker.maxFPS = 40;
   }
 
@@ -128,13 +130,15 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
     this.imgBunny = new Sprite(this.sheet.textures['bunny.png']);
     this.imgBunny.height = this.cellHeight;
     this.imgBunny.width = this.cellWidth;
-    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+    this.imgBunny.anchor.set(0.5);
+    this.imgBunny.position.set(
+      this.cellWidth * this.destinationColumn + this.cellWidth / 2,
+      this.cellHeight * this.destinationRow + this.cellHeight / 2);
     this.pixiApp.stage.addChild(this.imgBunny);
   }
 
   runRabbit() {
     this.isButtonDisabled = true;
-    this.isBunnyRunning = true;
     this.workspaceBlocks = [];
     const topBlocks = this.workspace.workspace.getTopBlocks(true);
     if (topBlocks.length === 0) {
@@ -151,25 +155,43 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
       }
       currentBlock = currentBlock.getNextBlock();
     }
-    this.makeBunnyMove();
+    this.isBunnyRunning = true;
+    // sets destination block for 1. move
+    this.currentBlockTarget = this.workspaceBlocks[this.currentBlock];
+    this.nextBunnyDestinationCell(this.currentBlockTarget.type);
   }
 
-  async makeBunnyMove() {
-    // makeBunnyMove() {
-    for (const block of this.workspaceBlocks) {
-      if (this.bunnyOutOfBounds) {
-        break;
+  gameLoop() {
+    if (this.isBunnyRunning) {
+      if (this.currentBlockTarget !== undefined) {
+        const designationWidth = this.cellWidth * this.destinationColumn + this.cellWidth / 2;
+        const designationHeight = this.cellHeight * this.destinationRow + this.cellHeight / 2;
+        // check if current X coordinate is approximately the same as designated X coordinate
+        if (Math.abs(this.imgBunny.x - designationWidth) > 2) {
+          if (this.imgBunny.x < designationWidth) {
+            this.imgBunny.x += 2;
+          } else {
+            this.imgBunny.x -= 2;
+          }
+          // check if current Y coordinate is approximately the same as designated Y coordinate
+        } else if (Math.abs(this.imgBunny.y - designationHeight) > 2) {
+          if (this.imgBunny.y < designationHeight) {
+            this.imgBunny.y += 2;
+          } else {
+            this.imgBunny.y -= 2;
+          }
+        } else {
+          this.imgBunny.position.set(designationWidth, designationHeight);
+          this.currentBlock++;
+          this.currentBlockTarget = this.workspaceBlocks[this.currentBlock];
+          if (this.currentBlockTarget !== undefined) {
+            this.nextBunnyDestinationCell(this.currentBlockTarget.type);
+          }
+        }
+      } else {
+        this.checkIfBunnyFoundTheCarrot();
       }
-      await this.moveBunny(block.type);
     }
-    // enables the RUN button
-    this.isButtonDisabled = false;
-    // if bunny didn't get out of bounds, check if he got the carrot
-    if (!this.bunnyOutOfBounds) {
-      this.checkIfBunnyFoundTheCarrot();
-    }
-    this.bunnyOutOfBounds = false;
-    console.log('gotovo');
   }
 
   onCode(code: string) {
@@ -196,76 +218,42 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Moves Bunny sprite in given direction.
+   * Changes Bunny sprite destination cell.
    */
-  moveBunny(direction: string) {
-    return new Promise((resolve) => {
-      switch (direction) {
-        case 'moveUp': {
-          this.currentBunnyRow -= 1;
-          break;
-        }
-        case 'moveDown': {
-          this.currentBunnyRow += 1;
-          break;
-        }
-        case 'moveRight': {
-          this.currentBunnyColumn += 1;
-          break;
-        }
-        case 'moveLeft': {
-          this.currentBunnyColumn -= 1;
-          break;
-        }
+  nextBunnyDestinationCell(direction: string) {
+    switch (direction) {
+      case 'moveUp': {
+        this.destinationRow -= 1;
+        break;
       }
-      this.checkIfBunnyMovedOutOfBounds();
-      // leaving the Bunny some room to finish its movements to the designated cell
-      setTimeout(() => {
-        resolve();
-      }, 1000);
-    });
-  }
-
-  smoothlyMoveRabbit = () => {
-    if (this.isBunnyRunning && !this.bunnyOutOfBounds) {
-      const designationWidth = this.cellWidth * this.currentBunnyColumn;
-      const designationHeight = this.cellHeight * this.currentBunnyRow;
-      // check if current X coordinate is approximately the same as designated X coordinate
-      if (Math.abs(this.imgBunny.x - designationWidth) > 0.04 * this.cellWidth) {
-        if (this.imgBunny.x < designationWidth) {
-          this.imgBunny.x += this.cellWidth / 40;
-        } else {
-          this.imgBunny.x -= this.cellWidth / 40;
-        }
-        // check if current Y coordinate is approximately the same as designated Y coordinate
-      } else if (Math.abs(this.imgBunny.y - designationHeight) > 0.04 * this.cellHeight) {
-        if (this.imgBunny.y < designationHeight) {
-          this.imgBunny.y += this.cellHeight / 40;
-        } else {
-          this.imgBunny.y -= this.cellHeight / 40;
-        }
-      } else {
-        this.imgBunny.position.set(designationWidth, designationHeight);
+      case 'moveDown': {
+        this.destinationRow += 1;
+        break;
+      }
+      case 'moveRight': {
+        this.destinationColumn += 1;
+        break;
+      }
+      case 'moveLeft': {
+        this.destinationColumn -= 1;
+        break;
       }
     }
+    this.checkIfBunnyMovedOutOfBounds();
   }
 
   checkIfBunnyMovedOutOfBounds() {
-    if (this.currentBunnyRow < 0 || this.currentBunnyRow > 8 || this.currentBunnyColumn < 0 || this.currentBunnyColumn > 8) {
+    if (this.destinationRow < 0 || this.destinationRow > 8 || this.destinationColumn < 0 || this.destinationColumn > 8) {
       this.alertService.error('Bunny can\'t hop out of bounds!', {autoClose: true});
-      this.currentBunnyRow = 1;
-      this.currentBunnyColumn = 1;
-      this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
-      this.workspaceBlocks = [];
-      this.bunnyOutOfBounds = true;
+      this.reset();
     }
   }
 
   checkIfBunnyFoundTheCarrot() {
     // checks if bunny found the carrot
-    if (this.currentBunnyRow === this.carrotRow && this.currentBunnyColumn === this.carrotColumn) {
+    if (this.destinationRow === this.carrotRow && this.destinationColumn === this.carrotColumn) {
       this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
-      setTimeout(() => this.router.navigate(['loopsLesson']), 1800);
+      // setTimeout(() => this.router.navigate(['loopsLesson']), 1800);
       this.workspace.workspace.clear();
       // sets lesson as solved
       this.lesson.isSolved = true;
@@ -273,9 +261,19 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
     } else {
       this.alertService.warn('You have FAILED! Try again.', {autoClose: true});
     }
-    this.currentBunnyRow = 1;
-    this.currentBunnyColumn = 1;
-    this.imgBunny.position.set(this.cellWidth * this.currentBunnyColumn, this.cellHeight * this.currentBunnyRow);
+    this.reset();
+  }
+
+  reset() {
+    this.currentBlock = 0;
+    this.isButtonDisabled = false;
+    this.isBunnyRunning = false;
+    this.destinationRow = 1;
+    this.destinationColumn = 1;
+    this.workspaceBlocks = [];
+    this.imgBunny.position.set(
+      this.cellWidth * this.destinationColumn + this.cellWidth / 2,
+      this.cellHeight * this.destinationRow + this.cellHeight / 2);
   }
 
   ngOnDestroy(): void {
