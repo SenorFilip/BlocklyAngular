@@ -34,15 +34,9 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
   lesson: Lesson;
   private lessonChangedSub: Subscription;
 
-  /**
-   * 0 - good!
-   * 1 - list too short
-   * 2 - list too long
-   * 3 - wrong person
-   */
-  finalResult = 0;
   currentSpriteIndex = 0;
-  gameLoopWrongSpriteIndex = -1;
+  wrongPersonIndex = -1;
+  peopleAreComing = false;
 
   disabledButtons = false;
   inputList: InputPersonModel[] = [];
@@ -167,56 +161,56 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
     sprite.width = 110;
     sprite.height = 160;
     sprite.position.set(-100, this.rendererHeight - 225);
-    this.allSpritesList.push(new ClubSpriteModel('gandalf', sprite, 225));
+    this.allSpritesList.push(new ClubSpriteModel('gandalf', sprite));
 
     sprite = new AnimatedSprite(this.sheet.animations.harryPotter);
     sprite.animationSpeed = 0.065;
     sprite.width = 90;
     sprite.height = 85;
     sprite.position.set(-100, this.rendererHeight - 180);
-    this.allSpritesList.push(new ClubSpriteModel('harryPotter', sprite, 180));
+    this.allSpritesList.push(new ClubSpriteModel('harryPotter', sprite));
 
     sprite = new AnimatedSprite(this.sheet.animations.johnSnow);
     sprite.animationSpeed = 0.065;
     sprite.width = 90;
     sprite.height = 100;
     sprite.position.set(-100, this.rendererHeight - 170);
-    this.allSpritesList.push(new ClubSpriteModel('johnSnow', sprite, 170));
+    this.allSpritesList.push(new ClubSpriteModel('johnSnow', sprite));
 
     sprite = new AnimatedSprite(this.sheet.animations.superMario);
     sprite.animationSpeed = 0.065;
     sprite.width = 90;
     sprite.height = 100;
     sprite.position.set(-100, this.rendererHeight - 170);
-    this.allSpritesList.push(new ClubSpriteModel('superMario', sprite, 170));
+    this.allSpritesList.push(new ClubSpriteModel('superMario', sprite));
 
     sprite = new AnimatedSprite(this.sheet.animations.captainMarvel);
     sprite.animationSpeed = 0.065;
     sprite.width = 100;
     sprite.height = 130;
     sprite.position.set(-100, this.rendererHeight - 180);
-    this.allSpritesList.push(new ClubSpriteModel('captainMarvel', sprite, 180));
+    this.allSpritesList.push(new ClubSpriteModel('captainMarvel', sprite));
 
     sprite = new AnimatedSprite(this.sheet.animations.megaMan);
     sprite.animationSpeed = 0.065;
     sprite.width = 90;
     sprite.height = 100;
     sprite.position.set(-100, this.rendererHeight - 170);
-    this.allSpritesList.push(new ClubSpriteModel('megaMan', sprite, 170));
+    this.allSpritesList.push(new ClubSpriteModel('megaMan', sprite));
 
     sprite = new AnimatedSprite(this.sheet.animations.wonderWoman);
     sprite.animationSpeed = 0.065;
     sprite.width = 80;
     sprite.height = 100;
     sprite.position.set(-100, this.rendererHeight - 175);
-    this.allSpritesList.push(new ClubSpriteModel('wonderWoman', sprite, 175));
+    this.allSpritesList.push(new ClubSpriteModel('wonderWoman', sprite));
 
     sprite = new AnimatedSprite(this.sheet.animations.yoda);
     sprite.animationSpeed = 0.065;
     sprite.width = 45;
     sprite.height = 50;
     sprite.position.set(-100, this.rendererHeight - 120);
-    this.allSpritesList.push(new ClubSpriteModel('yoda', sprite, 120));
+    this.allSpritesList.push(new ClubSpriteModel('yoda', sprite));
 
     // add all sprites to the stage
     this.allSpritesList.forEach((sprite1: ClubSpriteModel) => {
@@ -276,122 +270,73 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
         this.inputList.push(new InputPersonModel(block.type, false));
       });
 
-      // if the list is shorter than the bouncers list, set result to 1 (list to short)
-      if (this.inputList.length < this.bouncerClubSprites.length) {
-        this.finalResult = 1;
-      }
-      this.sendPeopleOneByOne();
+      this.peopleAreComing = true;
     }
-  }
-
-  async sendPeopleOneByOne() {
-    this.currentSpriteIndex = 0;
-    // send sprite one by one to the bouncer
-    // if list is too long or we sent the wrong person
-    // the loop breaks
-    for (const person of this.inputList) {
-      if (this.finalResult === 3 || this.finalResult === 2) {
-        break;
-      }
-      await this.movePerson();
-      this.currentSpriteIndex++;
-    }
-
-    this.checkMarks.clear();
-    this.bouncerResponseTextContainer.y = 200;
-    let text;
-    if (this.finalResult === 3) {
-      text = 'Back of the line\nfor you!';
-    } else if (this.finalResult === 1) {
-      text = 'Where\'s the rest?';
-    } else if (this.finalResult === 2) {
-      text = 'No way! \nThe club is full.';
-    } else {
-      text = 'That\'s it. \nThis party is \nawesome!';
-    }
-
-    this.responseText.text = text;
-    this.bouncerResponseTextContainer.visible = true;
-    this.bouncerListContainer.visible = false;
-    // if the result is not correct, show new list and set response test to invisible
-    if (this.finalResult !== 0) {
-      setTimeout(() => {
-        this.randomizeList();
-        this.listText.text = this.getBouncerListText();
-        this.bouncerResponseTextContainer.visible = false;
-        this.bouncerListContainer.visible = true;
-      }, 2000);
-    } else {
-      // sets lesson as solved
-      this.lesson.isSolved = true;
-      this.lessonSolvedService.updateLesson(this.lesson);
-
-      this.alertService.success('You got it. Let\'s go the next part of the lesson.');
-      setTimeout(() => this.router.navigate(['listsLesson']), 3500);
-    }
-
-    setTimeout(() => {
-      // reset input array
-      this.inputList = [];
-      this.disabledButtons = false;
-      this.finalResult = 0;
-    }, 7000);
-  }
-
-  private movePerson() {
-    return new Promise((resolve) => {
-      // leaving the person some room to finish its movements to the club
-      setTimeout(() => {
-        resolve();
-      }, 5000);
-    });
   }
 
   gameLoop() {
-    // get person from input list
-    // if the input list was too long or the person was wrong
-    // get the last sprite
-    const person = this.inputList[(this.finalResult === 3 || this.finalResult === 2)
-      ? this.gameLoopWrongSpriteIndex : this.currentSpriteIndex];
-    // stops the sprite which passed the bouncer from moving again
-    if (person !== undefined && !person.hasPassedBouncer) {
-      const clubSprite: ClubSpriteModel = this.allSpritesList.find(i => i.code === person.name);
-      clubSprite.sprite.visible = true;
-      clubSprite.sprite.play();
-      // if the input list was too long or the person was wrong
-      // move the sprite backwards
-      if ((this.finalResult === 3 || this.finalResult === 2) && clubSprite.sprite.x >= -100) {
-        clubSprite.sprite.x = clubSprite.sprite.x - 2;
-      } else if (clubSprite.sprite.x >= this.bouncer.x - this.bouncer.width - 25) {
-        // stops sprite at specific frame when he arrives before the bouncer
-        clubSprite.sprite.gotoAndStop(0);
-        // it the next person on the bouncers list doesn't exist, then the input list is too long
-        if (this.bouncerClubSprites[this.currentSpriteIndex] === undefined) {
-          // 2 - input list is too long
-          this.finalResult = 2;
-          this.gameLoopWrongSpriteIndex = this.currentSpriteIndex;
-        } else if (person.name === this.bouncerClubSprites[this.currentSpriteIndex].code) {
-          this.addCheckMark();
-        } else {
-          // 3 - wrong person
-          this.finalResult = 3;
-          this.addCrossMark();
-          this.gameLoopWrongSpriteIndex = this.currentSpriteIndex;
+    if (this.peopleAreComing) {
+      const currentPerson = this.inputList[this.currentSpriteIndex];
+      // if currentPerson is undefined - the list is too short or everyone is inside
+      if (currentPerson === undefined) {
+        if (this.inputList.length === 8) {
+          this.showBouncerDialog('That\'s it. \nThis party is \nawesome!');
+          // sets lesson as solved
+          this.lesson.isSolved = true;
+          this.lessonSolvedService.updateLesson(this.lesson);
+
+          this.alertService.success('You got it. Let\'s go the next part of the lesson.');
+          setTimeout(() => this.router.navigate(['listsLesson']), 3500);
+          this.peopleAreComing = false;
+          return;
         }
 
-        if (this.finalResult !== 3 && this.finalResult !== 2) {
+        this.showBouncerDialog('Where\'s the rest?');
+        this.peopleAreComing = false;
+        setTimeout(() => {
+          this.reset();
+        }, 2000);
+        return;
+      }
+      const currentSprite: ClubSpriteModel = this.allSpritesList.find(i => i.code === currentPerson.name);
+      currentSprite.sprite.play();
+      if (this.wrongPersonIndex !== -1) {
+        if (currentSprite.sprite.x < -100) {
+          this.reset();
+        }
+        currentSprite.sprite.x = currentSprite.sprite.x - 3;
+      } else if (currentSprite.sprite.x >= this.bouncer.x - this.bouncer.width - 25) {
+        // stops sprite at specific frame when he arrives before the bouncer
+        currentSprite.sprite.gotoAndStop(0);
+        // if the list is too big - reset everything
+        if (this.currentSpriteIndex > 7) {
+          this.wrongPersonIndex = this.currentSpriteIndex;
+          this.pixiApp.ticker.stop();
+          // this.peopleAreComing = false;
+          setTimeout(() => {
+            this.pixiApp.ticker.start();
+            this.showBouncerDialog('No way! \nThe club is full.');
+          }, 1000);
+        } else if (currentPerson.name === this.bouncerClubSprites[this.currentSpriteIndex].code) {
           this.pixiApp.ticker.stop();
           setTimeout(() => {
-            // set sprite to invisible after his walk to the club
-            clubSprite.sprite.visible = false;
-            clubSprite.sprite.position.set(-100, this.rendererHeight - clubSprite.yCoordSubstraction);
-            // this.lastPersonThatWalkedIn = this.currentSpriteIndex;
-            person.hasPassedBouncer = true;
+            currentSprite.sprite.x = -100;
+            currentPerson.hasPassedBouncer = true;
+            this.addCheckMark();
             this.pixiApp.ticker.start();
+          }, 1000);
+        } else {
+          // 3 - wrong person
+          this.addCrossMark();
+          this.wrongPersonIndex = this.currentSpriteIndex;
+          this.pixiApp.ticker.stop();
+          setTimeout(() => {
+            this.pixiApp.ticker.start();
+            this.showBouncerDialog('Back of the line\nfor you!');
           }, 1000);
         }
       } else {
-        clubSprite.sprite.x = clubSprite.sprite.x + 2;
+        currentSprite.sprite.x = currentSprite.sprite.x + 3;
       }
     }
   }
@@ -406,7 +351,8 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
     this.checkMarks.moveTo(10, 7 + offset);
     this.checkMarks.lineTo(15, 15 + offset);
     this.checkMarks.lineTo(25, offset);
-    // this.currentSpriteIndex++;
+    // move on to the next person
+    this.currentSpriteIndex++;
   }
 
   /**
@@ -440,6 +386,31 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
       text = text.concat(sprite.name + '\n');
     });
     return text;
+  }
+
+  reset() {
+    // reset input array
+    this.inputList = [];
+    this.disabledButtons = false;
+    this.peopleAreComing = false;
+    this.wrongPersonIndex = -1;
+    this.currentSpriteIndex = 0;
+    this.checkMarks.clear();
+    this.showNewList();
+  }
+
+  showBouncerDialog(text: string) {
+    this.bouncerResponseTextContainer.y = 200;
+    this.responseText.text = text;
+    this.bouncerResponseTextContainer.visible = true;
+    this.bouncerListContainer.visible = false;
+  }
+
+  showNewList() {
+    this.randomizeList();
+    this.listText.text = this.getBouncerListText();
+    this.bouncerResponseTextContainer.visible = false;
+    this.bouncerListContainer.visible = true;
   }
 
   ngOnDestroy(): void {

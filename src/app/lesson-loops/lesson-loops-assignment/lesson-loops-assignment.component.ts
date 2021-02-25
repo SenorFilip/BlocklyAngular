@@ -253,7 +253,7 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
     // checks if bunny found the carrot
     if (this.destinationRow === this.carrotRow && this.destinationColumn === this.carrotColumn) {
       this.alertService.success('Bunny got the carrot!\n Onward to the coding part');
-      // setTimeout(() => this.router.navigate(['loopsLesson']), 1800);
+      setTimeout(() => this.router.navigate(['loopsLesson']), 1800);
       this.workspace.workspace.clear();
       // sets lesson as solved
       this.lesson.isSolved = true;

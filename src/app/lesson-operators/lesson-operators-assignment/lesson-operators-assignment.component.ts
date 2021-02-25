@@ -48,8 +48,8 @@ export class LessonOperatorsAssignmentComponent implements OnInit, OnDestroy {
   tasks = [
     {taskNum: 0, taskDescription: 'NOT yellow', solution: this.pokemonSpritesSolutionNot},
     {taskNum: 1, taskDescription: 'yellow AND psychic', solution: this.pokemonSpritesSolutionAnd},
-    {taskNum: 2, taskDescription: 'green OR flying', solution: this.pokemonSpritesSolutionOr},
-    {taskNum: 3, taskDescription: `(electric OR green)<br> AND <br>(NOT flying)`, solution: this.pokemonSpritesSolutionAdvanced}
+    {taskNum: 2, taskDescription: 'green OR flying (or both)', solution: this.pokemonSpritesSolutionOr},
+    {taskNum: 3, taskDescription: `(electric OR green (or both))<br> AND <br>(NOT flying)`, solution: this.pokemonSpritesSolutionAdvanced}
   ];
 
   // index of current task

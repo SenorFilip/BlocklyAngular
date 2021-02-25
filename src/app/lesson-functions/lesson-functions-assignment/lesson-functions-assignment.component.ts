@@ -41,6 +41,12 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
     row: undefined,
     column: undefined
   };
+  /**
+   * 1 - path
+   * 2 - turn
+   * 5 - trap/cat
+   * 7 - end
+   */
   gridArray = [
     [0, 0, 0, 0, 2, 1, 1, 2, 1, 5],
     [1, 1, 2, 0, 1, 0, 0, 1, 0, 0],
