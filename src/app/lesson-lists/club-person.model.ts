@@ -1,4 +1,4 @@
 export class ClubPersonModel {
-  constructor(public code: string, public name: string) {
+  constructor(public name: string, public fullName: string) {
   }
 }

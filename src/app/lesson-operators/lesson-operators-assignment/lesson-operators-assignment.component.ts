@@ -201,22 +201,6 @@ export class LessonOperatorsAssignmentComponent implements OnInit, OnDestroy {
     });
   }
 
-  onDragEnd(pokemon) {
-    pokemon.sprite.alpha = 1;
-    delete pokemon.sprite.data;
-    pokemon.sprite.dragging = false;
-
-    const dropAreaSizes = this.dropArea.getBounds();
-    if (pokemon.sprite.x > dropAreaSizes.x && pokemon.sprite.x < dropAreaSizes.x + dropAreaSizes.width &&
-      pokemon.sprite.y > dropAreaSizes.y && pokemon.sprite.y < dropAreaSizes.y + dropAreaSizes.height) {
-      if (this.dropAreaPokemon.indexOf(pokemon) === -1) {
-        this.dropAreaPokemon.push(pokemon);
-      }
-    } else {
-      this.dropAreaPokemon = this.dropAreaPokemon.filter(obj => obj !== pokemon);
-    }
-  }
-
   submitAnswer() {
     if (this.checkAnswer()) {
       if (this.currentTask.taskNum < 3) {
@@ -263,6 +247,24 @@ export class LessonOperatorsAssignmentComponent implements OnInit, OnDestroy {
       pokemon.sprite.x = originalPosition.x;
       pokemon.sprite.y = originalPosition.y;
     });
+  }
+
+  onDragEnd(pokemon) {
+    pokemon.sprite.alpha = 1;
+    delete pokemon.sprite.data;
+    pokemon.sprite.dragging = false;
+
+    const dropAreaSizes = this.dropArea.getBounds();
+    if (pokemon.sprite.x > dropAreaSizes.x &&
+      pokemon.sprite.x < dropAreaSizes.x + dropAreaSizes.width &&
+      pokemon.sprite.y > dropAreaSizes.y &&
+      pokemon.sprite.y < dropAreaSizes.y + dropAreaSizes.height) {
+      if (this.dropAreaPokemon.indexOf(pokemon) === -1) {
+        this.dropAreaPokemon.push(pokemon);
+      }
+    } else {
+      this.dropAreaPokemon = this.dropAreaPokemon.filter(obj => obj !== pokemon);
+    }
   }
 
   ngOnDestroy(): void {

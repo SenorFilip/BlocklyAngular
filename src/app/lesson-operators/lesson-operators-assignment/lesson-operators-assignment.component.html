@@ -46,12 +46,16 @@
       </thead>
       <tbody>
       <tr *ngFor="let pokemon of pokemonSprites">
-        <td><img [src]="pokemon.sprite.texture.baseTexture.cacheId" alt="image" width="50"></td>
-        <td>{{ pokemon.name }}</td>
         <td>
+          <img [src]="pokemon.sprite.texture.baseTexture.cacheId"
+               alt="image"
+               width="50">
+        </td>
+        <td class="pt-3">{{ pokemon.name }}</td>
+        <td class="pt-3">
           <span *ngFor="let type of pokemon.types" style="font-size: 12px;" class="ml-1 type" [class]="type"></span>
         </td>
-        <td [style.background]="pokemon.color">{{ pokemon.color }}</td>
+        <td class="pt-3" [style.background]="pokemon.color">{{ pokemon.color }}</td>
       </tr>
       </tbody>
     </table>

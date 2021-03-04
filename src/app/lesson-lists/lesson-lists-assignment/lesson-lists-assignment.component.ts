@@ -16,7 +16,6 @@ import {AlertService} from '../../shared/alert';
 import {ClubPersonModel} from '../club-person.model';
 import {ClubSpriteModel} from '../club-sprite.model';
 import {Router} from '@angular/router';
-import {InputPersonModel} from '../input-person.model';
 import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {Lesson} from '../../shared/lesson/lesson.model';
 import {Subscription} from 'rxjs';
@@ -39,12 +38,13 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
   peopleAreComing = false;
 
   disabledButtons = false;
-  inputList: InputPersonModel[] = [];
+  inputList: ClubPersonModel[] = [];
   allSpritesList: ClubSpriteModel[] = [];
-  bouncerClubSprites: ClubPersonModel[] = [
-    { code: 'gandalf', name: 'Gandalf' }, { code: 'harryPotter', name: 'Harry Potter' }, { code: 'johnSnow', name: 'John Snow' },
-    { code: 'superMario', name: 'Super Mario' }, { code: 'captainMarvel', name: 'Captain Marvel' }, { code: 'megaMan', name: 'Mega Man' },
-    { code: 'wonderWoman', name: 'Wonder Woman' }, { code: 'yoda', name: 'Yoda' }
+  bouncersList: ClubPersonModel[] = [
+    { name: 'gandalf', fullName: 'Gandalf' }, { name: 'harryPotter', fullName: 'Harry Potter' },
+    { name: 'johnSnow', fullName: 'John Snow' }, { name: 'superMario', fullName: 'Super Mario' },
+    { name: 'captainMarvel', fullName: 'Captain Marvel' }, { name: 'megaMan', fullName: 'Mega Man' },
+    { name: 'wonderWoman', fullName: 'Wonder Woman' }, { name: 'yoda', fullName: 'Yoda' }
   ];
 
   // PixiJS variables
@@ -70,12 +70,12 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
   };
 
   public generatorConfig: NgxBlocklyGeneratorConfig = {
-    dart: true,
-    javascript: true,
-    lua: true,
-    php: true,
+    dart: false,
+    javascript: false,
+    lua: false,
+    php: false,
     python: true,
-    xml: true
+    xml: false
   };
 
   public customBlocks: CustomBlock[] = [
@@ -267,7 +267,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
         return;
       }
       listContent.forEach((block) => {
-        this.inputList.push(new InputPersonModel(block.type, false));
+        this.inputList.push(new ClubPersonModel(block.type, null));
       });
 
       this.peopleAreComing = true;
@@ -298,7 +298,7 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
         }, 2000);
         return;
       }
-      const currentSprite: ClubSpriteModel = this.allSpritesList.find(i => i.code === currentPerson.name);
+      const currentSprite: ClubSpriteModel = this.allSpritesList.find(i => i.name === currentPerson.name);
       currentSprite.sprite.play();
       if (this.wrongPersonIndex !== -1) {
         if (currentSprite.sprite.x < -100) {
@@ -317,11 +317,10 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
             this.pixiApp.ticker.start();
             this.showBouncerDialog('No way! \nThe club is full.');
           }, 1000);
-        } else if (currentPerson.name === this.bouncerClubSprites[this.currentSpriteIndex].code) {
+        } else if (currentPerson.name === this.bouncersList[this.currentSpriteIndex].name) {
           this.pixiApp.ticker.stop();
           setTimeout(() => {
             currentSprite.sprite.x = -100;
-            currentPerson.hasPassedBouncer = true;
             this.addCheckMark();
             this.pixiApp.ticker.start();
           }, 1000);
@@ -369,11 +368,11 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
   }
 
   randomizeList() {
-    for (let i = this.bouncerClubSprites.length - 1; i >= 0; i--) {
+    for (let i = this.bouncersList.length - 1; i >= 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      const temp = this.bouncerClubSprites[i];
-      this.bouncerClubSprites[i] = this.bouncerClubSprites[j];
-      this.bouncerClubSprites[j] = temp;
+      const temp = this.bouncersList[i];
+      this.bouncersList[i] = this.bouncersList[j];
+      this.bouncersList[j] = temp;
     }
   }
 
@@ -382,8 +381,8 @@ export class LessonListsAssignmentComponent implements OnInit, OnDestroy {
    */
   getBouncerListText() {
     let text = '';
-    this.bouncerClubSprites.forEach((sprite) => {
-      text = text.concat(sprite.name + '\n');
+    this.bouncersList.forEach((sprite) => {
+      text = text.concat(sprite.fullName + '\n');
     });
     return text;
   }

@@ -1,6 +1,6 @@
 import {AnimatedSprite} from 'pixi.js';
 
 export class ClubSpriteModel {
-  constructor(public code: string, public sprite: AnimatedSprite) {
+  constructor(public name: string, public sprite: AnimatedSprite) {
   }
 }

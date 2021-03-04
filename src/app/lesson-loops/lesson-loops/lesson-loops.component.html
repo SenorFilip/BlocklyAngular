@@ -1,0 +1,112 @@
+<div class="row-md-6">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/loopsAssignment']">
+        <fa-icon [icon]="arrowLeft"></fa-icon> Bunny Assignment</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary mt-3"
+              [routerLink]="['/loopsAssignment/code']">
+        Loops Coding Assignment <fa-icon [icon]="arrowRight"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card border-primary mb-3 mt-3">
+    <div class="card-header"><h3>Loops</h3></div>
+    <div class="card-body">
+
+      Programmers don’t particularly like repeating themselves either, unless they’re also trying to fall asleep. Thankfully, most programming<br>
+      languages have what is called a <i>for</i> loop, which repeats things like other programming statements and blocks of code automatically.
+      <br><br>
+
+      <b>For loop</b><br><br>
+
+      To print hello five times in Python, you could do the following:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >> print("hello")
+          <div style="color: #316C75">hello</div>
+          >> print("hello")
+          <div style="color: #316C75">hello</div>
+          >> print("hello")
+          <div style="color: #316C75">hello</div>
+          >> print("hello")
+          <div style="color: #316C75">hello</div>
+          >> print("hello")
+          <div style="color: #316C75">hello</div>
+        </div>
+      </div>
+
+      But this is rather tedious. Instead, you can use a for loop to reduce the amount of typing and repetition, like this:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >>  for x in range(0, 5):
+          <div class="indentedRow">print('hello')</div>
+          <div style="color: #316C75">
+            hello<br>
+            hello<br>
+            hello<br>
+            hello<br>
+            hello
+          </div>
+        </div>
+      </div>
+
+      The <b>range</b> function can be used to create a list of numbers ranging from a starting number up to the number just before the<br>
+      ending number. That may sound a little confusing. Let’s combine the range function with the list function to see exactly how
+      this works.<br>
+      The range function doesn’t actually create a list of numbers; it returns an <i>iterator</i>, which is a type of Python object<br>
+      specially designed to work with loops. However, if we combine range with list, we get a list of numbers.<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >>  myList = list(range(10, 20))<br>
+          >> print(myList)
+          <div style="color: #316C75">[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]</div>
+        </div>
+      </div>
+
+      We could also use the <i>x</i> in our print statement to count the hellos:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >>  for x in range(0, 5):
+          <div class="indentedRow">print('hello %s' % x)</div>
+          <div style="color: #316C75">
+            hello 0<br>
+            hello 1<br>
+            hello 2<br>
+            hello 3<br>
+            hello 4
+          </div>
+        </div>
+      </div>
+
+      You don’t need to stick to using the range and list functions when making for loops. You could also use a list you’ve already
+      created,<br> such as the shopping list from the <b>Lists lesson</b>, as follows:<br><br>
+
+      <div class="card text-box border-info mb-3 code-box">
+        <div class="card-body text-info">
+          >>  shopping_list = ['carrots', 'potatoes', 'tomatoes', 'pasta', 'salt']<br>
+          >> for i in shopping_list:
+          <div class="indentedRow">print(i)</div>
+          <div style="color: #316C75">
+            carrots<br>
+            potatoes<br>
+            tomatoes<br>
+            pasta<br>
+            salt
+          </div>
+        </div>
+      </div>
+
+      This code is a way of saying, “For each item in shopping_list, store the value in the variable <i>i</i>,
+      and then print the contents of that variable.”<br><br>
+
+    </div>
+  </div>
+</div>
+
