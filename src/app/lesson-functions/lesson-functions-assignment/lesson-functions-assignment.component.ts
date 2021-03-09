@@ -44,7 +44,8 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
   /**
    * 1 - path
    * 2 - turn
-   * 5 - trap/cat
+   * 4 - mouse trap
+   * 5 - cat
    * 7 - end
    */
   gridArray = [
@@ -54,7 +55,7 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
     [0, 0, 2, 1, 2, 0, 0, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 2, 2, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [5, 1, 2, 1, 1, 1, 1, 1, 2, 0],
+    [4, 1, 2, 1, 1, 1, 1, 1, 2, 0],
     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 2, 1, 1, 2, 0, 0, 0, 0],
@@ -78,11 +79,6 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
   paddingLeftRight: number;
   cellHeight: number;
   cellWidth: number;
-  texturesRight: Texture[] = [];
-  texturesLeft: Texture[] = [];
-  texturesUp: Texture[] = [];
-  texturesDown: Texture[] = [];
-  textureMouseWon: Texture[] = [];
 
   // Blockly variables
   @ViewChild(NgxBlocklyComponent) workspace;
@@ -220,40 +216,23 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
     this.mouseAnimatedSprite.position.set(this.paddingLeftRight + 0.5 * this.cellWidth, this.paddingTopBottom + this.cellHeight * 1.5);
     this.mouseAnimatedSprite.stop();
     this.pixiApp.stage.addChild(this.mouseAnimatedSprite);
-
-    // defining the texture arrays to switch between them when we switch directions
-    for (let i = 1; i <= 4; i++) {
-      this.texturesRight.push(this.sheet.textures['mouseRight_' + i + '.png']);
-      this.texturesLeft.push(this.sheet.textures['mouseLeft_' + i + '.png']);
-      this.texturesUp.push(this.sheet.textures['mouseUp_' + i + '.png']);
-      this.texturesDown.push(this.sheet.textures['mouseDown_' + i + '.png']);
-    }
-    this.textureMouseWon.push(this.sheet.textures['mouseWin_1.png']);
-    this.textureMouseWon.push(this.sheet.textures['mouseWin_2.png']);
   }
 
   gameLoop() {
     if (this.isMouseRunning) {
       // check if mouse collided with a cat, trap or cheese
       const currentGridFieldValue = this.gridArray[this.currentGridPosition.row][this.currentGridPosition.column];
-      if (currentGridFieldValue === 0 || currentGridFieldValue === undefined) {
+      if (currentGridFieldValue === undefined || currentGridFieldValue === 0) {
         this.reset();
         this.alertService.error('Mouse can\'t walk out of his path.', {autoClose: true});
         return;
-      } else if (this.mouseAnimatedSprite.x + this.mouseAnimatedSprite.width > this.cat1Sprite.x &&
-                 Math.abs(this.mouseAnimatedSprite.y - this.cat1Sprite.y) < 10) {
+      } else if (currentGridFieldValue === 5) {
         this.mouseGotEatenOrTrapped('The cat beat up the mouse.');
         return;
-      } else if (this.mouseAnimatedSprite.x - this.mouseAnimatedSprite.width < this.trapSprite.x &&
-        Math.abs(this.mouseAnimatedSprite.y - this.trapSprite.y) < 10) {
+      } else if (currentGridFieldValue === 4) {
         this.mouseGotEatenOrTrapped('The mouse got trapped.');
         return;
-      } else if (this.mouseAnimatedSprite.y + this.mouseAnimatedSprite.height > this.cat2Sprite.y &&
-        Math.abs(this.mouseAnimatedSprite.x - this.cat2Sprite.x) < 10) {
-        this.mouseGotEatenOrTrapped('The cat beat up the mouse.');
-        return;
-      } else if (this.mouseAnimatedSprite.x + this.mouseAnimatedSprite.width > this.cheeseSprite.x &&
-                 Math.abs(this.mouseAnimatedSprite.y - this.cheeseSprite.y) < 10) {
+      } else if (currentGridFieldValue === 7) {
         if (this.numberOfDirectionBlocks > 7) {
           this.alertService.error('You got the cheese but you used ' + this.numberOfDirectionBlocks + ' instead of 7 blocks.');
           this.reset();
@@ -264,7 +243,7 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
           this.lessonSolvedService.updateLesson(this.lesson);
 
           this.isMouseRunning = false;
-          this.mouseAnimatedSprite.textures = this.textureMouseWon;
+          this.mouseAnimatedSprite.textures = this.sheet.animations.mouseWin;
           this.mouseAnimatedSprite.play();
           this.alertService.success('Mouse got the cheese!\n Let\'s get to the next part.');
           setTimeout(() => this.router.navigate(['functionsLesson']), 1800);
@@ -292,28 +271,28 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
       } else if (directionBlock.type === 'moveRight') {
         if (this.currentMove !== 'moveRight') {
           this.currentMove = 'moveRight';
-          this.mouseAnimatedSprite.textures = this.texturesRight;
+          this.mouseAnimatedSprite.textures = this.sheet.animations.mouseRight;
           this.mouseAnimatedSprite.play();
         }
         this.mouseAnimatedSprite.x += 2;
       } else if (directionBlock.type === 'moveLeft') {
         if (this.currentMove !== 'moveLeft') {
           this.currentMove = 'moveLeft';
-          this.mouseAnimatedSprite.textures = this.texturesLeft;
+          this.mouseAnimatedSprite.textures = this.sheet.animations.mouseLeft;
           this.mouseAnimatedSprite.play();
         }
         this.mouseAnimatedSprite.x -= 2;
       } else if (directionBlock.type === 'moveUp') {
         if (this.currentMove !== 'moveUp') {
           this.currentMove = 'moveUp';
-          this.mouseAnimatedSprite.textures = this.texturesUp;
+          this.mouseAnimatedSprite.textures = this.sheet.animations.mouseUp;
           this.mouseAnimatedSprite.play();
         }
         this.mouseAnimatedSprite.y -= 2;
       } else {
         if (this.currentMove !== 'moveDown') {
           this.currentMove = 'moveDown';
-          this.mouseAnimatedSprite.textures = this.texturesDown;
+          this.mouseAnimatedSprite.textures = this.sheet.animations.mouseDown;
           this.mouseAnimatedSprite.play();
         }
         this.mouseAnimatedSprite.y += 2;
@@ -427,7 +406,7 @@ export class LessonFunctionsAssignmentComponent implements OnInit, OnDestroy {
     };
     this.movementDirectionBlocks = [];
     this.numberOfDirectionBlocks = 0;
-    this.mouseAnimatedSprite.textures = this.texturesRight;
+    this.mouseAnimatedSprite.textures = this.sheet.animations.mouseRight;
     this.mouseSpriteDead.visible = false;
     this.mouseAnimatedSprite.visible = true;
     this.mouseAnimatedSprite.position.set(this.paddingLeftRight + 0.5 * this.cellWidth, this.paddingTopBottom + this.cellHeight * 1.5);

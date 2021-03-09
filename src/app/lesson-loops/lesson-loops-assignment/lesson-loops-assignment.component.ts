@@ -201,18 +201,16 @@ export class LessonLoopsAssignmentComponent implements OnInit, OnDestroy {
   unwrapLoopBlock(loopBlock: Blockly.Block) {
     const numberOfLoops = loopBlock.getFieldValue('numberOfLoops');
     for (let i = numberOfLoops; i > 0; i--) {
-      // getChildren() return only first child because of reasons
-      const loopContent = loopBlock.getChildren(true);
+      const loopContent = loopBlock.getDescendants(true);
+      loopContent.shift();
       if (loopContent.length !== 0) {
-        let currentBlock = loopContent[0];
-        while (currentBlock !== null ) {
-          if (currentBlock.type === 'myCustomLoop') {
-            this.unwrapLoopBlock(currentBlock);
+        loopContent.forEach((block) => {
+          if (block.type === 'myCustomLoop') {
+            this.unwrapLoopBlock(block);
           } else {
-            this.workspaceBlocks.push(currentBlock);
+            this.workspaceBlocks.push(block);
           }
-          currentBlock = currentBlock.getNextBlock();
-        }
+        });
       }
     }
   }

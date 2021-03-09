@@ -54,7 +54,6 @@ export class LessonConditionsAssignmentComponent implements OnInit, OnDestroy {
   redCircle: Graphics;
   border1: Graphics;
   border2: Graphics;
-  border3: Graphics;
   finishLine: Graphics;
 
   // Blockly variables
@@ -207,14 +206,6 @@ export class LessonConditionsAssignmentComponent implements OnInit, OnDestroy {
     this.border2.position.set(575, 220);
     this.border2.visible = false;
     this.pixiApp.stage.addChild(this.border2);
-
-    this.border3 = new Graphics();
-    this.border3.lineStyle(4, 0xFF0000)
-      .moveTo(0, 0)
-      .lineTo(60, 0);
-    this.border3.position.set(530, 465);
-    this.border3.visible = false;
-    this.pixiApp.stage.addChild(this.border3);
 
     this.finishLine = new Graphics();
     this.finishLine.lineStyle(4, 0xFF0000)

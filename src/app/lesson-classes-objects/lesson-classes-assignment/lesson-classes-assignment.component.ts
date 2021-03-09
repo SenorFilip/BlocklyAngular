@@ -160,15 +160,15 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
     background.height = this.rendererHeight;
     this.pixiApp.stage.addChild(background);
 
-    this.bronzeRim1Sprite = this.createTruckRimSprite('bronze', [-100, 390]);
-    this.bronzeRim2Sprite = this.createTruckRimSprite('bronze', [-240, 390]);
-    this.bronzeRim3Sprite = this.createTruckRimSprite('bronze', [-380, 390]);
-    this.goldRim1Sprite = this.createTruckRimSprite('gold', [-100, 390]);
-    this.goldRim2Sprite = this.createTruckRimSprite('gold', [-240, 390]);
-    this.goldRim3Sprite = this.createTruckRimSprite('gold', [-380, 390]);
-    this.platinumRim1Sprite = this.createTruckRimSprite('platinum', [-100, 390]);
-    this.platinumRim2Sprite = this.createTruckRimSprite('platinum', [-240, 390]);
-    this.platinumRim3Sprite = this.createTruckRimSprite('platinum', [-380, 390]);
+    this.bronzeRim1Sprite = this.createRimSprite('bronze', [-100, 390]);
+    this.bronzeRim2Sprite = this.createRimSprite('bronze', [-240, 390]);
+    this.bronzeRim3Sprite = this.createRimSprite('bronze', [-380, 390]);
+    this.goldRim1Sprite = this.createRimSprite('gold', [-100, 390]);
+    this.goldRim2Sprite = this.createRimSprite('gold', [-240, 390]);
+    this.goldRim3Sprite = this.createRimSprite('gold', [-380, 390]);
+    this.platinumRim1Sprite = this.createRimSprite('platinum', [-100, 390]);
+    this.platinumRim2Sprite = this.createRimSprite('platinum', [-240, 390]);
+    this.platinumRim3Sprite = this.createRimSprite('platinum', [-380, 390]);
 
     this.truckSprite = new Sprite(this.sheet.textures['truck.png']);
     this.truckSprite.height = 550;
@@ -305,6 +305,7 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
     if (vehicleRemoved) {
       this.currentVehicle.rims = undefined;
       this.currentVehicle.type = undefined;
+      this.currentVehicle.color = undefined;
     }
   }
 
@@ -322,7 +323,7 @@ export class LessonClassesAssignmentComponent implements OnInit, OnDestroy {
       newVehicle.rims === currentVehicle.rims;
   }
 
-  createTruckRimSprite(rimType: string, coordinates: number[]) {
+  createRimSprite(rimType: string, coordinates: number[]) {
     const rim = new Sprite(this.sheet.textures[rimType + 'Rims.png']);
     rim.height = 120;
     rim.width = 185;
